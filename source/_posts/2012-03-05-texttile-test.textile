@@ -1,0 +1,12 @@
+---
+layout: post
+title: "texttile"
+date: 2012-03-05 23:04
+comments: true
+categories: 
+---
+
+<notextile>
+{% include_code test.js %}
+</notextile>
+

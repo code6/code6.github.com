@@ -8,10 +8,10 @@ ssh_user       = "user@domain.com"
 ssh_port       = "22"
 document_root  = "~/website.com/"
 rsync_delete   = true
-deploy_default = "rsync"
+deploy_default = "push"
 
 # This will be configured for you when you run config_deploy
-deploy_branch  = "gh-pages"
+deploy_branch  = "master"
 
 ## -- Misc Configs -- ##
 
@@ -22,8 +22,8 @@ deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
 stash_dir       = "_stash"    # directory to stash posts for speedy generation
 posts_dir       = "_posts"    # directory for blog files
 themes_dir      = ".themes"   # directory for blog files
-new_post_ext    = "markdown"  # default new post file extension when using the new_post task
-new_page_ext    = "markdown"  # default new page file extension when using the new_page task
+new_post_ext    = "textile"  # default new post file extension when using the new_post task
+new_page_ext    = "textile"  # default new page file extension when using the new_page task
 server_port     = "4000"      # port for preview server eg. localhost:4000
 
 
@@ -225,7 +225,7 @@ end
 
 desc "copy dot files for deployment"
 task :copydot, :source, :dest do |t, args|
-  FileList["#{args.source}/**/.*"].exclude("**/.", "**/..", "**/.DS_Store", "**/._*").each do |file|
+  FileList["#{args.source}/**/.*"].exclude("**/.", "**/..", "**/.DS_Store", "**/._*", '**/.*.swp').each do |file|
     cp_r file, file.gsub(/#{args.source}/, "#{args.dest}") unless File.directory?(file)
   end
 end
