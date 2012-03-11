@@ -1,0 +1,194 @@
+---
+layout: post
+title: "Octopress Setup"
+date: 2012-03-09 8:10
+comments: true
+categories: blog
+---
+
+p(date). 2012-03-09
+
+{% img /images/octopress_logo.png %}
+
+最早是在lzyy的blog看到 "使用github作为博客引擎":http://blog.leezhong.com/tech/2010/08/25/make-github-as-blog-engine.html, 后面在github上看到了 "他的博客的源代码":https://github.com/lzyy/lzyy.github.com/blob/master/_posts/2010-08-25-make-github-as-blog-engine.textile , 顿时感觉很不错, 这样写blog大概有几个优点:
+* *markdown*
+可以使用惯用的markdown来写文章(比如我觉得 "textile":http://redcloth.org/textile 跟 "confluence":http://www.atlassian.com/software/confluence/overview的编辑语法很像)
+* *git && githhub*
+使用git进行版本控制, 放在github上保存, 使用 "github pages":http://pages.github.com/ 发布, 空间再不是写blog的障碍了:)
+
+经过约一周的围观与尝试= =, 差不多搞到可用了，剩下了就是加page, 搞插件，熟悉语法了。捣鼓过程无比心酸, 鉴于一个windows用户, 又不愿在windows上搞, 碰巧vmplayer中仅有一台别人配的centos, 于是开始捣鼓了。octopress 需要ruby, python(其中用到 "rubypython":https://github.com/halostatue/rubypython 似乎有依赖), git, ssl等一系列乱七八糟的东西, 按官方的说明去安装倒也无碍, 不过由于之前随意安装了一些低版本的东西, 往往会导致后面发现跑不起来, 于是也多了很多弯路, 总的来说, *顺风顺水的话, 安装还是很容易的*。
+
+
+h3. *Octopress Setup*
+
+安装过程可以参考官方文档(参见附录), 这里结合我的环境(centos 5.7)复述一下, 后面再说说我遇到的囧问题。
+
+** *git && github*
+首先要有git, 为了在github上保存且发布, 要申请一个github账号并上传ssh key以支持push, 见 "github帮助":http://help.github.com/ 。
+
+** *创建ruby环境*
+octopress 需要 ruby 1.9.2, 用 "rvm":https://github.com/wayneeseguin/rvm 可以方便安装, 先安装rvm
+
+{% codeblock install rvm lang:bash %}
+bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+{% endcodeblock %}
+
+为了更方便使用rvm, 我们将其加入bash_profile中
+
+{% codeblock add rvm to bash_profile lang:bash %}
+echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile
+source ~/.bash_profile
+{% endcodeblock %}
+
+安装ruby 1.9.2 获取最新的 "rubygems":http://rubygems.org/ , 并安装 "bundler":http://gembundler.com/
+
+{% codeblock install ruby lang:bash %}
+rvm install 1.9.2 && rvm use 1.9.2
+rvm rubygems latest
+ruby --version  # Should report Ruby 1.9.2
+gem install bundler
+{% endcodeblock %}
+
+** *下载并安装octopress*
+
+{% codeblock install octopress lang:bash %}
+git clone git://github.com/imathis/octopress.git octopress
+cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
+bundle install  #install dependencies
+rake install    # Install the default Octopress theme.
+{% endcodeblock %}
+
+上文中用到一个 "rake":http://rake.rubyforge.org/ , 可以认为就是一种预先编好的 *任务脚本* , 观察文件夹中有一个 @Rakefile@ 打开看看就大概猜了下。
+
+到这一步基本在本机上已经安装好ctopress了, 我们可以把它发布到Github上(当然你还可以部署到 "其他地方":http://octopress.org/docs/deploying/ )。首先你得建一个以用户名命名的类似 @username.github.com@ 的Repository。比如我的就是 @code6.github.com@, 然后设定Github Pages:
+
+{% highlight bash %}
+rake setup_github_pages
+{% endhighlight %}
+
+之后会要求 @read/write url for repository@ 。 
+将 *git@github.com:yourname/yourname.github.com.git* 替换成自己的即可。
+
+** *建立和发布*
+
+{% codeblock deploy lang:bash %}
+rake generate
+rake deploy
+{% endcodeblock %}
+
+很简单吧, 两条命令就搞定了~, 接下来就可以浏览 @http://username.github.com@
+这里我们是将生成的站点的静态文件发布到了 @username.github.com@这个仓库的master分支上, 但这并不包含我们的源文件。 这里我们可以将原始文件提交到source分支上
+
+{% codeblock initial commit lang:bash %}
+git add .
+git commit -m 'initial source commit'
+git push origin source
+{% endcodeblock %}
+
+** *目录结构*
+
+到这里我们基本搞差不多了, 可以开展日常工作了，这里可以先熟悉相应的代码结构。
+这里主要的目录有 @source@ , @public@ , @_deploy@ , 还有个全局配置文件 @_config.yml@ 。
+其中
+@source@ 为源文件目录, 我们写的文章就在 @source/_posts@ 中, 当然还包括布局, 页面等好多东西
+@public@ 为渲染后的静态blog目录
+@_deploy@ 是用来需要部署的文件目录, 大概觉得是 @public@ 的一份拷贝
+@_config.yml@ 是全局的配置文件, 语法参考 "这里":http://www.ibm.com/developerworks/cn/xml/x-cn-yamlintro/
+
+这里插一个题外话, octopress是基于 "Jekyll":https://github.com/mojombo/jekyll 的, 最开始尝试时下载了jekyll, 由于前端方面的薄弱技能, handler不住, 于是才使用octopress的。最初还看了一个 "jekyll-bootstrap":https://github.com/plusjade/jekyll-bootstrap , 用起来也不麻烦，但猜测没有octopress强大这边的 @_config.yml@ , @source@ 都跟jekyll中的有关, 于是后面如果要捣鼓的话, 可以在那边多看看。 @source@ 目录可以参考jekyll的相关 "wiki":https://github.com/mojombo/jekyll/wiki/Usage 。
+
+** *日常任务*
+
+*建立新文章*
+文章必须发表在 @source/_posts@ 下，命名成 @YYYY-MM-DD-post-title.markdown@ 的格式， 我们可以使用octopress的rake 任务来快速创建一篇新文章:
+
+{% codeblock rake new post lang:bash %}
+rake new_post["Zombie Ninjas Attack: A survivor's retrospective"]
+# Creates source/_posts/2011-07-03-zombie-ninjas-attack-a-survivors-retrospective.markdown
+{% endcodeblock %}
+
+默认的后缀是 @markdown@ , 可以在 Rakefile中修改。通过此任务创建的文章会补上开头的 "元信息":https://github.com/mojombo/jekyll/wiki/yaml-front-matter 。
+接下来我们就可以用自己喜爱的编辑器来编辑了。
+
+*建立页面*
+略
+
+*生成与预览*
+当我们完成一篇文章的创作时，我们可以在本机预览我们的文章。
+
+{% codeblock generate and preview lang:bash %}
+rake generate   # Generates posts and pages into the public directory
+rake preview    # Watches source/ and sass/ for changes and regenerates, and mounts a webserver at http://localhost:4000
+{% endcodeblock %}
+
+其中 @rake generate@ 是将文章和页面生成到 @public@ 目录中，后面我们才能发布我们的改动。
+@rake preview@ 会在本地4000端口起一个网站服务器, 我们访问 @http://localhost:4000@ 则可以看到自己的博客。还有一点是它会监听 @source@ 和 @sass@ 的改动，并重新生成文件，也就是说我们无需重启服务器就可以预览最新的文章。
+
+*发布*
+同上文。
+
+*更新octopress*
+
+{% codeblock upgrade octopress lang:bash %}
+git pull octopress master     # Get the latest Octopress
+bundle install                # Keep gems updated
+rake update_source            # update the template's source
+rake update_style             # update the template's style
+{% endcodeblock %}
+
+更多请参考 "官方文档":http://octopress.org/docs/blogging/ 。
+
+*textile语法参考*
+考虑使用textile来写blog, 可以从很多github上的repo中来学习。参考 "github上挂的Jekyll的站点":https://github.com/mojombo/jekyll/wiki/sites , 或者参考 "相关手册":http://redcloth.org/hobix.com/textile/ 。 注意文件后缀名不要 *拼错* , 否则无法渲染。 使用过程中感觉textile对于 *空格要求比较严格* , 该 *留空格* 的地方还得留一下, 另外段落之间也最好 *留一个空行* 。 另外发现textile的一些标签不是非常好用, 还得自己做尝试才能得到预期效果。 当然你也可以考虑直接使用 "markdown":http://wowubuntu.com/markdown/ 。
+
+
+h3. *安装补充*
+
+这边主要想说一下我所遇到的问题，当然不是所有人都会遇到，仅限于比较悲剧的人来说。
+
+*GemFile*
+把源改成http://ruby.taobao.org, 据说会比较快, 具体我这边就是讲 @gem@ 和 @GemFile@ 稍微改了下。
+
+*ruby blows up with gem dependency*
+参考 "这里":http://stackoverflow.com/questions/4262616/ruby-1-9-2-blows-up-with-json-gem-dependency , 重装一下ruby并升级一下:
+
+{% codeblock reinstall ruby lang:bash %}
+rvm uninstall 1.9.2
+gem update --system;
+gem pristine --all
+{% endcodeblock %}
+
+*rubypython 调用到libpython2.x.so失败*
+
+由于我先前是用pythonbrew来安装python的，装了python2.7, 本机自带了一个python2.4。 我将pythonbrew关掉, 就ok了，未深究。
+
+*ruby环境安装不全*
+通过 @rvm requirements@ 查看一下需要预先安装什么，然后装好再重装ruby= =
+
+*rdiscount fail to generate*
+据说 @rdiscount@ 会快一些, 这里重装一下就好了。。
+
+{% codeblock reinstall rdiscount lang:bash %}
+gem uninstall rdiscount
+gem install rdiscount
+{% endcodeblock %}
+
+*deploy时拷贝swp/swo文件失败*
+
+简单在deploy时忽略swp,swo文件, 在Rakefile中修改:
+
+{% codeblock modify rakefile lang:ruby %}
+  FileList["#{args.source}/**/.*"].exclude("**/.", "**/..", "**/.DS_Store", "**/._*", '**/.*.swp', '**/.*.swo').each do |file|
+{% endcodeblock %}
+
+---
+
+h3. *附录*
+
+"Octopress Setup":http://octopress.org/docs/setup/
+"Octopress: a blogging framework for hackers":http://lyhdev.com/note:octopress
+"Ruby开源项目介绍(1):octopress--像黑客一样写博客":http://www.yangzhiping.com/tech/octopress.html
+"Blog = GitHub + Octopress":http://mrzhang.me/blog/blog-equals-github-plus-octopress.html
+"如何高效地使用GitHub":http://www.yangzhiping.com/tech/github.html
+"Blogging Like a Hacker":http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html
+

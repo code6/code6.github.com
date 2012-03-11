@@ -1,0 +1,81 @@
+---
+layout: post
+title: "textile exmpale"
+date: 2012-03-05 23:04
+comments: true
+categories: 
+---
+
+<notextile>
+{% include_code test.js %}
+</notextile>
+
+{% codeblock Here's an example .rvmrc file. lang:ruby %}
+rvm ruby-1.8.6 # ZOMG, seriously? We still use this version?
+{% endcodeblock %}
+
+{% codeblock install rvm lang:bash %}
+bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+{% endcodeblock %}
+
+<notextile>
+{% highlight bash %}
+bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+{% endhighlight %}
+</notextile>
+
+<pre>
+<code>
+echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile
+source ~/.bash_profile
+# If using Zsh do this instead
+echo '[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm' >> ~/.zshrc
+source ~/.zshrc
+</code>
+</pre>
+
+{% highlight bash %}
+ssh desktop -D 8080 desktop
+{% endhighlight %}
+
+
+<code>
+ssh desktop -D 8080 desktop
+</code>
+
+<pre>
+<code>
+ssh desktop -D 8080 desktop
+</code>
+</pre>
+
+
+hello @rsync@
+
+<pre>
+from="10.1.1.1",command="/home/remoteuser/command" ssh-dss AAAA...
+</pre>
+
+
+
+<notextile>
+``` coffeescript
+    _Tweets_ = 1
+
+    module.exports = Tweets
+```
+</notextile>
+
+p=. !http://gitready.com/images/branches.png!
+
+* Separate paragraphs with two newlines.
+* Use one newline only if you need a <br> tag, otherwise, no newlines inside the paragraph.
+* When creating a new page, don’t forget the YAML premable at the top (Jekyll needs the page title and layout).
+* The layout uses H1 to render the page title; only use H2 through H4 for the page content.
+* Use H2 headers for the major page sections. Give each H2 header a unique ID so the table of contents can link to it.
+* Separating sentences with two spaces, just a convenience when editing in a text editor using monospaced fonts.
+* If in doubt, ask.
+
+
+{% img /images/octopress_logo.png %}
+

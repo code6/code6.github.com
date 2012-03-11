@@ -14,3 +14,10 @@ categories:
 > Back to the first level.
 
 {% include_code test.js %}
+
+
+{% highlight bash %}
+rake generate
+rake deploy
+{% endhighlight %}
+
