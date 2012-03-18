@@ -12,7 +12,7 @@ p(date). 2012-03-09
 
 最早是在lzyy的blog看到 "使用github作为博客引擎":http://blog.leezhong.com/tech/2010/08/25/make-github-as-blog-engine.html, 后面在github上看到了 "他的博客的源代码":https://github.com/lzyy/lzyy.github.com/blob/master/_posts/2010-08-25-make-github-as-blog-engine.textile , 顿时感觉很不错, 这样写blog大概有几个优点:
 * *markdown*
-可以使用惯用的markdown来写文章(比如我觉得 "textile":http://redcloth.org/textile 跟 "confluence":http://www.atlassian.com/software/confluence/overview的编辑语法很像)
+可以使用惯用的markdown来写文章(比如我觉得 "textile":http://redcloth.org/textile 跟 "confluence":http://www.atlassian.com/software/confluence/overview 的编辑语法很像)
 * *git && githhub*
 使用git进行版本控制, 放在github上保存, 使用 "github pages":http://pages.github.com/ 发布, 空间再不是写blog的障碍了:)
 
@@ -60,7 +60,7 @@ rake install    # Install the default Octopress theme.
 
 上文中用到一个 "rake":http://rake.rubyforge.org/ , 可以认为就是一种预先编好的 *任务脚本* , 观察文件夹中有一个 @Rakefile@ 打开看看就大概猜了下。
 
-到这一步基本在本机上已经安装好ctopress了, 我们可以把它发布到Github上(当然你还可以部署到 "其他地方":http://octopress.org/docs/deploying/ )。首先你得建一个以用户名命名的类似 @username.github.com@ 的Repository。比如我的就是 @code6.github.com@, 然后设定Github Pages:
+到这一步基本在本机上已经安装好octopress了, 我们可以把它发布到Github上(当然你还可以部署到 "其他地方":http://octopress.org/docs/deploying/ )。首先你得建一个以用户名命名的类似 @username.github.com@ 的Repository。比如我的就是 @code6.github.com@, 然后设定Github Pages:
 
 {% highlight bash %}
 rake setup_github_pages
