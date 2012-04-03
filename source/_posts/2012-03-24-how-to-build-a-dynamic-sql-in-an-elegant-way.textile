@@ -1,0 +1,114 @@
+---
+layout: post
+title: "How to build a dynamic SQL in an elegant way"
+date: 2012-03-24 11:27
+comments: true
+categories: 
+---
+
+p(date). 2012-04-04
+
+换上octopress, 写blog还是不勤快, 目前装在虚拟机当中，怎么勤快:(。
+
+不岔开话题，这次讨论的是如何 *动态地生成一条查询SQL* 。起因是一个统计报表要新增加一些筛选条件， 而这些筛选条件并非简单加一个where条件，有时还要涉及到联表(join)以及聚合条件的改变。原先我的做法是 设几个变量，诸如where, groupby, joins等，然后再将这几个变量合起来，这之中得考虑逗号，是否需要插入'and'等， 简单来说还行，但如果多个地方都需要用到，那么稍微麻烦了，而且代码重复较多, 所以我想找找有没有动态生成查询SQL的更方便的方法。 
+
+看到 "一篇blog":http://patrickallaert.blogspot.com/2007/09/building-dynamic-sql-queries-elegant.html , 大概讲的就是平常的一些小技巧吧, 比如使用implode来拼where条件。
+
+后来在stackoverflow看到 "一个帖子":http://stackoverflow.com/questions/2258438/how-do-i-build-a-dynamic-sql-query , 这个问题跟我面对的问题基本一致，帖子的第一个解答即是我最终采取的方案。即是写一些函数来记录主要的内容(select内容，join表与条件, where条件, groupby条件等), 然后按确定的方式来拼出最终的查询语句。 
+
+后面看到一个 "squlbuilder":http://openhms.sourceforge.net/sqlbuilder/example.html ，看上去有点重，有很多功能目前都还不需要用到。
+
+最后看到github上的一个 "SQLBuilder":https://github.com/c9s/SQLBuilder ，感觉实现得还不错，当然也有很多我不太需求的功能，故在其基础上删减了一下，快速实现了，放到 "github":https://github.com/code6/query-builder 上了。
+
+一个简单的demo:
+
+{% codeblock demo 1 %}
+ $sqlbuilder = new QueryBuilder();
+ $sqlbuilder->table('fact.`order`', 'f')
+          ->select(array(
+                'city',
+               'quantity' => 'sum(quantity)',
+               'averageprice' => 'ifnull(sum(revenue) / sum(quantity), 0)'))
+          ->join('dim.date', 'd', '', 'f.date = d.date')
+          ->where('d.date between ? and ?', 'ss', array($begin_date, $end_date))
+          ->groupby('d.month_num_overall')
+          ->orderby('d.month_num_overall desc')
+          ->limit(3)
+          ->offset(3);
+
+echo $sqlbuilder->build();
+{% endcodeblock %}
+
+输出结果格式化如下:
+
+{% codeblock demo 1 output %}
+SELECT city,
+       sum(quantity) AS quantity,
+       ifnull(sum(revenue) / sum(quantity), 0) AS averageprice
+FROM fact.`order` f
+JOIN dim.date d ON f.date = d.date
+WHERE d.date BETWEEN ? AND ?
+GROUP BY d.month_num_overall
+ORDER BY d.month_num_overall DESC,d.month_num_overall ASC 
+LIMIT 3, 3
+{% endcodeblock %}
+
+其中 @getBindParams@ 函数返回一个数组, 包含绑定的变量的类型以及具体的变量, 比如 @array('ii', 1, 2)@ , 而 @getReturnParams@ 函数则返回查询结果列名数组。
+
+目前还简单增加了 *子查询* 的支持。
+
+一个查询 "gini系数":http://en.wikipedia.org/wiki/Gini_coefficient 的demo如下:
+
+{% codeblock gini demo %}
+$sub1 = new QueryBuilder();
+$sub1->table('fact.`order`', 'f')
+  ->where('d.date between ? and ?', 'ss', array($begin_date, $end_date))
+  ->where ('coupontype != 4')
+  ->orderby('focus', 'f.revenue');
+
+$sub0 = new QueryBuilder();
+$sub0->table(" (select @cs := 0) ", 'cs_idx')
+  ->join(" (select @focus:='') ", "s_idx")
+  ->join($sub1, 'raw')
+  ->select(array('accumulate_revenue' => '@cs := CASE WHEN @focus != raw.focus THEN raw.revenue ELSE @cs + raw.revenue END',
+                'focus' => '@focus := raw.focus'));
+
+$gini  = new QueryBuilder();
+$gini->table($sub0, 'base')
+  ->select(array(
+        'focus',
+       'g' => 'truncate(1 - 1.0 / count(*) * (2 * sum(base.accumulate_revenue) / max(base.accumulate_revenue) -1), 2)'))
+  ->groupby('base.focus');
+
+echo $gini->build();
+{% endcodeblock %}
+
+输出如下:
+
+{% codeblock gini demo output %}
+SELECT focus,
+       truncate(1 - 1.0 / count(*) * (2 * sum(base.accumulate_revenue) / max(base.accumulate_revenue) -1), 2) AS g
+FROM
+  (SELECT @cs := CASE
+                     WHEN @focus != raw.focus THEN raw.revenue
+                     ELSE @cs + raw.revenue
+                 END AS accumulate_revenue, @focus := raw. focus AS focus
+   FROM
+     (SELECT @cs := 0) cs_idx
+   JOIN
+     (SELECT @focus:='') s_idx
+   JOIN
+     ( SELECT f.FOCUS AS focus,
+          f.revenue
+      FROM fact.`order` f
+      WHERE d.date be tween ?
+        AND ?
+        AND coupontype != 4
+      ORDER BY focus,
+               f.revenue) raw) base
+GROUP BY base.focus
+{% endcodeblock %}
+
+代码测试方面, 后面发现参考代码是使用 "phpunit":http://www.phpunit.de/manual/current/en/installation.html 来进行单元测试的，简单地使用一下，还是挺好用的:)
+
+目前还算能满足需求，当然对于预处理语句的变量处理还可以改进，收集需求再改进吧。
