@@ -1,0 +1,74 @@
+---
+layout: post
+title: "deal with special characters in hive query result"
+date: 2012-05-21 01:21
+comments: true
+categories: 
+---
+
+p(date). 2012-06-02
+
+知识，想法是需要整理的， 不然容易遗忘, 又过了好久没有更新, 怨念= -
+这段时间搞了一点hive之类的东西，遇到一些问题，后续也许还会整理一点出来。
+最近遇到的关于hive的问题是:
+
+bq. 将hive查询结果从临时文件导入mysql的时候, 由于查询结果中有特殊字符(比如反斜杠, 制表符等), 导致数据导入mysql时解析出错。
+
+这里得先说明一下mysql导入导出的默认行为。 "mysql命令行输出默认会做转义":http://stackoverflow.com/questions/7287658/mysql-escape-backslash 并且在 "导入的时候默认会将反斜杠转义":http://dev.mysql.com/doc/refman/5.0/en/server-sql-mode.html#sqlmode_no_backslash_escapes , 我们一般不会感觉到这一步。当相同问题发生在hive的查询结果时,有些时候字段末尾或行末尾的 @\@ 会将间隔符 @\t@ 或换行符 @\n@ 转义, 导致导入出错。 如果关闭mysql导入时默认转义的话, 那么字段中包含的间隔符 @\t@ 会导致列数变多，同样出现问题。
+
+十分讨厌hive查询结果中的特殊字符, 究其原因主要是 "hive查询结果目前无法对特殊字符进行转义":https://issues.apache.org/jira/browse/HIVE-692 , 另外比较头疼的是 @hive cli@ 或者 @hiveserver@ 的查询结果中, 默认的字段分隔符都是 @\t@ 且不方便变更。 在解析日志的过程中, 字段中难免包括 @\t@,  @\@ 这类特殊字符。此问题还得仔细对待, 在网上搜了下，大概有几种方法, 未找着较优雅的方案。
+
+h3. 绕过转义问题
+
+一种做法是我们绕过此问题。如果我们不对查询结果进行转义，那么我们就只能让mysql不对导入数据进行转义了( @no_backslash_escapes@ ), 这里需要我们对查询结果给定一个特殊的分隔符，比如 @0x01@ 。
+
+* *CTAS*
+具体内容即
+
+bq. When you are doing output to the console \T is your only option. The
+best way to handle this is create another table with the delimiters
+you wish and then select into that table. You can do this with CTAS.
+
+比如
+
+{% codeblock CTAS %}
+create table xzy 
+row format delimited
+fields terminated by '\001'
+as select age, dt  from ibtest limit 1;
+{% endcodeblock %}
+
+这里可以指定任意的分隔符，但这边文件在 @/user/hive/warehouse/xzy@ 中，我们还得将其合并输出到临时文件中。
+
+* INSERT OVERWRITE LOCAL DIRECTORY
+
+{% codeblock local directory %}
+INSERT OVERWRITE LOCAL DIRECTORY '/mydir'
+SELECT XXX
+{% endcodeblock %}
+
+直接写到外部文件夹, 此时分隔符为 @0x01@ 。
+
+* *concat_ws*
+这个算是一个比较取巧的方法吧，xyc介绍的:
+将查询结果先转成string, 然后 *concat* 起来，并指定分隔符。这样由于最终只有一列，所以不会 加上系统默认的分隔符了。
+
+{% codeblock  concat_ws %}
+select concat_ws('\001', cast(userid as string), cast(cityid as string), regdate) from hiveuser limit 10;
+{% endcodeblock %}
+
+h3. 勉强进行转义
+
+另外一种做法是勉强在hql中进行转义, 比如将 @\@ 替换成 @\\@ , 将制表符替换成 @\@ 和 @t@ :
+
+{% codeblock  regexp_replace %}
+regexp_replace(regexp_replace(column, '\\\\', '\\\\\\\\'), '\t', '\\\\t')
+{% endcodeblock %}
+
+这里得在可能出现特殊字符的地方做上述修改, 为防止写得繁琐，可以考虑封成 @udf@ 。
+
+
+h3. 总结
+
+
+总而言之，目前并没想到较好的处理方法。反过来想，类似制表符的特殊字符在日志中是否有意义，如果没有的话，可否去掉?  这样一来就愉快多了，但是 *破坏原始日志* ，感觉也不是很好。
