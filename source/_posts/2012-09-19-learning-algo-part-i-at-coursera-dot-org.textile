@@ -1,0 +1,11 @@
+---
+layout: post
+title: "learning Algo Part I at coursera.org"
+date: 2012-09-19 01:55
+comments: true
+published: false
+categories: algorithm
+---
+
+用来记录我在 coursera.org 上学习  Algo Part I的记录，写完之后发布。
+

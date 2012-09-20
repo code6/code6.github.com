@@ -3,7 +3,7 @@ layout: post
 title: "deal with special characters in hive query result"
 date: 2012-05-21 01:21
 comments: true
-categories: 
+categories: hive
 ---
 
 p(date). 2012-06-02

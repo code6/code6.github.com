@@ -3,7 +3,7 @@ layout: post
 title: "How to build a dynamic SQL in an elegant way"
 date: 2012-03-24 11:27
 comments: true
-categories: 
+categories: sql
 ---
 
 p(date). 2012-04-04
