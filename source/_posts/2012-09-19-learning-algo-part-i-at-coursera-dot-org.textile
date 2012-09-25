@@ -9,3 +9,4 @@ categories: algorithm
 
 用来记录我在 coursera.org 上学习  Algo Part I的记录，写完之后发布。
 
+看起来要来不及了。。。要不然就看PPT恶补吧，dealline(9月30号)快到了。

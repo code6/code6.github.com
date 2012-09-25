@@ -37,7 +37,7 @@ hadoop.mirror2=http://mirror.bjtu.edu.cn/apache
 
 以下的修改主要是看到镜像中的hadoop版本已经没有默认的版本号了，估计是不支持了?故改成包含的版本号。
 hadoop-0.20.version=0.20.2
-hadoop-0.20S.version=1.0.1
+hadoop-0.20S.version=1.0.1 (S的版本不知有没有啥区别)
 
 {% endcodeblock %}
 
@@ -52,7 +52,7 @@ h3. hive 单元测试
 "QtestUtil.java":http://blog.csdn.net/bupt041137/article/details/6553760
 "hive unit test":http://blog.csdn.net/bupt041137/article/details/6553760
 
-hive 中的单元测试还是蛮有趣的，既有传统的单元测试代码，又可以批量执行查询脚本判断结果是否一致:
+hive 中的 "单元测试":https://cwiki.apache.org/Hive/howtocontribute.html#HowToContribute-UnitTests 还是蛮有趣的，既有传统的单元测试代码，又可以批量执行查询脚本判断结果是否一致:
 
 bq.  在hive中会有大量的.q的文件即执行测试的query文件，.q.out是测试的结果文件。 进行新测试后产生的结果和标准的q.out一致则表示测试成功。
 具体来说，src/ql/src/test/queries下面是测试用例，clientpositive是运行成功的用例，clientnegative是运行失败，返回非0的用例。 src/ql/src/test/results 下面是测试用例对应的输出结果。 如src/ql/src/test/queries/case_sensitivity.q对应的输出结果是src/ql/src/test/results/case_sensitivity.q.out 。 
@@ -76,8 +76,10 @@ h3. hive代码打补丁
 
 另外我们有时会有需求将 "自己使用的 udf 编译到hive当中以方便使用":http://my.oschina.net/wangjiankui/blog/64230 ，这其实也可以看成打补丁的行为。
 
-打补丁多了，管理是后面会遇到的问题。 就个人而言，可以自己载个官方的git仓库，然后开分支来维护自己的变更。如果要多人协作的话，可以创建一个新的git仓库，然后添加两个远端, 其中一个是官方的git仓库，另外一个可以是大家从某个分支开始维护的版本。纯属yy，实际操作起来也未必省心。
+打补丁多了，管理是后面会遇到的问题。 就个人而言，可以自己载个官方的git仓库，然后开分支来维护自己的变更。如果要多人协作的话，可以创建一个新的git仓库，然后添加两个远端, 其中一个是官方的git仓库，另外一个可以是大家从某个分支开始维护的版本。纯属yy，实际操作起来也未必省心。 这里看起来使用 "github organization":https://github.com/blog/674-introducing-organizations 是蛮适合的。
 
+当然，可以预见的是，大部分时间我们都不会打补丁，可能只会在新增一些UDF= =, 于是似乎完全没有必要这么干, 大概 "类似这样就可以了":https://github.com/nexr/hive-udf , 看起来一般将用到的udf打包，然后要用的时候加一句声明即可。
 
+不过我还是蛋疼去搞了一个 "organization":https://github.com/MTDATA/hive , fork一下官方代码。 我在本地git加入 @apache/hive@ 作为另一个远端, 称为 @mirror@ 。由于我们目前使用的是 0.9, 故我考虑的是在 @origin/branch-0.9@ 下做开发，并将 @mirror/branch-0.9@ 定期 merge 回 @branch-0.9@ 。至于 @trunk@ 则不动。
 
-
+这样一来我就开始捣鼓了，首先还是改 @build.properties@ , 我将这些也一并提交到分支里面了。 然后我开始将 udf 编译进去，这次遇到一个比较坑爹的问题就是 *编译一直成功，但是执行单元测试一直找不到新的UDF* 。 捣鼓了很久无果后找小美支援，小美在分析一阵之指出测试的时候没有引用到编译的 @FunctionRegistry.class@ , 估计使用到别的旧的文件了。又过了一段时间之后我确实发现有个地方 @~/.ivy2/@ 下面有一些cache, 简单google之后又发现 @hive jira@ 上已经有一个 "tck":https://issues.apache.org/jira/browse/HIVE-3092 , 看了大概是由 "HIVE-2646":https://issues.apache.org/jira/browse/HIVE-2646 引入的, 导致测试的时候会从ivy cache来加载hive相关的类而不是 @build/dist/lib@ 。这个改动恰恰不在 0.9.0发布版但是 commit到 @branch-0.9@ 中了, 所以我从 @branch-0.9@ 的代码开始编译就中招了。这个patch有加入trunk中，故 @cherry-pick@ 一下即可(本来我打算直接打patch的)。当然这里我不清楚为啥这个补丁不加入 0.9 分支，估计不算大问题? 没有运行bug？从版本库编译就是比较坑爹= =
