@@ -12,6 +12,7 @@ vendor
 node_modules
 *.[oa]
 *~
+_deploy
 *.pyc
 *.swp
 *.swo
