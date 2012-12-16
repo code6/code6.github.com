@@ -1,0 +1,1318 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>MayCoder</title>
+  <meta name="author" content="Code6">
+
+  
+  <meta name="description" content="2012-09-20
+回归来的第一篇，另外还有好几篇躺在 published:false 中，还没搞好 :-(
+这个礼拜最大的收获是编译啥啥啥还是蛮简单的，又没叫你去改代码。有些东西动手尝试一下，往往会发现没有多难，不能停留在口上上说说而已。看到 一段相关但不是很切题的话 : 不可忽视的一点是： &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://code6.github.com">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MayCoder" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29800624-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">MayCoder</a></h1>
+  
+    <h2>Valarmorghulis</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:code6.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/19/hive-compile-and-apply-patch/">Hive Compile and Apply Patch</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-19T13:38:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="date">2012-09-20</p>
+<p>回归来的第一篇，另外还有好几篇躺在 <code>published:false</code> 中，还没搞好 :-(</p>
+<p>这个礼拜最大的收获是编译啥啥啥还是蛮简单的，又没叫你去改代码。有些东西动手尝试一下，往往会发现没有多难，不能停留在口上上说说而已。看到 <a href="http://blog.liancheng.info/wq-2008-1/">一段相关但不是很切题的话</a> :</p>
+<blockquote>
+<p>不可忽视的一点是：在技术性团体里，做永远比说要来的有效。在想法成熟之前就贸然游说，往往会招致相反的效果。大家都是工程师，不会贸然接纳陌生事物。如果自己都还没有想清楚就开始大肆游说，往往会被大家提出的实际的工程问题驳斥地体无完肤。当你哑口无言之时，大家也已经对你的方案产生了难以磨灭的 “不靠谱”的第一印象，这时要再想咸鱼翻身，可就没那么容易了。</p>
+</blockquote>
+<blockquote>
+<p>相对的，首先自行查阅文档资料并进行试验，制作demo，通过试验发现和解决实际出现的问题。在想法基本成型时，和个别观念开放的同仁进行探讨，这时往往可以发现大量之前自己没有考虑到的问题，再转而细化方案。这个过程反复迭代几次之后，方案和demo逐渐成熟，同时也潜移默化地达到了传教的目的。等到方案完全成熟之后，再拿出实际可工作的demo开始游说，这时自然就成竹在胸了。</p>
+</blockquote>
+<p>进入正题，这里主要是参考几篇文章，说说编译hive和打补丁, 或者说贴贴链接= =</p>
+<h3>hive 代码编译</h3>
+<p><a href="http://railsbuilder.blogspot.com/2010/06/installing-hive-on-linux.html">install hive on linux</a>  <br />
+<a href="http://blog.csdn.net/scutshuxue/article/details/5915689">使用ant编译hive</a>  <br />
+<a href="http://blog.csdn.net/cfy_yinwenhao/article/details/6977882">hive打补丁编译hive</a></p>
+<p>这里我在ubuntu上操作的, 编译hive需要依赖 <span class="caps">JAVA</span>, <span class="caps">ANT</span> (这里不依赖hadoop原因是ant会自动去下载hadoop)。 <br />
+安装好后export <code>JAVA_HOME</code> , <code>ANT_HOME</code> 变量 (我直接加入.bashrc当中了)。<br />
+接下来去官网下载hive源码包。这里我使用的是 <code>hive.0.9.0</code> 。 解压之后进入src目录，需要修改一些配置:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>build&#46;properties </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hadoop.version=1.0.1
+</span><span class='line'>
+</span><span class='line'>主要是facebook被墙了，镜像地址可参考 http://www.apache.org/dyn/closer.cgi/hadoop/core/
+</span><span class='line'>hadoop.mirror1=http://mirror.bjtu.edu.cn/apache  
+</span><span class='line'>hadoop.mirror2=http://mirror.bjtu.edu.cn/apache
+</span><span class='line'>
+</span><span class='line'>以下的修改主要是看到镜像中的hadoop版本已经没有默认的版本号了，估计是不支持了?故改成包含的版本号。
+</span><span class='line'>hadoop-0.20.version=0.20.2
+</span><span class='line'>hadoop-0.20S.version=1.0.1 (S的版本不知有没有啥区别)</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>接下来执行 <code>ant package</code> 即开始编译了, 结果默认会放在 <code>build/dist</code> 目录中，使用 <code>-Dtarget.dir=xxx</code> 可以更新目标位置。</p>
+<p>如果BUILD FAIL的话，一般参考提示可以看出是哪里出了问题(遇到比较多还是被墙的问题= =)。</p>
+<h3>hive 单元测试</h3>
+<p><a href="http://www.oratea.net/?p=632">hive中的单元测试</a><br />
+<a href="http://blog.csdn.net/bupt041137/article/details/6553770">hive中的test case</a><br />
+<a href="http://blog.csdn.net/bupt041137/article/details/6553760">QtestUtil.java</a><br />
+<a href="http://blog.csdn.net/bupt041137/article/details/6553760">hive unit test</a></p>
+<p>hive 中的 <a href="https://cwiki.apache.org/Hive/howtocontribute.html#HowToContribute-UnitTests">单元测试</a> 还是蛮有趣的，既有传统的单元测试代码，又可以批量执行查询脚本判断结果是否一致:</p>
+<blockquote>
+<p>在hive中会有大量的.q的文件即执行测试的query文件，.q.out是测试的结果文件。 进行新测试后产生的结果和标准的q.out一致则表示测试成功。<br />
+具体来说，src/ql/src/test/queries下面是测试用例，clientpositive是运行成功的用例，clientnegative是运行失败，返回非0的用例。 src/ql/src/test/results 下面是测试用例对应的输出结果。 如src/ql/src/test/queries/case_sensitivity.q对应的输出结果是src/ql/src/test/results/case_sensitivity.q.out 。</p>
+</blockquote>
+<p>使用 <code>ant test</code> 运行单元测试，不过此命令要跑好多测试， <a href="https://builds.apache.org/job/Hive-trunk-h0.21/1671/testReport/org.apache.hadoop.hive.cli/TestCliDriver/">光TestCliDriver一项就要跑好几个小时</a> , 我们可以</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ant test </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>运行所有的正面的测试
+</span><span class='line'>ant test -Dtestcase=TestCliDriver
+</span><span class='line'> 
+</span><span class='line'>运行特定的测试，以groupby为例子
+</span><span class='line'>ant test -Dtestcase=TestCliDriver -Dqfile=groupby1.q</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>使用 <code>-Doverwrite=true</code> 可以覆盖结果文件，后面有新的更新想测试表现是否一致的时候就可以使用了, 通常在我们增加新的udf的时候可以这么来生成测试数据。</p>
+<h3>hive代码打补丁</h3>
+<p>下载了 <code>hive 0.9.0</code> 稳定版，不过发布之后还是有若干bug，这时搜索一下 <code>hive jira</code> 一般能看到相应ticket，比如 <a href="https://issues.apache.org/jira/browse/HIVE-2942">这个substr遇到UTF8的问题</a> 。一般打的补丁会走一个 <code>publish-review-apply</code> 的 <a href="http://www.google.com.hk/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=4&amp;cad=rja&amp;ved=0CEIQFjAD&amp;url=http%3A%2F%2Fwww.cs.pdx.edu%2F~bart%2Fpapers%2Fpicmet-patch.pdf&amp;ei=g0VbUK6LDITqmAW2tICQCQ&amp;usg=AFQjCNEoh5FKA_8KNBa5-Pr-gMaQPHS9GA&amp;sig2=ISd1WAautuWBKKfc_Vv3lg">过程</a> ，准确解决问题的补丁会被加入版本库中，而临时补丁一般不会采用。作为用户，有时难免得打一些这样的补丁。打补丁也很方便，下载社区提供的补丁之后，使用 <code>patch</code> 命令即可以应用到源码中, 后续在进行编译测试即可。</p>
+<p>另外我们有时会有需求将 <a href="http://my.oschina.net/wangjiankui/blog/64230">自己使用的 udf 编译到hive当中以方便使用</a> ，这其实也可以看成打补丁的行为。</p>
+<p>打补丁多了，管理是后面会遇到的问题。 就个人而言，可以自己载个官方的git仓库，然后开分支来维护自己的变更。如果要多人协作的话，可以创建一个新的git仓库，然后添加两个远端, 其中一个是官方的git仓库，另外一个可以是大家从某个分支开始维护的版本。纯属yy，实际操作起来也未必省心。 这里看起来使用 <a href="https://github.com/blog/674-introducing-organizations">github organization</a> 是蛮适合的。</p>
+<p>当然，可以预见的是，大部分时间我们都不会打补丁，可能只会在新增一些UDF= =, 于是似乎完全没有必要这么干, 大概 <a href="https://github.com/nexr/hive-udf">类似这样就可以了</a> , 看起来一般将用到的udf打包，然后要用的时候加一句声明即可。</p>
+<p>不过我还是蛋疼去搞了一个 <a href="https://github.com/MTDATA/hive">organization</a> , fork一下官方代码。 我在本地git加入 <code>apache/hive</code> 作为另一个远端, 称为 <code>mirror</code> 。由于我们目前使用的是 0.9, 故我考虑的是在 <code>origin/branch-0.9</code> 下做开发，并将 <code>mirror/branch-0.9</code> 定期 merge 回 <code>branch-0.9</code> 。至于 <code>trunk</code> 则不动。</p>
+<p>这样一来我就开始捣鼓了，首先还是改 <code>build.properties</code> , 我将这些也一并提交到分支里面了。 然后我开始将 udf 编译进去，这次遇到一个比较坑爹的问题就是 <strong>编译一直成功，但是执行单元测试一直找不到新的UDF</strong> 。 捣鼓了很久无果后找小美支援，小美在分析一阵之指出测试的时候没有引用到编译的 <code>FunctionRegistry.class</code> , 估计使用到别的旧的文件了。又过了一段时间之后我确实发现有个地方 <code>~/.ivy2/</code> 下面有一些cache, 简单google之后又发现 <code>hive jira</code> 上已经有一个 <a href="https://issues.apache.org/jira/browse/HIVE-3092">tck</a> , 看了大概是由 <a href="https://issues.apache.org/jira/browse/HIVE-2646"><span class="caps">HIVE</span>-2646</a> 引入的, 导致测试的时候会从ivy cache来加载hive相关的类而不是 <code>build/dist/lib</code> 。这个改动恰恰不在 0.9.0发布版但是 commit到 <code>branch-0.9</code> 中了, 所以我从 <code>branch-0.9</code> 的代码开始编译就中招了。这个patch有加入trunk中，故 <code>cherry-pick</code> 一下即可(本来我打算直接打patch的)。当然这里我不清楚为啥这个补丁不加入 0.9 分支，估计不算大问题? 没有运行bug？从版本库编译就是比较坑爹= =</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/19/learning-algo-part-i-at-coursera-dot-org/">Learning Algo Part I at coursera.org</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-19T01:55:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>用来记录我在 coursera.org 上学习  Algo Part I的记录，写完之后发布。</p>
+<p>看起来要来不及了。。。要不然就看PPT恶补吧，dealline(9月30号)快到了。</p>
+<p>2012.12.16<br />
+以上已经完全来不及= = 我的第一门coursera课就这样悲剧了。<br />
+另外后续我跟小美同学一起开始学 compiler 这门课，还是没有分出足够的时间来做相应的学习，不过小美同学就很有效率地完成了大部分作业。<br />
+近期我的 <a href="https://www.coursera.org/course/algo2">第三门课</a> 已经开课两个星期了，我感觉必须搞定这种被时间追赶着的状态。<br />
+之前一直困扰我的是网络太差，看视频太麻烦，于是google 一个能下载视频的脚本，果然 <a href="https://github.com/jplehmann/coursera">很容易在github上找到了</a> 。<br />
+代码写的还蛮简单漂亮的，后续下载视频只需要一句话:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>coursera video download </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/Users/code6/git/coursera/coursera-dl -n --path  "/Users/code6/Downloads/coursera/videos/algo2/"  -w /usr/local/bin/wget algo2-2012-001</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>如果一个东西很难获得，势必增加做某件事情的阻力，但如果太容易获得，也是如此，在下载视频这件事来看也是如此。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/13/back-for-blogging-more/">Back for Blogging More</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-13T04:31:00+08:00" pubdate data-updated="true">Sep 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="date">2012-09-13</p>
+<p>感到很失败，未能完成之前所说的一周发表一篇blog的计划。<br />
+但我还是有很多想说的，感觉如果在工作中不能记录下只言片语的话，那到头来就没有什么留下了了，所谓经验其实远不如总结沉淀来得安稳。<br />
+但我是不是没有干活呢，只能说是懒惰，不想多费些时间心力来记录生活，学习。<br />
+那今天是什么一个情况呢，组里面吃饭的时候在讨论一些问题，聊到了执行力，能力。想想我在blogging上的动作，实在羞愧。<br />
+其实有很多方面可以记录，无论是失败还是成功，我常常想所谓的不成熟其实是最大的阻碍，就像wiki一样，先有了，然后可以慢慢更新的，犯不着要一下子就掌握的非常好。<br />
+所以，仅以此blog作为契机，让我再次开始记录生活，记录工作。<br />
+blog是另外一种认识自己的方式，可以更深刻，更有味道。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/">6月第一周比赛小计</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-03T09:41:00+08:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="date">2012-06-04</p>
+<p>6月第一个周末比赛好多啊，做了其中的4个，很爽:</p>
+<table>
+	<tr style="background:#ddd;">
+		<td style="width:200px;">比赛 </td>
+		<td style="width:200px;">开始时间 </td>
+	</tr>
+	<tr>
+		<td> Astar 2012 R1a  </td>
+		<td> 2012.6.2 10:00 </td>
+	</tr>
+	<tr>
+		<td> <a href="http://ipsc.ksp.sk/contests/ipsc2012/results/">ipsc 2012</a>  </td>
+		<td> 2012.6.2 18:0 0</td>
+	</tr>
+	<tr>
+		<td> <span class="caps">TCO</span> 2012 R2c  </td>
+		<td> 2012.6.3 00:00 </td>
+	</tr>
+	<tr>
+		<td> Astar 2012 R1b  </td>
+		<td>2012.6.3 10:00</td>
+	</tr>
+</table>
+<p></p>
+<p>结果不是很重要，关键是又稍微思考了下, 但这样没有规律的思考是无法提高的，倒是也得想办法弄一个周期性较强的训练时间, 挨个稍微说一下吧。</p>
+<ul>
+	<li><strong>Astar 2012 R1a</strong></li>
+</ul>
+<table>
+	<tr style="background:#ddd;">
+		<td style="width:100px;">题目ID </td>
+		<td style="width:200px;">标题 </td>
+	</tr>
+	<tr>
+		<td>A     </td>
+		<td>  度度熊就是要第一个出场</td>
+	</tr>
+	<tr>
+		<td>B     </td>
+		<td>  小小度刷礼品</td>
+	</tr>
+	<tr>
+		<td>C     </td>
+		<td>  集合的交与并</td>
+	</tr>
+	<tr>
+		<td>D     </td>
+		<td>  轮子上的度度熊</td>
+	</tr>
+</table>
+<p></p>
+<p>这场做了B和D吧, B就是很土的算1到N里面有多少个以x结尾的数, D的话我暴力了一下，大数据会超时，不过来不及想优化了, 感觉没有优化写起来就像很无聊的DP。 另外A其实是可做的，bfs一下应该就可以了, 跟印象中某ZOJ月赛一题有像，也跟今年的WF的镜面反射的题目有点相似(题型)。 感觉运气好可以晋级吧，毕竟只做了1题多一点点而已。</p>
+<ul>
+	<li><strong>ipsc 2012</strong><br />
+与毛哥一起搞了今年的ipsc, 用的是我们当年组队的名字 <code>ACOrz</code> , 可惜daxia没来一起做。稍微迟到了半小时，毛哥已经把A过了，然后看了C, F, I了。C我尝试了两三次，无果，后面先放弃了。放弃C之后就很顺了，跟毛哥一起砍了一些大众题目。依次是
+	<ul>
+		<li>G<br />
+算有向图最大长度的链。由于图挺特殊的，只有一个出度，故也挺好算。</li>
+		<li>I<br />
+<a href="http://www.md5decrypt.org/">md5 decrypt</a> 挺好用的，直接将大小数据都过了= =国内的网站就不行，还要收费- -</li>
+		<li>F<br />
+毛哥暴力了小数据，然后我们在只有两个硬币的情况下做简单演算, 得到 <code>p1*(1-p2)+p2*(1-p1)=1/2</code>  这个式子，直接解出 <code>p1 = 1/2 or p2 = 1/2</code>  , 于是也很容易了。</li>
+		<li>C1<br />
+C1 后面我又试了下记忆化搜索，于是就过了= =, 一开始dp比较随意了，改成记忆化暴力所有可能于是过了。猜测大数据也是类似搞法，不过状态可能稍微多了，未作深究。</li>
+		<li>B<br />
+B毛哥猜得很欢乐， B1还好，B2我们真是非常惊险，猜到第30次才得到答案(最多猜测30次)，毛哥还用啥迭代法来逼近来着。<br />
+<img src="/images/ipsc_2012-2.png"><br />
+最终ipsc排名一百多名，算是本周最欢乐的比赛了，当然还有很多没有切出来, 回头可以再看看。<br />
+<img src="/images/ipsc_2012-1.png"></li>
+	</ul></li>
+</ul>
+<ul>
+	<li><span class="caps">TCO</span> 2012 R2c<br />
+ipsc 做到了晚上11点结束，12点就是 <code>TCO R2c</code>了，能不能拿衣服就看这场了。悲剧的是比赛前20分钟家里断网了，折腾了好些,搞好的时候已经12点20分了，顾不上就奔去了。300分是一个有点代码量的枚举，写到了144分。。500打开只有半小时了，看了下，这不就是土土的树状数组吗！马上搞啊搞，在最后10分钟的时候样例一直过不了，还有一个即simple的样例，没来得及看明白 比赛结束了。后面再看了下，发现题目看错了= = 顺序有点小变化，当然做法还是树状数组。感觉构造还是挺巧妙的，多增加了啥，该扣除啥。另外本次的900pt貌似也可做，没来得及看，某些人直接搞900晋级了，真给力。</li>
+</ul>
+<ul>
+	<li>Astar 2012 R1b<br />
+由于2号搞到比较晚，起床的时候已经是10:30了，外加还得洗碗= = 题目现在看不到了，仍然是4道题。最终做了B, C。B是二分加并查集，挺简单的。C 简单yy了一个贪心，感觉想简单了。A是算n个数中选若干数异或值的最大和次大，没想明白，  <a href="http://hi.baidu.com/pojoflcc/blog/item/c85dccdbb967c0c1b7fd4805.html">别人说是&#8217;搞基&#8217;</a> 。 D没有想法。 这场要晋级的话也比较悬，重在参与~</li>
+</ul>
+<p>总之，整个周末还是挺紧凑以及有趣的(还出去骑了两次车)，每次比赛后都留下一些未解之谜，现在不能像以往一一攻克并提高战斗力了，不过真想把不会的继续搞懂！</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/21/deal-with-special-characters-in-hive-query-result/">Deal With Special Characters in Hive Query Result</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-21T01:21:00+08:00" pubdate data-updated="true">May 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="date">2012-06-02</p>
+<p>知识，想法是需要整理的， 不然容易遗忘, 又过了好久没有更新, 怨念= -<br />
+这段时间搞了一点hive之类的东西，遇到一些问题，后续也许还会整理一点出来。<br />
+最近遇到的关于hive的问题是:</p>
+<blockquote>
+<p>将hive查询结果从临时文件导入mysql的时候, 由于查询结果中有特殊字符(比如反斜杠, 制表符等), 导致数据导入mysql时解析出错。</p>
+</blockquote>
+<p>这里得先说明一下mysql导入导出的默认行为。 <a href="http://stackoverflow.com/questions/7287658/mysql-escape-backslash">mysql命令行输出默认会做转义</a> 并且在 <a href="http://dev.mysql.com/doc/refman/5.0/en/server-sql-mode.html#sqlmode_no_backslash_escapes">导入的时候默认会将反斜杠转义</a> , 我们一般不会感觉到这一步。当相同问题发生在hive的查询结果时,有些时候字段末尾或行末尾的 <code>\</code> 会将间隔符 <code>\t</code> 或换行符 <code>\n</code> 转义, 导致导入出错。 如果关闭mysql导入时默认转义的话, 那么字段中包含的间隔符 <code>\t</code> 会导致列数变多，同样出现问题。</p>
+<p>十分讨厌hive查询结果中的特殊字符, 究其原因主要是 <a href="https://issues.apache.org/jira/browse/HIVE-692">hive查询结果目前无法对特殊字符进行转义</a> , 另外比较头疼的是 <code>hive cli</code> 或者 <code>hiveserver</code> 的查询结果中, 默认的字段分隔符都是 <code>\t</code> 且不方便变更。 在解析日志的过程中, 字段中难免包括 <code>\t</code>,  <code>\</code> 这类特殊字符。此问题还得仔细对待, 在网上搜了下，大概有几种方法, 未找着较优雅的方案。</p>
+<h3>绕过转义问题</h3>
+<p>一种做法是我们绕过此问题。如果我们不对查询结果进行转义，那么我们就只能让mysql不对导入数据进行转义了( <code>no_backslash_escapes</code> ), 这里需要我们对查询结果给定一个特殊的分隔符，比如 <code>0x01</code> 。</p>
+<ul>
+	<li><strong><span class="caps">CTAS</span></strong><br />
+具体内容即</li>
+</ul>
+<blockquote>
+<p>When you are doing output to the console \T is your only option. The<br />
+best way to handle this is create another table with the delimiters<br />
+you wish and then select into that table. You can do this with <span class="caps">CTAS</span>.</p>
+</blockquote>
+<p>比如</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>CTAS </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>create table xzy 
+</span><span class='line'>row format delimited
+</span><span class='line'>fields terminated by '\001'
+</span><span class='line'>as select age, dt  from ibtest limit 1;</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>这里可以指定任意的分隔符，但这边文件在 <code>/user/hive/warehouse/xzy</code> 中，我们还得将其合并输出到临时文件中。</p>
+<ul>
+	<li><span class="caps">INSERT</span> <span class="caps">OVERWRITE</span> <span class="caps">LOCAL</span> <span class="caps">DIRECTORY</span></li>
+</ul>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>local directory </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>INSERT OVERWRITE LOCAL DIRECTORY '/mydir'
+</span><span class='line'>SELECT XXX</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>直接写到外部文件夹, 此时分隔符为 <code>0x01</code> 。</p>
+<ul>
+	<li><strong>concat_ws</strong><br />
+这个算是一个比较取巧的方法吧，xyc介绍的:<br />
+将查询结果先转成string, 然后 <strong>concat</strong> 起来，并指定分隔符。这样由于最终只有一列，所以不会 加上系统默认的分隔符了。</li>
+</ul>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>concat_ws </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>select concat_ws('\001', cast(userid as string), cast(cityid as string), regdate) from hiveuser limit 10;</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<h3>勉强进行转义</h3>
+<p>另外一种做法是勉强在hql中进行转义, 比如将 <code>\</code> 替换成 <code>\\</code> , 将制表符替换成 <code>\</code> 和 <code>t</code> :</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>regexp_replace </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>regexp_replace(regexp_replace(column, '\\\\', '\\\\\\\\'), '\t', '\\\\t')</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>这里得在可能出现特殊字符的地方做上述修改, 为防止写得繁琐，可以考虑封成 <code>udf</code> 。</p>
+<h3>总结</h3>
+<p>总而言之，目前并没想到较好的处理方法。反过来想，类似制表符的特殊字符在日志中是否有意义，如果没有的话，可否去掉?  这样一来就愉快多了，但是 <strong>破坏原始日志</strong> ，感觉也不是很好。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/24/how-to-build-a-dynamic-sql-in-an-elegant-way/">How to Build a Dynamic SQL in an Elegant Way</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-24T11:27:00+08:00" pubdate data-updated="true">Mar 24<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="date">2012-04-04</p>
+<p>换上octopress, 写blog还是不勤快, 目前装在虚拟机当中，怎么勤快:(。</p>
+<p>不岔开话题，这次讨论的是如何 <strong>动态地生成一条查询SQL</strong> 。起因是一个统计报表要新增加一些筛选条件， 而这些筛选条件并非简单加一个where条件，有时还要涉及到联表(join)以及聚合条件的改变。原先我的做法是 设几个变量，诸如where, groupby, joins等，然后再将这几个变量合起来，这之中得考虑逗号，是否需要插入&#8217;and&#8217;等， 简单来说还行，但如果多个地方都需要用到，那么稍微麻烦了，而且代码重复较多, 所以我想找找有没有动态生成查询SQL的更方便的方法。</p>
+<p>看到 <a href="http://patrickallaert.blogspot.com/2007/09/building-dynamic-sql-queries-elegant.html">一篇blog</a> , 大概讲的就是平常的一些小技巧吧, 比如使用implode来拼where条件。</p>
+<p>后来在stackoverflow看到 <a href="http://stackoverflow.com/questions/2258438/how-do-i-build-a-dynamic-sql-query">一个帖子</a> , 这个问题跟我面对的问题基本一致，帖子的第一个解答即是我最终采取的方案。即是写一些函数来记录主要的内容(select内容，join表与条件, where条件, groupby条件等), 然后按确定的方式来拼出最终的查询语句。</p>
+<p>后面看到一个 <a href="http://openhms.sourceforge.net/sqlbuilder/example.html">squlbuilder</a> ，看上去有点重，有很多功能目前都还不需要用到。</p>
+<p>最后看到github上的一个 <a href="https://github.com/c9s/SQLBuilder">SQLBuilder</a> ，感觉实现得还不错，当然也有很多我不太需求的功能，故在其基础上删减了一下，快速实现了，放到 <a href="https://github.com/code6/query-builder">github</a> 上了。</p>
+<p>一个简单的demo:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>demo 1 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$sqlbuilder = new QueryBuilder();
+</span><span class='line'> $sqlbuilder->table('fact.`order`', 'f')
+</span><span class='line'>          ->select(array(
+</span><span class='line'>                'city',
+</span><span class='line'>               'quantity' => 'sum(quantity)',
+</span><span class='line'>               'averageprice' => 'ifnull(sum(revenue) / sum(quantity), 0)'))
+</span><span class='line'>          ->join('dim.date', 'd', '', 'f.date = d.date')
+</span><span class='line'>          ->where('d.date between ? and ?', 'ss', array($begin_date, $end_date))
+</span><span class='line'>          ->groupby('d.month_num_overall')
+</span><span class='line'>          ->orderby('d.month_num_overall desc')
+</span><span class='line'>          ->limit(3)
+</span><span class='line'>          ->offset(3);
+</span><span class='line'>
+</span><span class='line'>echo $sqlbuilder->build();</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>输出结果格式化如下:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>demo 1 output </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT city,
+</span><span class='line'>       sum(quantity) AS quantity,
+</span><span class='line'>       ifnull(sum(revenue) / sum(quantity), 0) AS averageprice
+</span><span class='line'>FROM fact.`order` f
+</span><span class='line'>JOIN dim.date d ON f.date = d.date
+</span><span class='line'>WHERE d.date BETWEEN ? AND ?
+</span><span class='line'>GROUP BY d.month_num_overall
+</span><span class='line'>ORDER BY d.month_num_overall DESC,d.month_num_overall ASC 
+</span><span class='line'>LIMIT 3, 3</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>其中 <code>getBindParams</code> 函数返回一个数组, 包含绑定的变量的类型以及具体的变量, 比如 <code>array('ii', 1, 2)</code> , 而 <code>getReturnParams</code> 函数则返回查询结果列名数组。</p>
+<p>目前还简单增加了 <strong>子查询</strong> 的支持。</p>
+<p>一个查询 <a href="http://en.wikipedia.org/wiki/Gini_coefficient">gini系数</a> 的demo如下:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>gini demo </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$sub1 = new QueryBuilder();
+</span><span class='line'>$sub1->table('fact.`order`', 'f')
+</span><span class='line'>  ->where('d.date between ? and ?', 'ss', array($begin_date, $end_date))
+</span><span class='line'>  ->where ('coupontype != 4')
+</span><span class='line'>  ->orderby('focus', 'f.revenue');
+</span><span class='line'>
+</span><span class='line'>$sub0 = new QueryBuilder();
+</span><span class='line'>$sub0->table(" (select @cs := 0) ", 'cs_idx')
+</span><span class='line'>  ->join(" (select @focus:='') ", "s_idx")
+</span><span class='line'>  ->join($sub1, 'raw')
+</span><span class='line'>  ->select(array('accumulate_revenue' => '@cs := CASE WHEN @focus != raw.focus THEN raw.revenue ELSE @cs + raw.revenue END',
+</span><span class='line'>                'focus' => '@focus := raw.focus'));
+</span><span class='line'>
+</span><span class='line'>$gini  = new QueryBuilder();
+</span><span class='line'>$gini->table($sub0, 'base')
+</span><span class='line'>  ->select(array(
+</span><span class='line'>        'focus',
+</span><span class='line'>       'g' => 'truncate(1 - 1.0 / count(*) * (2 * sum(base.accumulate_revenue) / max(base.accumulate_revenue) -1), 2)'))
+</span><span class='line'>  ->groupby('base.focus');
+</span><span class='line'>
+</span><span class='line'>echo $gini->build();</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>输出如下:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>gini demo output </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT focus,
+</span><span class='line'>       truncate(1 - 1.0 / count(*) * (2 * sum(base.accumulate_revenue) / max(base.accumulate_revenue) -1), 2) AS g
+</span><span class='line'>FROM
+</span><span class='line'>  (SELECT @cs := CASE
+</span><span class='line'>                     WHEN @focus != raw.focus THEN raw.revenue
+</span><span class='line'>                     ELSE @cs + raw.revenue
+</span><span class='line'>                 END AS accumulate_revenue, @focus := raw. focus AS focus
+</span><span class='line'>   FROM
+</span><span class='line'>     (SELECT @cs := 0) cs_idx
+</span><span class='line'>   JOIN
+</span><span class='line'>     (SELECT @focus:='') s_idx
+</span><span class='line'>   JOIN
+</span><span class='line'>     ( SELECT f.FOCUS AS focus,
+</span><span class='line'>          f.revenue
+</span><span class='line'>      FROM fact.`order` f
+</span><span class='line'>      WHERE d.date be tween ?
+</span><span class='line'>        AND ?
+</span><span class='line'>        AND coupontype != 4
+</span><span class='line'>      ORDER BY focus,
+</span><span class='line'>               f.revenue) raw) base
+</span><span class='line'>GROUP BY base.focus</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>代码测试方面, 后面发现参考代码是使用 <a href="http://www.phpunit.de/manual/current/en/installation.html">phpunit</a> 来进行单元测试的，简单地使用一下，还是挺好用的:)</p>
+<p>目前还算能满足需求，当然对于预处理语句的变量处理还可以改进，收集需求再改进吧。</p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/09/octopress-setup/">Octopress Setup</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-09T08:10:00+08:00" pubdate data-updated="true">Mar 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="date">2012-03-09</p>
+<p><img src="/images/octopress_logo.png"></p>
+<p>最早是在lzyy的blog看到 <a href="http://blog.leezhong.com/tech/2010/08/25/make-github-as-blog-engine.html">使用github作为博客引擎</a>, 后面在github上看到了 <a href="https://github.com/lzyy/lzyy.github.com/blob/master/_posts/2010-08-25-make-github-as-blog-engine.textile">他的博客的源代码</a> , 顿时感觉很不错, 这样写blog大概有几个优点:</p>
+<ul>
+	<li><strong>markdown</strong><br />
+可以使用惯用的markdown来写文章(比如我觉得 <a href="http://redcloth.org/textile">textile</a> 跟 <a href="http://www.atlassian.com/software/confluence/overview">confluence</a> 的编辑语法很像)</li>
+	<li><strong>git &amp;&amp; githhub</strong><br />
+使用git进行版本控制, 放在github上保存, 使用 <a href="http://pages.github.com/">github pages</a> 发布, 空间再不是写blog的障碍了:)</li>
+</ul>
+<p>经过约一周的围观与尝试= =, 差不多搞到可用了，剩下了就是加page, 搞插件，熟悉语法了。捣鼓过程无比心酸, 鉴于一个windows用户, 又不愿在windows上搞, 碰巧vmplayer中仅有一台别人配的centos, 于是开始捣鼓了。octopress 需要ruby, python(其中用到 <a href="https://github.com/halostatue/rubypython">rubypython</a> 似乎有依赖), git, ssl等一系列乱七八糟的东西, 按官方的说明去安装倒也无碍, 不过由于之前随意安装了一些低版本的东西, 往往会导致后面发现跑不起来, 于是也多了很多弯路, 总的来说, <strong>顺风顺水的话, 安装还是很容易的</strong>。</p>
+<h3><strong>Octopress Setup</strong></h3>
+<p>安装过程可以参考官方文档(参见附录), 这里结合我的环境(centos 5.7)复述一下, 后面再说说我遇到的囧问题。</p>
+
+	<ul>
+		<li><strong>git &amp;&amp; github</strong><br />
+首先要有git, 为了在github上保存且发布, 要申请一个github账号并上传ssh key以支持push, 见 <a href="http://help.github.com/">github帮助</a> 。</li>
+	</ul>
+	<ul>
+		<li><strong>创建ruby环境</strong><br />
+octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">rvm</a> 可以方便安装, 先安装rvm</li>
+	</ul><p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install rvm  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash -s stable &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>为了更方便使用rvm, 我们将其加入bash_profile中</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>add rvm to bash_profile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s1">&#39;[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; . &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM function&#39;</span> &gt;&gt; ~/.bash_profile
+</span><span class='line'><span class="nb">source</span> ~/.bash_profile
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>安装ruby 1.9.2 获取最新的 <a href="http://rubygems.org/">rubygems</a> , 并安装 <a href="http://gembundler.com/">bundler</a></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm install 1.9.2 <span class="o">&amp;&amp;</span> rvm use 1.9.2
+</span><span class='line'>rvm rubygems latest
+</span><span class='line'>ruby --version  <span class="c"># Should report Ruby 1.9.2</span>
+</span><span class='line'>gem install bundler
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+
+	<ul>
+		<li><strong>下载并安装octopress</strong></li>
+	</ul><p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install octopress  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/imathis/octopress.git octopress
+</span><span class='line'><span class="nb">cd </span>octopress    <span class="c"># If you use RVM, You&#39;ll be asked if you trust the .rvmrc file (say yes).</span>
+</span><span class='line'>bundle install  <span class="c">#install dependencies</span>
+</span><span class='line'>rake install    <span class="c"># Install the default Octopress theme.</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>上文中用到一个 <a href="http://rake.rubyforge.org/">rake</a> , 可以认为就是一种预先编好的 <strong>任务脚本</strong> , 观察文件夹中有一个 <code>Rakefile</code> 打开看看就大概猜了下。</p>
+<p>到这一步基本在本机上已经安装好octopress了, 我们可以把它发布到Github上(当然你还可以部署到 <a href="http://octopress.org/docs/deploying/">其他地方</a> )。首先你得建一个以用户名命名的类似 <code>username.github.com</code> 的Repository。比如我的就是 <code>code6.github.com</code>, 然后设定Github Pages:</p>
+<div>
+<pre>
+<code class='bash'>rake setup_github_pages</code>
+</pre>
+</div>
+<p>之后会要求 <code>read/write url for repository</code> 。 <br />
+将 <strong>git@github.com:yourname/yourname.github.com.git</strong> 替换成自己的即可。</p>
+
+	<ul>
+		<li><strong>建立和发布</strong></li>
+	</ul><p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>deploy  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate
+</span><span class='line'>rake deploy
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>很简单吧, 两条命令就搞定了~, 接下来就可以浏览 <code>http://username.github.com</code><br />
+这里我们是将生成的站点的静态文件发布到了 <code>username.github.com</code>这个仓库的master分支上, 但这并不包含我们的源文件。 这里我们可以将原始文件提交到source分支上</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initial commit  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add .
+</span><span class='line'>git commit -m <span class="s1">&#39;initial source commit&#39;</span>
+</span><span class='line'>git push origin <span class="nb">source</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+
+	<ul>
+		<li><strong>目录结构</strong></li>
+	</ul><p>到这里我们基本搞差不多了, 可以开展日常工作了，这里可以先熟悉相应的代码结构。<br />
+这里主要的目录有 <code>source</code> , <code>public</code> , <code>_deploy</code> , 还有个全局配置文件 <code>_config.yml</code> 。<br />
+其中<br />
+<code>source</code> 为源文件目录, 我们写的文章就在 <code>source/_posts</code> 中, 当然还包括布局, 页面等好多东西<br />
+<code>public</code> 为渲染后的静态blog目录<br />
+<code>_deploy</code> 是用来需要部署的文件目录, 大概觉得是 <code>public</code> 的一份拷贝<br />
+<code>_config.yml</code> 是全局的配置文件, 语法参考 <a href="http://www.ibm.com/developerworks/cn/xml/x-cn-yamlintro/">这里</a></p>
+<p>这里插一个题外话, octopress是基于 <a href="https://github.com/mojombo/jekyll">Jekyll</a> 的, 最开始尝试时下载了jekyll, 由于前端方面的薄弱技能, handler不住, 于是才使用octopress的。最初还看了一个 <a href="https://github.com/plusjade/jekyll-bootstrap">jekyll-bootstrap</a> , 用起来也不麻烦，但猜测没有octopress强大这边的 <code>_config.yml</code> , <code>source</code> 都跟jekyll中的有关, 于是后面如果要捣鼓的话, 可以在那边多看看。 <code>source</code> 目录可以参考jekyll的相关 <a href="https://github.com/mojombo/jekyll/wiki/Usage">wiki</a> 。</p>
+
+	<ul>
+		<li><strong>日常任务</strong></li>
+	</ul><p><strong>建立新文章</strong><br />
+文章必须发表在 <code>source/_posts</code> 下，命名成 <code>YYYY-MM-DD-post-title.markdown</code> 的格式， 我们可以使用octopress的rake 任务来快速创建一篇新文章:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rake new post  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake new_post<span class="o">[</span><span class="s2">&quot;Zombie Ninjas Attack: A survivor&#39;s retrospective&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="c"># Creates source/_posts/2011-07-03-zombie-ninjas-attack-a-survivors-retrospective.markdown</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>默认的后缀是 <code>markdown</code> , 可以在 Rakefile中修改。通过此任务创建的文章会补上开头的 <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">元信息</a> 。<br />
+接下来我们就可以用自己喜爱的编辑器来编辑了。</p>
+<p><strong>建立页面</strong><br />
+略</p>
+<p><strong>生成与预览</strong><br />
+当我们完成一篇文章的创作时，我们可以在本机预览我们的文章。</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>generate and preview  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate   <span class="c"># Generates posts and pages into the public directory</span>
+</span><span class='line'>rake preview    <span class="c"># Watches source/ and sass/ for changes and regenerates, and mounts a webserver at http://localhost:4000</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>其中 <code>rake generate</code> 是将文章和页面生成到 <code>public</code> 目录中，后面我们才能发布我们的改动。<br />
+<code>rake preview</code> 会在本地4000端口起一个网站服务器, 我们访问 <code>http://localhost:4000</code> 则可以看到自己的博客。还有一点是它会监听 <code>source</code> 和 <code>sass</code> 的改动，并重新生成文件，也就是说我们无需重启服务器就可以预览最新的文章。</p>
+<p><strong>发布</strong><br />
+同上文。</p>
+<p><strong>更新octopress</strong></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>upgrade octopress  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git pull octopress master     <span class="c"># Get the latest Octopress</span>
+</span><span class='line'>bundle install                <span class="c"># Keep gems updated</span>
+</span><span class='line'>rake update_source            <span class="c"># update the template&#39;s source</span>
+</span><span class='line'>rake update_style             <span class="c"># update the template&#39;s style</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>更多请参考 <a href="http://octopress.org/docs/blogging/">官方文档</a> 。</p>
+<p><strong>textile语法参考</strong><br />
+考虑使用textile来写blog, 可以从很多github上的repo中来学习。参考 <a href="https://github.com/mojombo/jekyll/wiki/sites">github上挂的Jekyll的站点</a> , 或者参考 <a href="http://redcloth.org/hobix.com/textile/">相关手册</a> 。 注意文件后缀名不要 <strong>拼错</strong> , 否则无法渲染。 使用过程中感觉textile对于 <strong>空格要求比较严格</strong> , 该 <strong>留空格</strong> 的地方还得留一下, 另外段落之间也最好 <strong>留一个空行</strong> 。 另外发现textile的一些标签不是非常好用, 还得自己做尝试才能得到预期效果。 当然你也可以考虑直接使用 <a href="http://wowubuntu.com/markdown/">markdown</a> 。</p>
+<h3><strong>安装补充</strong></h3>
+<p>这边主要想说一下我所遇到的问题，当然不是所有人都会遇到，仅限于比较悲剧的人来说。</p>
+<p><strong>GemFile</strong><br />
+把源改成http://ruby.taobao.org, 据说会比较快, 具体我这边就是讲 <code>gem</code> 和 <code>GemFile</code> 稍微改了下。</p>
+<p><strong>ruby blows up with gem dependency</strong><br />
+参考 <a href="http://stackoverflow.com/questions/4262616/ruby-1-9-2-blows-up-with-json-gem-dependency">这里</a> , 重装一下ruby并升级一下:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>reinstall ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm uninstall 1.9.2
+</span><span class='line'>gem update --system;
+</span><span class='line'>gem pristine --all
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p><strong>rubypython 调用到libpython2.&#215;.so失败</strong></p>
+<p>由于我先前是用pythonbrew来安装python的，装了python2.7, 本机自带了一个python2.4。 我将pythonbrew关掉, 就ok了，未深究。</p>
+<p><strong>ruby环境安装不全</strong><br />
+通过 <code>rvm requirements</code> 查看一下需要预先安装什么，然后装好再重装ruby= =</p>
+<p><strong>rdiscount fail to generate</strong><br />
+据说 <code>rdiscount</code> 会快一些, 这里重装一下就好了。。</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>reinstall rdiscount  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem uninstall rdiscount
+</span><span class='line'>gem install rdiscount
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p><strong>deploy时拷贝swp/swo文件失败</strong></p>
+<p>简单在deploy时忽略swp,swo文件, 在Rakefile中修改:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>modify rakefile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="no">FileList</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">args</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s2">/**/.*&quot;</span><span class="o">].</span><span class="n">exclude</span><span class="p">(</span><span class="s2">&quot;**/.&quot;</span><span class="p">,</span> <span class="s2">&quot;**/..&quot;</span><span class="p">,</span> <span class="s2">&quot;**/.DS_Store&quot;</span><span class="p">,</span> <span class="s2">&quot;**/._*&quot;</span><span class="p">,</span> <span class="s1">&#39;**/.*.swp&#39;</span><span class="p">,</span> <span class="s1">&#39;**/.*.swo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<hr />
+<h3 style="vertical-align:middle;"><strong>附录</strong></h3>
+<p><a href="http://octopress.org/docs/setup/">Octopress Setup</a><br />
+<a href="http://lyhdev.com/note:octopress">Octopress: a blogging framework for hackers</a><br />
+<a href="http://www.yangzhiping.com/tech/octopress.html">Ruby开源项目介绍(1):octopress&#8212;像黑客一样写博客</a><br />
+<a href="http://mrzhang.me/blog/blog-equals-github-plus-octopress.html">Blog = GitHub + Octopress</a><br />
+<a href="http://www.yangzhiping.com/tech/github.html">如何高效地使用GitHub</a><br />
+<a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">Blogging Like a Hacker</a></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/06/a-little-test/">A Little Test</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-06T07:24:00+08:00" pubdate data-updated="true">Mar 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>hello <br />
+h2. hello<br />
+h3. hello</h1>
+<ul>
+	<li>affsffe</li>
+	<li>fsfewfewffe
+	<ul>
+		<li>wwwwwwwww</li>
+	</ul></li>
+</ul></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/05/texttile-example/">Textile Exmpale</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-05T23:04:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">sample javascript from xui</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
+</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></div><br />
+</notextile></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&#8217;s an example .rvmrc file.  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rvm</span> <span class="n">ruby</span><span class="o">-</span><span class="mi">1</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">6</span> <span class="c1"># ZOMG, seriously? We still use this version?</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install rvm  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash -s stable &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<div>
+  <pre>
+    <code class='bash'>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)</code>
+  </pre>
+</div>
+
+<pre>
+<code>
+echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile
+source ~/.bash_profile
+# If using Zsh do this instead
+echo '[[ -s $HOME/.rvm/scripts/rvm ]] &amp;&amp; source $HOME/.rvm/scripts/rvm' &gt;&gt; ~/.zshrc
+source ~/.zshrc
+</code>
+</pre>
+<div>
+<pre>
+<code class='bash'>ssh desktop -D 8080 desktop</code>
+</pre>
+</div>
+<p><code>
+ssh desktop -D 8080 desktop
+</code></p>
+<pre>
+<code>
+ssh desktop -D 8080 desktop
+</code>
+</pre>
+<p>hello <code>rsync</code></p>
+<pre>
+from="10.1.1.1",command="/home/remoteuser/command" ssh-dss AAAA...
+</pre>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">_Tweets_ = </span><span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">module.exports = </span><span class="nx">Tweets</span>
+</span></code></pre></td></tr></table></div></figure></div><br />
+</notextile></p>
+<p style="text-align:center;"><img src="http://gitready.com/images/branches.png" alt="" /></p>
+<ul>
+	<li>Separate paragraphs with two newlines.</li>
+	<li>Use one newline only if you need a <br> tag, otherwise, no newlines inside the paragraph.</li>
+	<li>When creating a new page, don’t forget the <span class="caps">YAML</span> premable at the top (Jekyll needs the page title and layout).</li>
+	<li>The layout uses H1 to render the page title; only use H2 through H4 for the page content.</li>
+	<li>Use H2 headers for the major page sections. Give each H2 header a unique ID so the table of contents can link to it.</li>
+	<li>Separating sentences with two spaces, just a convenience when editing in a text editor using monospaced fonts.</li>
+	<li>If in doubt, ask.</li>
+</ul>
+<p><img src="/images/octopress_logo.png"></p></div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/05/md-test/">Hello</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-05T22:56:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>This is the first level of quoting.</p>
+
+<blockquote><p>This is nested blockquote.</p></blockquote>
+
+<p>Back to the first level.</p></blockquote>
+
+<figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">sample javascript from xui</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
+</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<div>
+  <pre>
+    <code class='bash'>rake generate
+rake deploy</code>
+  </pre>
+</div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/algorithm/'>algorithm (1)</a></li>
+<li class='category'><a href='/blog/categories/blog/'>blog (1)</a></li>
+<li class='category'><a href='/blog/categories/contest/'>contest (1)</a></li>
+<li class='category'><a href='/blog/categories/hive/'>hive (2)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (1)</a></li>
+<li class='category'><a href='/blog/categories/sql/'>sql (1)</a></li>
+<li class='category'><a href='/blog/categories/thoughts/'>thoughts (1)</a></li>
+
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/19/hive-compile-and-apply-patch/">hive compile and apply patch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/19/learning-algo-part-i-at-coursera-dot-org/">learning Algo Part I at coursera.org</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/13/back-for-blogging-more/">back for blogging more</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/">6月第一周比赛小计</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/21/deal-with-special-characters-in-hive-query-result/">deal with special characters in hive query result</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="friend-link">
+  <h1>Links</h1>
+  <ul>
+    <li>
+      <a href="http://panweizeng.com/">增哥</a>
+    </li>
+    <li>
+      <a href="http://http://shangchun.net/">春哥</a>
+    </li>
+    <li>
+      <a href="http://chenzongzhi.info/">志哥</a>
+    </li>
+    <li>
+      <a href="http://davidzai.blog.163.com/blog">3xian</a>
+    </li>
+  </ul>
+  <br/>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/code6">@code6</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'code6',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("wzc1989", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/wzc1989" class="twitter-follow-button" data-show-count="false">Follow @wzc1989</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104473212256457667839?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Code6 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'code6';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
