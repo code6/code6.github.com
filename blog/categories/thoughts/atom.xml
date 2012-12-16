@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: thoughts | MayCoder]]></title>
+  <link href="http://code6.github.com/blog/categories/thoughts/atom.xml" rel="self"/>
+  <link href="http://code6.github.com/"/>
+  <updated>2012-12-16T23:06:10+08:00</updated>
+  <id>http://code6.github.com/</id>
+  <author>
+    <name><![CDATA[Code6]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[back for blogging more]]></title>
+    <link href="http://code6.github.com/blog/2012/09/13/back-for-blogging-more/"/>
+    <updated>2012-09-13T04:31:00+08:00</updated>
+    <id>http://code6.github.com/blog/2012/09/13/back-for-blogging-more</id>
+    <content type="html"><![CDATA[<p>p(date). 2012-09-13</p>
+
+<p>感到很失败，未能完成之前所说的一周发表一篇blog的计划。
+但我还是有很多想说的，感觉如果在工作中不能记录下只言片语的话，那到头来就没有什么留下了了，所谓经验其实远不如总结沉淀来得安稳。
+但我是不是没有干活呢，只能说是懒惰，不想多费些时间心力来记录生活，学习。
+那今天是什么一个情况呢，组里面吃饭的时候在讨论一些问题，聊到了执行力，能力。想想我在blogging上的动作，实在羞愧。
+其实有很多方面可以记录，无论是失败还是成功，我常常想所谓的不成熟其实是最大的阻碍，就像wiki一样，先有了，然后可以慢慢更新的，犯不着要一下子就掌握的非常好。
+所以，仅以此blog作为契机，让我再次开始记录生活，记录工作。
+blog是另外一种认识自己的方式，可以更深刻，更有味道。</p>
+]]></content>
+  </entry>
+  
+</feed>
