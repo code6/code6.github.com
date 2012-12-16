@@ -3,10 +3,24 @@ layout: post
 title: "learning Algo Part I at coursera.org"
 date: 2012-09-19 01:55
 comments: true
-published: false
+published: true
 categories: algorithm
 ---
 
 用来记录我在 coursera.org 上学习  Algo Part I的记录，写完之后发布。
 
 看起来要来不及了。。。要不然就看PPT恶补吧，dealline(9月30号)快到了。
+
+2012.12.16
+以上已经完全来不及= = 我的第一门coursera课就这样悲剧了。
+另外后续我跟小美同学一起开始学 compiler 这门课，还是没有分出足够的时间来做相应的学习，不过小美同学就很有效率地完成了大部分作业。
+近期我的 "第三门课":https://www.coursera.org/course/algo2 已经开课两个星期了，我感觉必须搞定这种被时间追赶着的状态。
+之前一直困扰我的是网络太差，看视频太麻烦，于是google 一个能下载视频的脚本，果然 "很容易在github上找到了":https://github.com/jplehmann/coursera 。
+代码写的还蛮简单漂亮的，后续下载视频只需要一句话:
+
+{% codeblock coursera video download %}
+/Users/code6/git/coursera/coursera-dl -n --path  "/Users/code6/Downloads/coursera/videos/algo2/"  -w /usr/local/bin/wget algo2-2012-001
+{% endcodeblock %}
+
+如果一个东西很难获得，势必增加做某件事情的阻力，但如果太容易获得，也是如此，在下载视频这件事来看也是如此。
+

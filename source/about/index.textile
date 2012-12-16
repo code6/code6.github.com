@@ -1,0 +1,15 @@
+---
+layout: page
+title: "about"
+date: 2012-12-16 17:47
+comments: true
+sharing: true
+footer: true
+---
+
+h2. *code6*
+
+帝都服役程序猿，宅男，拖延症患者，不靠谱。
+此基本为技术blog，个人吐槽，兴趣爱好在其余地方记录。
+对技术有向往，简单来说就是要牛逼。
+"Be the change you want to see in the world."

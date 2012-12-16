@@ -1,2 +1,9 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+
+/* sidebar */
+aside.sidebar .friend-link li { float:left; padding:0.5em 1em; border:0;box-shadow:none; }
+aside.sidebar .friend-link li:first-child { padding-left:0; }
+aside.sidebar .friend-link a { text-decoration:none; color:#666; font-size:16px; }
+aside.sidebar .friend-link a:hover { text-decoration:none; color:#008000; }
