@@ -4,20 +4,100 @@ title: "open hive"
 date: 2012-12-02 21:48
 comments: true
 categories:  hive
-published: false
 ---
 
-p(date). 2012-12-02
+p(date). 2013-01-05
 
-有时我说的话就是放屁，这已经都到12月了。不过我还是厚着脸皮来了，我还是希望写写的，每当我来refer自己干过的一些事情的时候, 还蛮有用的。
+有时我说的话就是放屁，这已经都到 -12月- 1月了。不过我还是厚着脸皮来了，我还是希望写写的，每当我来refer自己干过的一些事情的时候, 还蛮有用的。
 
-今天我想说的是近期我在做的一个事情，说来也简单，往往我觉得难的不是要写多高深的代码，而是采取什么方式来达到一个目的。我的条理还有待加强，暂且这样。
+今天我想说的是近期我们在做的一个事情，说来也简单，往往我觉得难的不是要写多高深的代码，而是采取什么方式来达到一个目的, 满足需求。我的条理还有待加强，暂且这样。
 
-对于做数据的团队，一个很重要的事情就是开放数据，怎样提供一个更好的环境来让更多的人来访问数据，获取他们关心的内容。如果数据始终是仅在团队内部可以使用，那么势必会增加很多重复的无谓的体力劳动。在开放数据这一块，之前大家做了一些努力，有了一个内部的自助查询的系统，面向RD和一般的分析人员。开放的方式是提供一个窗口让用户写具体的SQL来查询，并返回查询结果。 系统内开放了若干链接，每个链接可以查若干表，并可以看到表相关的字段信息。一般来说这样就够了，当然写SQL门槛稍稍有点高。
+对于做数据的团队，一个很重要的事情就是开放数据，怎样提供一个更好的环境来让更多的人来访问数据，获取他们关心的内容。如果数据始终是仅在团队内部可以使用，那么势必会增加很多重复的无谓的体力劳动。在开放数据这一块，之前大家做了一些努力，有了一个内部的自助查询的系统，面向RD和一般的分析人员。开放的方式是提供一个窗口让用户写具体的SQL来查询，返回查询结果, 并可以定制很多图表。 系统内开放了若干链接，每个链接可以查若干表，并可以看到表相关的字段信息。一般来说这样就够了，当然写SQL门槛稍稍有点高。
 
-之前主要数据都是在 mysql 上，
+之前主要数据都是在 mysql 上，开放的方式也非常简单, 只需要提供一个从库即可, 让查询都落在从库上，然后主库进行更新。当我们在mysql撑不住，逐步迁移到hive的同时，自助查询这边相应的也需要改进以支持hive查询。虽然已经有包括 hwi( "anjuke的改进版hwi":https://github.com/anjuke/hwi ) 和 phphiveadmin 以及 hue(我们用apache hadoop, 用不了cloudera的产品)了，感觉跟我们自己的查询工具结合在一起会比较方便使用。结合的方式也比较简单, 简单使用hive cli的执行方式来查询并保存结果数据即可, 大致如下:
 
-todo : 还需要结合 phphiveadmin 来说明
+{% codeblock run hive query lang:bash %}
+hive -f /tmp/testsql 1>testsql.output 2>testsql.err
+{% endcodeblock %}
+
+这样把查询结果放在临时文件中，然后再展示给用户。另外由于hive查询一般比较久，故只能做成异步查询。
+
+这里为什么不用hiveserver呢? 感觉hiveserver在我们这边使用总有一些问题，使用hive 0.9 配合zookeeper时，hiveserver看起来会泄露zookeeper连接，导致一段时间后就不可用了。 当然也可能是我们的姿势不对, 不知在 hive 0.10 上是否会好些。
+
+开放查询做到这一步其实基本差不多了, 用户可以自己执行查询并查看/下载结果集。 但我们在这一步的时候却还不能开放，觉得对用户的控制还不够，用户权限太大了。 说到这一点，我们目前的hadoop/hive环境上只有一个默认用户，其余用于查询的用户(比如apache)基本上对所有表都有查询权限。另外一点是我们线上的hive任务也在定期执行，自助查询这边不应该占用过多资源。在一些必要场合下我们必须有能力干掉用户的查询。简单来说，初步开放，我们需要做到:
+*必要的权限控制*
+库/表级别，语句类型(限制只能使用select)，这些控制可以跟账号绑定。
+*资源限制*
+任务同时可以起的map数量和reduce数量控制。
+*锁限制*
+自助查询不能争用线上任务的锁。
+
+* *必要的权限控制*
+在做权限控制的时候本来想直接用 @hive.security.authorization.enabled@ 参数来搞，发现当所有用户都拿一个账号(apache)来访问是没啥用的= =, 没办法，只能手动搞了，于是比较糙地搞了个类似的自己用, 表如下:
+
+{% codeblock hivetablepriv  lang:sql %}
+REATE TABLE `hivetablepriv` (
+  `grantid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '授权自增ID',
+  `rolename` varchar(128) NOT NULL DEFAULT '' COMMENT '授权角色名',
+  `dbname` varchar(128) NOT NULL DEFAULT '' COMMENT '授权库名',
+  `tablename` varchar(128) NOT NULL DEFAULT '' COMMENT '授权表名, *表示任意表',
+  `modtime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '记录修改时间',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0为正常授权，128为已删除授权',
+  PRIMARY KEY (`grantid`),
+  UNIQUE KEY `rolename` (`rolename`,`dbname`,`tablename`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COMMENT='hive开放查询权限表'
+{% endcodeblock %}
 
 
+然后在实际查询的时候，使用虚拟角色来访问，解析一下查询语句使用到的表(简单正则)，然后进行一下权限判断即可。
+
+* *资源限制*
+这步可以很简单做，比如直接在 @Hadoop Fair Scheduler@ 配置一个受限的队列即可, 基本可以保证资源限制。
+
+* *锁限制*
+我们打开了 @hive.support.concurrency@ 并使用zookeeper来进行锁竞争，主要是防止线上日常ETL程序执行过程中对资源有竞争(比如一个表在更新时有流程访问)，这里在自己查询避免争用线上任务的锁只需要关闭此开关即可。
+
+综上, 我们仅需把执行语句加强一下:
+
+{% codeblock run hive query safely lang:bash %}
+hive --hiveconf hive.support.concurrency=false -hiveconf mapred.queue.name=slow -f /tmp/testsql 1>testsql.output 2>testsql.err
+{% endcodeblock %}
+
+另外权限控制我们在查询脚本执行查询之前做。我们还缺的一件事情是记录下用户的查询(logging)。这一步也可以简单在hive执行脚本中收集。为了能够更好的监控这些任务，我们还需要能够将查询和其所起的任务关联起来。这里使用了一个比较土的方法，就是边执行边解析程序的标准错误, 收集日志中提到的起的hadoop jobid。有了这些信息之后，就可以将一个查询所对应的任务干掉了。
+
+这样我们只靠一个简单查询脚本就可以基本的给hive查询一个具有较好约束的执行环境了。这个openhive脚本可以直接给自助查询工具查询hive使用。不过对于其他RD有需求查询hive数据的，我们还得暴露一个较友好的接口，比如使用 @thrift@ 做一个服务。想到这边我又想到 @hiveserver@ 了, 感觉我的想法有点多余。不过还是那个问题，我们希望有更多控制，然后又不太想在hive源码上动手脚(觉得麻烦以及以后升级比较有问题, 当然主要是我对java不熟)，所以搭 @thrift@ 然后背后用调用 openhive 脚本来实现, 接口可以这样:
+
+{% codeblock openhive.thrift  lang:c %}
+struct Query {
+  1: required string query,
+  2: required string username,
+  3: optional string password
+}
+ 
+exception OpenHiveException {
+  1: string message
+}
+service OpenHive
+{
+  # Execute a query. Takes a HiveQL string
+  void query(1:Query q) throws(1:OpenHiveException ex)
+  # Fetch one row. This row is the serialized form
+  # of the result of the query
+  string fetchOne() throws(1:OpenHiveException ex)
+  # Fetch a given number of rows or remaining number of
+  # rows whichever is smaller.
+  list<string> fetchN(1:i32 numRows) throws(1:OpenHiveException ex)
+  # Fetch all rows of the query result
+  list<string> fetchAll() throws(1:OpenHiveException ex)
+  # Fetch Query header
+  string fetchQueryHeader() throws(1:OpenHiveException ex)
+  # Fetch all query log
+  string fetchQueryLog() throws(1:OpenHiveException ex)
+}
+{% endcodeblock %}
+
+整个接口基本是 @hiveserver@ 的子集= = 服务端简单使用Python来搞，使用thrift的 @ProcessPoolServer@ 类 ，其原理是server启动时fork出N个工作进程，进程之间不影响且可以重复使用。 这样遇到的问题是服务器的处理有瓶颈，每次最多同时处理N个任务，来多了会阻塞，目前我暂时将N设置为10。后续完全可以做成异步的形式，当然得修改接口，比如添加一个 @sessionid@  的概念。
+
+
+大概就是这样了，废话了很多其实内容很少，也很简单。条理和叙述方式有待加强，终于又写了一篇blog，欢迎交流反馈~~
 

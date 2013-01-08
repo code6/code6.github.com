@@ -174,12 +174,14 @@ gem install rdiscount
 {% endcodeblock %}
 
 *deploy时拷贝swp/swo文件失败*
-
 简单在deploy时忽略swp,swo文件, 在Rakefile中修改:
 
 {% codeblock modify rakefile lang:ruby %}
   FileList["#{args.source}/**/.*"].exclude("**/.", "**/..", "**/.DS_Store", "**/._*", '**/.*.swp', '**/.*.swo').each do |file|
 {% endcodeblock %}
+
+*异地重新clone一份blog的时候deploy失败*
+参考 "这个issue":https://github.com/imathis/octopress/issues/412 ，看起来重新clone的时候还需要再次执行一边 @rake setup_github_pages@ 才行。
 
 ---
 
