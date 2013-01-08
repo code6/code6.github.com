@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | MayCoder]]></title>
   <link href="http://code6.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2013-01-08T10:59:39+08:00</updated>
+  <updated>2013-01-09T01:56:19+08:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -12,6 +12,103 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[create a python package]]></title>
+    <link href="http://code6.github.com/blog/2013/01/09/create-a-python-package/"/>
+    <updated>2013-01-09T00:35:00+08:00</updated>
+    <id>http://code6.github.com/blog/2013/01/09/create-a-python-package</id>
+    <content type="html"><![CDATA[<p>在简单做了一个类 @hiveserver@ 的thrift 接口后，担心日后接口更新，我又添加了一个简单的python client包(没有照顾其他用户= =)。作为要分发给用户使用的包，我需要将其打包发布, 然后才好分发。</p>
+
+<p>参考 "The Hitchhiker’s Guide to Packaging":http://guide.python-distribute.org/index.html 文档简单了操作了一下，倒也不麻烦。</p>
+
+<p>目录结构:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>package tree  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.
+</span><span class='line'>├── CHANGE.txt
+</span><span class='line'>├── LICENSE.txt
+</span><span class='line'>├── OpenHiveClient
+</span><span class='line'>│   ├── client.py
+</span><span class='line'>│   ├── &lt;strong&gt;init&lt;/strong&gt;.py
+</span><span class='line'>│   ├── openhive_thrift
+</span><span class='line'>│   │   ├── &lt;strong&gt;init&lt;/strong&gt;.py
+</span><span class='line'>│   │   └── openhive
+</span><span class='line'>│   │   ├── constants.py
+</span><span class='line'>│   │   ├── &lt;strong&gt;init&lt;/strong&gt;.py
+</span><span class='line'>│   │   ├── OpenHive.py
+</span><span class='line'>│   │   ├── OpenHive-remote
+</span><span class='line'>│   │   ├── ttypes.py
+</span><span class='line'>│   └── openhive.thrift
+</span><span class='line'>├── README.txt
+</span><span class='line'>└── setup.py
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>其中 @OpenHiveClient@ 即为要发布的package, 其中的子目录 @openhive_thrift@ 为 thrift 生成的文件。</p>
+
+<p>setup文件内容如下:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>setup.py  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+</span><span class='line'><span class="n">setup</span><span class="p">(</span>
+</span><span class='line'><span class="n">name</span><span class="o">=</span><span class="s">&#39;OpenHiveClient&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">version</span><span class="o">=</span><span class="s">&#39;0.1.0&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">author</span><span class="o">=</span><span class="s">&#39;code6&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">author_email</span><span class="o">=</span><span class="s">&#39;wuzhichun@meituan.com&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OpenHiveClient&#39;</span><span class="p">,</span> <span class="s">&#39;OpenHiveClient/openhive_thrift&#39;</span><span class="p">,</span> <span class="s">&#39;OpenHiveClient/openhive_thrift/openhive&#39;</span><span class="p">],</span>
+</span><span class='line'><span class="n">license</span><span class="o">=</span><span class="s">&#39;LICENSE.txt&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">description</span><span class="o">=</span><span class="s">&#39;open hive query client&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">long_description</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;README.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>部分meta填写较随意，无影响。使用 @distutils@, packages一项似乎得写出所有的包，有点繁琐, 使用的是 @setuptools@ , 有自带一个 "find_package":http://packages.python.org/distribute/setuptools.html#using-find-packages 的方法，那样写比较方便~~~</p>
+
+<p>如果要打包的是单文件的话可以使用 "py_module":http://docs.python.org/2/distutils/setupscript.html#listing-individual-modules 参数。</p>
+
+<p>后续执行 @python setup sdist@ 可生成发行包 @OpenHiveClient-0.1.0.tar.gz@ , 可直接使用 @pip install OpenHiveClient-0.1.0.tar.gz@ 安装,  如果需要更新安装包但没有改版本号的话可以使用 @-U@ 强制刷新。</p>
+
+<p>目前敝厂没有私有pypi服务器，所以为了一个包搞一个的话没必要，一种方式是可以挂在公开的地方比如github之类的。 挂在 pypi 上的问题是不能上传覆盖相同版本号的安装包。这也很合理，应该是开发到一定程度才发布稳定版才对，跟我们在代码仓库上一修改就发布的节奏是不太一样的。</p>
+
+<p>当然，上文都是指要做一个分发的包，如果是部署自身线上服务使用的包，完全可以直接放到代码仓库中同步到线上然后直接安装。</p>
+
+<p>打成包的好处是将独立于业务的模块抽出来后方面引用，可以避免加上一堆 @sys.path.append@ 了, 当然维护成本稍有上升。</p>
+
+<p>h3. <em>附录</em></p>
+
+<p>http://guide.python-distribute.org/creation.html
+http://woodpecker.org.cn/diveintopython3/packaging.html
+http://www.worldhello.net/2011/03/14/2357.html
+http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[6月第一周比赛小计]]></title>

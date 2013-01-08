@@ -219,7 +219,7 @@
 </span><span class='line'>  <span class="n">string</span> <span class="n">fetchQueryLog</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>整个接口基本是 <code>hiveserver</code> 的子集= = 服务端简单使用Python来搞，使用thrift的 <code>ProcessPoolServer</code> 类 ，其原理是server启动时fork出N个工作进程，进程之间不影响且可以重复使用。 这样遇到的问题是服务器的处理有瓶颈，每次最多同时处理N个任务，来多了会阻塞，目前我暂时将N设置为10。后续完全可以做成异步的形式，当然得修改接口，比如添加一个 <code>sessionid</code>  的概念。</p>
+<p>整个接口基本是 <code>hiveserver</code> 的子集= = 服务端简单使用Python来搞，使用thrift的 <code>ProcessPoolServer</code> 类 ，其原理是server启动时fork出N个工作进程，进程之间不影响且可以重复使用。 这样遇到的问题是服务器的处理有瓶颈，每次最多同时处理N个任务，来多了会阻塞，目前我暂时将N设置为10。后续完全可以做成异步的形式，当然得修改接口，比如添加一个 <code>sessionid</code>  的概念。后来跟同事商量，其实对于hive查询本身server端是没有什么压力的(主要在hadoop集群上), 故基本不需要考虑 <code>python GIL</code> 问题而使用多进程。另外他建议使用 <code>gevent</code> 来提高server的并发能力，当然这样瓶颈就落到后端查询上了，感觉还是需要一个队列的机制，倒是可以试试。</p>
 <p>大概就是这样了，废话了很多其实内容很少，也很简单。条理和叙述方式有待加强，终于又写了一篇blog，欢迎交流反馈~~</p></div>
 
 
@@ -268,6 +268,8 @@
         <a class="basic-alignment left" href="/blog/2012/09/19/hive-compile-and-apply-patch/" title="Previous Post: hive compile and apply patch">&laquo; hive compile and apply patch</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/01/09/create-a-python-package/" title="Next Post: create a python package">create a python package &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -289,7 +291,7 @@
 <li class='category'><a href='/blog/categories/blog/'>blog (1)</a></li>
 <li class='category'><a href='/blog/categories/contest/'>contest (1)</a></li>
 <li class='category'><a href='/blog/categories/hive/'>hive (3)</a></li>
-<li class='category'><a href='/blog/categories/programming/'>programming (1)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (2)</a></li>
 <li class='category'><a href='/blog/categories/sql/'>sql (1)</a></li>
 <li class='category'><a href='/blog/categories/thoughts/'>thoughts (1)</a></li>
 
@@ -298,6 +300,10 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/09/create-a-python-package/">create a python package</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/02/open-hive/">open hive</a>
@@ -313,10 +319,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/13/back-for-blogging-more/">back for blogging more</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/">6月第一周比赛小计</a>
       </li>
     
   </ul>

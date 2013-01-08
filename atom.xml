@@ -4,7 +4,7 @@
   <title><![CDATA[MayCoder]]></title>
   <link href="http://code6.github.com/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2013-01-08T10:59:39+08:00</updated>
+  <updated>2013-01-09T01:56:19+08:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[create a python package]]></title>
+    <link href="http://code6.github.com/blog/2013/01/09/create-a-python-package/"/>
+    <updated>2013-01-09T00:35:00+08:00</updated>
+    <id>http://code6.github.com/blog/2013/01/09/create-a-python-package</id>
+    <content type="html"><![CDATA[<p>在简单做了一个类 <code>hiveserver</code> 的thrift 接口后，担心日后接口更新，我又添加了一个简单的python client包(没有照顾其他用户= =)。作为要分发给用户使用的包，我需要将其打包发布, 然后才好分发。</p>
+<p>参考 <a href="http://guide.python-distribute.org/index.html">The Hitchhiker’s Guide to Packaging</a> 文档简单了操作了一下，倒也不麻烦。</p>
+<p>目录结构:<br />
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>package tree  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.
+</span><span class='line'>├── CHANGE.txt
+</span><span class='line'>├── LICENSE.txt
+</span><span class='line'>├── OpenHiveClient
+</span><span class='line'>│   ├── client.py
+</span><span class='line'>│   ├── __init__.py
+</span><span class='line'>│   ├── openhive_thrift
+</span><span class='line'>│   │   ├── __init__.py
+</span><span class='line'>│   │   └── openhive
+</span><span class='line'>│   │   ├── constants.py
+</span><span class='line'>│   │   ├── __init__.py
+</span><span class='line'>│   │   ├── OpenHive.py
+</span><span class='line'>│   │   ├── OpenHive-remote
+</span><span class='line'>│   │   ├── ttypes.py
+</span><span class='line'>│   └── openhive.thrift
+</span><span class='line'>├── README.txt
+</span><span class='line'>└── setup.py
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>其中 <code>OpenHiveClient</code> 即为要发布的package, 其中的子目录 <code>openhive_thrift</code> 为 thrift 生成的文件。</p>
+<p>setup文件内容如下:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>setup.py  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+</span><span class='line'><span class="n">setup</span><span class="p">(</span>
+</span><span class='line'><span class="n">name</span><span class="o">=</span><span class="s">&#39;OpenHiveClient&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">version</span><span class="o">=</span><span class="s">&#39;0.1.0&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">author</span><span class="o">=</span><span class="s">&#39;code6&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">author_email</span><span class="o">=</span><span class="s">&#39;wuzhichun@meituan.com&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OpenHiveClient&#39;</span><span class="p">,</span> <span class="s">&#39;OpenHiveClient/openhive_thrift&#39;</span><span class="p">,</span> <span class="s">&#39;OpenHiveClient/openhive_thrift/openhive&#39;</span><span class="p">],</span>
+</span><span class='line'><span class="n">license</span><span class="o">=</span><span class="s">&#39;LICENSE.txt&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">description</span><span class="o">=</span><span class="s">&#39;open hive query client&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">long_description</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;README.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>部分meta填写较随意，无影响。使用 <code>distutils</code>, packages一项似乎得写出所有的包，有点繁琐, 使用的是 <code>setuptools</code> , 有自带一个 <a href="http://packages.python.org/distribute/setuptools.html#using-find-packages">find_package</a> 的方法，那样写比较方便~~~</p>
+<p>如果要打包的是单文件的话可以使用 <a href="http://docs.python.org/2/distutils/setupscript.html#listing-individual-modules">py_module</a> 参数。</p>
+<p>后续执行 <code>python setup sdist</code> 可生成发行包 <code>OpenHiveClient-0.1.0.tar.gz</code> , 可直接使用 <code>pip install OpenHiveClient-0.1.0.tar.gz</code> 安装,  如果需要更新安装包但没有改版本号的话可以使用 <code>-U</code> 强制刷新。</p>
+<p>目前敝厂没有私有pypi服务器，所以为了一个包搞一个的话没必要，一种方式是可以挂在公开的地方比如github之类的。 挂在 pypi 上的问题是不能上传覆盖相同版本号的安装包。这也很合理，应该是开发到一定程度才发布稳定版才对，跟我们在代码仓库上一修改就发布的节奏是不太一样的。</p>
+<p>当然，上文都是指要做一个分发的包，如果是部署自身线上服务使用的包，完全可以直接放到代码仓库中同步到线上然后直接安装。</p>
+<p>打成包的好处是将独立于业务的模块抽出来后方面引用，可以避免加上一堆 <code>sys.path.append</code> 了, 当然维护成本稍有上升。</p>
+<h3><strong>附录</strong></h3>
+<p>http://guide.python-distribute.org/creation.html<br />
+http://woodpecker.org.cn/diveintopython3/packaging.html<br />
+http://www.worldhello.net/2011/03/14/2357.html<br />
+http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[open hive]]></title>
@@ -132,7 +215,7 @@
 </span><span class='line'>  <span class="n">string</span> <span class="n">fetchQueryLog</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>整个接口基本是 <code>hiveserver</code> 的子集= = 服务端简单使用Python来搞，使用thrift的 <code>ProcessPoolServer</code> 类 ，其原理是server启动时fork出N个工作进程，进程之间不影响且可以重复使用。 这样遇到的问题是服务器的处理有瓶颈，每次最多同时处理N个任务，来多了会阻塞，目前我暂时将N设置为10。后续完全可以做成异步的形式，当然得修改接口，比如添加一个 <code>sessionid</code>  的概念。</p>
+<p>整个接口基本是 <code>hiveserver</code> 的子集= = 服务端简单使用Python来搞，使用thrift的 <code>ProcessPoolServer</code> 类 ，其原理是server启动时fork出N个工作进程，进程之间不影响且可以重复使用。 这样遇到的问题是服务器的处理有瓶颈，每次最多同时处理N个任务，来多了会阻塞，目前我暂时将N设置为10。后续完全可以做成异步的形式，当然得修改接口，比如添加一个 <code>sessionid</code>  的概念。后来跟同事商量，其实对于hive查询本身server端是没有什么压力的(主要在hadoop集群上), 故基本不需要考虑 <code>python GIL</code> 问题而使用多进程。另外他建议使用 <code>gevent</code> 来提高server的并发能力，当然这样瓶颈就落到后端查询上了，感觉还是需要一个队列的机制，倒是可以试试。</p>
 <p>大概就是这样了，废话了很多其实内容很少，也很简单。条理和叙述方式有待加强，终于又写了一篇blog，欢迎交流反馈~~</p>]]></content>
   </entry>
   

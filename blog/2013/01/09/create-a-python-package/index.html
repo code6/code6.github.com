@@ -5,27 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>hello - MayCoder</title>
+  <title>create a python package - MayCoder</title>
   <meta name="author" content="Code6">
 
   
-  <meta name="description" content="This is the first level of quoting. This is nested blockquote. Back to the first level. (test.js) download 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17 &hellip;">
+  <meta name="description" content="在简单做了一个类 hiveserver 的thrift 接口后，担心日后接口更新，我又添加了一个简单的python client包(没有照顾其他用户= =)。作为要分发给用户使用的包，我需要将其打包发布, 然后才好分发。
+参考 The Hitchhiker’s Guide to Packaging &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -34,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://code6.github.com/blog/2012/03/05/md-test">
+  <link rel="canonical" href="http://code6.github.com/blog/2013/01/09/create-a-python-package">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -96,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">Hello</h1>
+      <h1 class="entry-title">Create a Python Package</h1>
     
     
       <p class="meta">
@@ -112,20 +97,17 @@
   
 
 
-<time datetime="2012-03-05T22:56:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
+<time datetime="2013-01-09T00:35:00+08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><blockquote><p>This is the first level of quoting.</p>
-
-<blockquote><p>This is nested blockquote.</p></blockquote>
-
-<p>Back to the first level.</p></blockquote>
-
-<figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
+<div class="entry-content"><p>在简单做了一个类 <code>hiveserver</code> 的thrift 接口后，担心日后接口更新，我又添加了一个简单的python client包(没有照顾其他用户= =)。作为要分发给用户使用的包，我需要将其打包发布, 然后才好分发。</p>
+<p>参考 <a href="http://guide.python-distribute.org/index.html">The Hitchhiker’s Guide to Packaging</a> 文档简单了操作了一下，倒也不麻烦。</p>
+<p>目录结构:<br />
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>package tree  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -143,44 +125,61 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm">sample javascript from xui</span>
-</span><span class='line'><span class="cm">*/</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
-</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
-</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<div>
-  <pre>
-    <code class='bash'>rake generate
-rake deploy</code>
-  </pre>
-</div>
-
-
-
-</div>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.
+</span><span class='line'>├── CHANGE.txt
+</span><span class='line'>├── LICENSE.txt
+</span><span class='line'>├── OpenHiveClient
+</span><span class='line'>│   ├── client.py
+</span><span class='line'>│   ├── __init__.py
+</span><span class='line'>│   ├── openhive_thrift
+</span><span class='line'>│   │   ├── __init__.py
+</span><span class='line'>│   │   └── openhive
+</span><span class='line'>│   │   ├── constants.py
+</span><span class='line'>│   │   ├── __init__.py
+</span><span class='line'>│   │   ├── OpenHive.py
+</span><span class='line'>│   │   ├── OpenHive-remote
+</span><span class='line'>│   │   ├── ttypes.py
+</span><span class='line'>│   └── openhive.thrift
+</span><span class='line'>├── README.txt
+</span><span class='line'>└── setup.py
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>其中 <code>OpenHiveClient</code> 即为要发布的package, 其中的子目录 <code>openhive_thrift</code> 为 thrift 生成的文件。</p>
+<p>setup文件内容如下:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>setup.py  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+</span><span class='line'><span class="n">setup</span><span class="p">(</span>
+</span><span class='line'><span class="n">name</span><span class="o">=</span><span class="s">&#39;OpenHiveClient&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">version</span><span class="o">=</span><span class="s">&#39;0.1.0&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">author</span><span class="o">=</span><span class="s">&#39;code6&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">author_email</span><span class="o">=</span><span class="s">&#39;wuzhichun@meituan.com&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;OpenHiveClient&#39;</span><span class="p">,</span> <span class="s">&#39;OpenHiveClient/openhive_thrift&#39;</span><span class="p">,</span> <span class="s">&#39;OpenHiveClient/openhive_thrift/openhive&#39;</span><span class="p">],</span>
+</span><span class='line'><span class="n">license</span><span class="o">=</span><span class="s">&#39;LICENSE.txt&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">description</span><span class="o">=</span><span class="s">&#39;open hive query client&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">long_description</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;README.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span>
+</span><span class='line'><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>部分meta填写较随意，无影响。使用 <code>distutils</code>, packages一项似乎得写出所有的包，有点繁琐, 使用的是 <code>setuptools</code> , 有自带一个 <a href="http://packages.python.org/distribute/setuptools.html#using-find-packages">find_package</a> 的方法，那样写比较方便~~~</p>
+<p>如果要打包的是单文件的话可以使用 <a href="http://docs.python.org/2/distutils/setupscript.html#listing-individual-modules">py_module</a> 参数。</p>
+<p>后续执行 <code>python setup sdist</code> 可生成发行包 <code>OpenHiveClient-0.1.0.tar.gz</code> , 可直接使用 <code>pip install OpenHiveClient-0.1.0.tar.gz</code> 安装,  如果需要更新安装包但没有改版本号的话可以使用 <code>-U</code> 强制刷新。</p>
+<p>目前敝厂没有私有pypi服务器，所以为了一个包搞一个的话没必要，一种方式是可以挂在公开的地方比如github之类的。 挂在 pypi 上的问题是不能上传覆盖相同版本号的安装包。这也很合理，应该是开发到一定程度才发布稳定版才对，跟我们在代码仓库上一修改就发布的节奏是不太一样的。</p>
+<p>当然，上文都是指要做一个分发的包，如果是部署自身线上服务使用的包，完全可以直接放到代码仓库中同步到线上然后直接安装。</p>
+<p>打成包的好处是将独立于业务的模块抽出来后方面引用，可以避免加上一堆 <code>sys.path.append</code> 了, 当然维护成本稍有上升。</p>
+<h3><strong>附录</strong></h3>
+<p>http://guide.python-distribute.org/creation.html<br />
+http://woodpecker.org.cn/diveintopython3/packaging.html<br />
+http://www.worldhello.net/2011/03/14/2357.html<br />
+http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p></div>
 
 
   <footer>
@@ -202,15 +201,21 @@ rake deploy</code>
   
 
 
-<time datetime="2012-03-05T22:56:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
+<time datetime="2013-01-09T00:35:00+08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://code6.github.com/blog/2012/03/05/md-test/" data-via="wzc1989" data-counturl="http://code6.github.com/blog/2012/03/05/md-test/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://code6.github.com/blog/2013/01/09/create-a-python-package/" data-via="wzc1989" data-counturl="http://code6.github.com/blog/2013/01/09/create-a-python-package/" >Tweet</a>
   
   
   
@@ -219,8 +224,8 @@ rake deploy</code>
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/12/02/open-hive/" title="Previous Post: open hive">&laquo; open hive</a>
       
-        <a class="basic-alignment right" href="/blog/2012/03/05/texttile-example/" title="Next Post: textile exmpale">textile exmpale &raquo;</a>
       
     </p>
   </footer>
@@ -372,8 +377,8 @@ rake deploy</code>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://code6.github.com/blog/2012/03/05/md-test/';
-        var disqus_url = 'http://code6.github.com/blog/2012/03/05/md-test/';
+        var disqus_identifier = 'http://code6.github.com/blog/2013/01/09/create-a-python-package/';
+        var disqus_url = 'http://code6.github.com/blog/2013/01/09/create-a-python-package/';
         var disqus_script = 'embed.js';
       
     (function () {
