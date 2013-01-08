@@ -1,0 +1,70 @@
+---
+layout: post
+title: "create a python package"
+date: 2013-01-09 00:35
+comments: true
+categories: programming
+tags: [package, python]
+---
+
+在简单做了一个类 @hiveserver@ 的thrift 接口后，担心日后接口更新，我又添加了一个简单的python client包(没有照顾其他用户= =)。作为要分发给用户使用的包，我需要将其打包发布, 然后才好分发。
+
+参考 "The Hitchhiker’s Guide to Packaging":http://guide.python-distribute.org/index.html 文档简单了操作了一下，倒也不麻烦。
+
+目录结构:
+{% codeblock package tree lang:bash %}
+.
+├── CHANGE.txt
+├── LICENSE.txt
+├── OpenHiveClient
+│   ├── client.py
+│   ├── __init__.py
+│   ├── openhive_thrift
+│   │   ├── __init__.py
+│   │   └── openhive
+│   │   ├── constants.py
+│   │   ├── __init__.py
+│   │   ├── OpenHive.py
+│   │   ├── OpenHive-remote
+│   │   ├── ttypes.py
+│   └── openhive.thrift
+├── README.txt
+└── setup.py
+{% endcodeblock %}
+
+其中 @OpenHiveClient@ 即为要发布的package, 其中的子目录 @openhive_thrift@ 为 thrift 生成的文件。
+
+setup文件内容如下:
+
+{% codeblock setup.py lang:python %}
+from distutils.core import setup
+setup(
+name='OpenHiveClient',
+version='0.1.0',
+author='code6',
+author_email='wuzhichun@meituan.com',
+packages=['OpenHiveClient', 'OpenHiveClient/openhive_thrift', 'OpenHiveClient/openhive_thrift/openhive'],
+license='LICENSE.txt',
+description='open hive query client',
+long_description=open('README.txt').read(),
+)
+{% endcodeblock %}
+
+部分meta填写较随意，无影响。使用 @distutils@, packages一项似乎得写出所有的包，有点繁琐, 使用的是 @setuptools@ , 有自带一个 "find_package":http://packages.python.org/distribute/setuptools.html#using-find-packages 的方法，那样写比较方便~~~
+
+如果要打包的是单文件的话可以使用 "py_module":http://docs.python.org/2/distutils/setupscript.html#listing-individual-modules 参数。
+
+后续执行 @python setup sdist@ 可生成发行包 @OpenHiveClient-0.1.0.tar.gz@ , 可直接使用 @pip install OpenHiveClient-0.1.0.tar.gz@ 安装,  如果需要更新安装包但没有改版本号的话可以使用 @-U@ 强制刷新。
+
+目前敝厂没有私有pypi服务器，所以为了一个包搞一个的话没必要，一种方式是可以挂在公开的地方比如github之类的。 挂在 pypi 上的问题是不能上传覆盖相同版本号的安装包。这也很合理，应该是开发到一定程度才发布稳定版才对，跟我们在代码仓库上一修改就发布的节奏是不太一样的。
+
+当然，上文都是指要做一个分发的包，如果是部署自身线上服务使用的包，完全可以直接放到代码仓库中同步到线上然后直接安装。
+
+打成包的好处是将独立于业务的模块抽出来后方面引用，可以避免加上一堆 @sys.path.append@ 了, 当然维护成本稍有上升。
+
+h3. *附录*
+
+http://guide.python-distribute.org/creation.html
+http://woodpecker.org.cn/diveintopython3/packaging.html
+http://www.worldhello.net/2011/03/14/2357.html
+http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html
