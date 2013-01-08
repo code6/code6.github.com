@@ -265,12 +265,14 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>gem uninstall rdiscount
 </span><span class='line'>gem install rdiscount
 </span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p><strong>deploy时拷贝swp/swo文件失败</strong></p>
-<p>简单在deploy时忽略swp,swo文件, 在Rakefile中修改:</p>
+<p><strong>deploy时拷贝swp/swo文件失败</strong><br />
+简单在deploy时忽略swp,swo文件, 在Rakefile中修改:</p>
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>modify rakefile  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="no">FileList</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">args</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s2">/**/.*&quot;</span><span class="o">].</span><span class="n">exclude</span><span class="p">(</span><span class="s2">&quot;**/.&quot;</span><span class="p">,</span> <span class="s2">&quot;**/..&quot;</span><span class="p">,</span> <span class="s2">&quot;**/.DS_Store&quot;</span><span class="p">,</span> <span class="s2">&quot;**/._*&quot;</span><span class="p">,</span> <span class="s1">&#39;**/.*.swp&#39;</span><span class="p">,</span> <span class="s1">&#39;**/.*.swo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
 </span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p><strong>异地重新clone一份blog的时候deploy失败</strong><br />
+参考 <a href="https://github.com/imathis/octopress/issues/412">这个issue</a> ，看起来重新clone的时候还需要再次执行一边 <code>rake setup_github_pages</code> 才行。</p>
 <hr />
 <h3 style="vertical-align:middle;"><strong>附录</strong></h3>
 <p><a href="http://octopress.org/docs/setup/">Octopress Setup</a><br />
@@ -348,7 +350,7 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
     <li class='category'><a href='/blog/categories/algorithm/'>algorithm (1)</a></li>
 <li class='category'><a href='/blog/categories/blog/'>blog (1)</a></li>
 <li class='category'><a href='/blog/categories/contest/'>contest (1)</a></li>
-<li class='category'><a href='/blog/categories/hive/'>hive (2)</a></li>
+<li class='category'><a href='/blog/categories/hive/'>hive (3)</a></li>
 <li class='category'><a href='/blog/categories/programming/'>programming (1)</a></li>
 <li class='category'><a href='/blog/categories/sql/'>sql (1)</a></li>
 <li class='category'><a href='/blog/categories/thoughts/'>thoughts (1)</a></li>
@@ -358,6 +360,10 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/02/open-hive/">open hive</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/09/19/hive-compile-and-apply-patch/">hive compile and apply patch</a>
@@ -373,10 +379,6 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
     
       <li class="post">
         <a href="/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/">6月第一周比赛小计</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/21/deal-with-special-characters-in-hive-query-result/">deal with special characters in hive query result</a>
       </li>
     
   </ul>
@@ -466,7 +468,7 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Code6 -
+  Copyright &copy; 2013 - Code6 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

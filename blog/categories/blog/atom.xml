@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | MayCoder]]></title>
   <link href="http://code6.github.com/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2012-12-16T23:06:10+08:00</updated>
+  <updated>2013-01-08T10:59:39+08:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -221,14 +221,16 @@ octopress 需要 ruby 1.9.2, 用 "rvm":https://github.com/wayneeseguin/rvm 可�
 </span><span class='line'>gem install rdiscount
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><em>deploy时拷贝swp/swo文件失败</em></p>
-
-<p>简单在deploy时忽略swp,swo文件, 在Rakefile中修改:</p>
+<p><em>deploy时拷贝swp/swo文件失败</em>
+简单在deploy时忽略swp,swo文件, 在Rakefile中修改:</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>modify rakefile  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="no">FileList</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">args</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s2">/&lt;strong&gt;/.*&quot;</span><span class="o">].</span><span class="n">exclude</span><span class="p">(</span><span class="s2">&quot;&lt;/strong&gt;/.&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;strong&gt;/..&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/strong&gt;/.DS_Store&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;strong&gt;/._*&quot;</span><span class="p">,</span> <span class="s1">&#39;&lt;/strong&gt;/.&lt;em&gt;.swp&#39;</span><span class="p">,</span> <span class="s1">&#39;**/.&lt;/em&gt;.swo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><em>异地重新clone一份blog的时候deploy失败</em>
+参考 "这个issue":https://github.com/imathis/octopress/issues/412 ，看起来重新clone的时候还需要再次执行一边 @rake setup_github_pages@ 才行。</p>
 
 <hr />
 
