@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>6月第一周比赛小计 - MayCoder</title>
+  <title>query evolution - MayCoder</title>
   <meta name="author" content="Code6">
 
   
-  <meta name="description" content="2012-06-04
-6月第一个周末比赛好多啊，做了其中的4个，很爽: 比赛 开始时间 Astar 2012 R1a 2012.6.2 10:00 ipsc 2012 2012.6.2 18:0 0 TCO 2012 R2c 2012.6.3 00:00 Astar 2012 R1b 2012.6 &hellip;">
+  <meta name="description" content="2013-04-04
+从最原始的查询开始，位于后台某个报表，当用户发起一个查询，我们该干啥呢?
+抽象一种最简单的形式，查询是对我们的数据做一定的转换而得来的，即 按这样的理解，当用户发起一个查询时，我们可以直接在原始数据集上进行操作, 操作的过程可以在服务端或者客户端。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://code6.github.com/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june">
+  <link rel="canonical" href="http://code6.github.com/blog/2013/04/04/query-evolution">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +82,7 @@
   
   <header>
     
-      <h1 class="entry-title">6月第一周比赛小计</h1>
+      <h1 class="entry-title">Query Evolution</h1>
     
     
       <p class="meta">
@@ -97,94 +98,44 @@
   
 
 
-<time datetime="2012-06-03T09:41:00+08:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2012</time>
+<time datetime="2013-04-04T11:52:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p class="date">2012-06-04</p>
-<p>6月第一个周末比赛好多啊，做了其中的4个，很爽:</p>
-<table>
-	<tr style="background:#ddd;">
-		<td style="width:200px;">比赛 </td>
-		<td style="width:200px;">开始时间 </td>
-	</tr>
-	<tr>
-		<td> Astar 2012 R1a  </td>
-		<td> 2012.6.2 10:00 </td>
-	</tr>
-	<tr>
-		<td> <a href="http://ipsc.ksp.sk/contests/ipsc2012/results/">ipsc 2012</a>  </td>
-		<td> 2012.6.2 18:0 0</td>
-	</tr>
-	<tr>
-		<td> <span class="caps">TCO</span> 2012 R2c  </td>
-		<td> 2012.6.3 00:00 </td>
-	</tr>
-	<tr>
-		<td> Astar 2012 R1b  </td>
-		<td>2012.6.3 10:00</td>
-	</tr>
-</table>
-<p></p>
-<p>结果不是很重要，关键是又稍微思考了下, 但这样没有规律的思考是无法提高的，倒是也得想办法弄一个周期性较强的训练时间, 挨个稍微说一下吧。</p>
+<div class="entry-content"><p class="date">2013-04-04</p>
+<p>从最原始的查询开始，位于后台某个报表，当用户发起一个查询，我们该干啥呢?</p>
+<p>抽象一种最简单的形式，查询是对我们的数据做一定的转换而得来的，即</p>
+<p><img src="/images/query_evolution_pic/all_data_function_query.jpeg"></p>
+<p>按这样的理解，当用户发起一个查询时，我们可以直接在原始数据集上进行操作, 操作的过程可以在服务端或者客户端。</p>
+<p><img src="/images/query_evolution_pic/all_data_function_query_2.jpeg"></p>
+<p>直接在原始数据上操作查询数据是非常艰难的，业务方面的数据并不是那么查询友好，有多个查询需求时得重复很多重复的代码和计算。</p>
+<p>于是我们很容易想到上述的模型需要再添加一层预处理层，方便查询。</p>
+<p><img src="/images/query_evolution_pic/add_precompute_view.jpeg"></p>
+<p>在实际处理当中，我们本着依靠数据仓库理论武装自己的原则，对原始数据做了系统的预处理后形成了一个数据仓库。</p>
+<p><img src="/images/query_evolution_pic/precompute_in_dw.jpeg"></p>
+<p>由于引入了预计算，就有了一个数据更新问题。为了抠那一点时间和空间，我们绞尽脑汁想到了一种所谓增量更新( incremental update)的方法，于是数据愉快地更新起来了。</p>
+<p>机器或者人工的失误，数据源数据发生了错误或遗失，对于我们的预处理层真是一次灾难啊，没什么好说的，只能重算了。</p>
+<p><img src="/images/query_evolution_pic/incremental_update_failed.jpeg"></p>
+<p>由于数据规模逐渐增加，单机的关系数据库渐渐扛不住了，我们只能引入分布式的处理(mapred)来分担预处理的压力。</p>
+<p><img src="/images/query_evolution_pic/switch_to_hadoop.jpeg"></p>
+<p>在分布式计算模式下，原有的关系数据库特性已经不在那么好用了。索引剪枝不再好使，增量更新也不易于实现，于是大部分情况下，我们粗暴地全量计算，我们再也不怕历史数据有问题了。</p>
+<p>随着预处理数据渐渐地迁移，不可避免地我们需要查询分布式数据库(hive), 这样我们的查询必须支持那种异构的数据源了，我们可以再加上一层，把各类查询都接入。</p>
+<p><img src="/images/query_evolution_pic/add_query_service.jpeg"></p>
+<p>我们称这个新的服务是查询中心，它将作为一切查询的入口，也体现了一种服务化的理念。</p>
+<p>当然，各类的查询区别明显，普通报表query 和 api 一般执行快，要求响应也快。对于用户发起adhoc 操作，则可能查询费时也不一定需要及时响应。对于这样一个包容性的服务来说是个考验。</p>
+<p>似乎漏了几部分？</p>
 <ul>
-	<li><strong>Astar 2012 R1a</strong></li>
-</ul>
-<table>
-	<tr style="background:#ddd;">
-		<td style="width:100px;">题目ID </td>
-		<td style="width:200px;">标题 </td>
-	</tr>
-	<tr>
-		<td>A     </td>
-		<td>  度度熊就是要第一个出场</td>
-	</tr>
-	<tr>
-		<td>B     </td>
-		<td>  小小度刷礼品</td>
-	</tr>
-	<tr>
-		<td>C     </td>
-		<td>  集合的交与并</td>
-	</tr>
-	<tr>
-		<td>D     </td>
-		<td>  轮子上的度度熊</td>
-	</tr>
-</table>
-<p></p>
-<p>这场做了B和D吧, B就是很土的算1到N里面有多少个以x结尾的数, D的话我暴力了一下，大数据会超时，不过来不及想优化了, 感觉没有优化写起来就像很无聊的DP。 另外A其实是可做的，bfs一下应该就可以了, 跟印象中某ZOJ月赛一题有像，也跟今年的WF的镜面反射的题目有点相似(题型)。 感觉运气好可以晋级吧，毕竟只做了1题多一点点而已。</p>
-<ul>
-	<li><strong>ipsc 2012</strong><br />
-与毛哥一起搞了今年的ipsc, 用的是我们当年组队的名字 <code>ACOrz</code> , 可惜daxia没来一起做。稍微迟到了半小时，毛哥已经把A过了，然后看了C, F, I了。C我尝试了两三次，无果，后面先放弃了。放弃C之后就很顺了，跟毛哥一起砍了一些大众题目。依次是
+	<li>由于有了预处理，查询数据的实时性不可避免要打折。</li>
+	<li>对于分布式数据库数据访问有点过慢(目前的策略是将聚合结果写回关系型数据库来支持快速查询)。</li>
+	<li>数据应用方面，推荐/搜索相关的线上查询服务设计
 	<ul>
-		<li>G<br />
-算有向图最大长度的链。由于图挺特殊的，只有一个出度，故也挺好算。</li>
-		<li>I<br />
-<a href="http://www.md5decrypt.org/">md5 decrypt</a> 挺好用的，直接将大小数据都过了= =国内的网站就不行，还要收费- -</li>
-		<li>F<br />
-毛哥暴力了小数据，然后我们在只有两个硬币的情况下做简单演算, 得到 <code>p1*(1-p2)+p2*(1-p1)=1/2</code>  这个式子，直接解出 <code>p1 = 1/2 or p2 = 1/2</code>  , 于是也很容易了。</li>
-		<li>C1<br />
-C1 后面我又试了下记忆化搜索，于是就过了= =, 一开始dp比较随意了，改成记忆化暴力所有可能于是过了。猜测大数据也是类似搞法，不过状态可能稍微多了，未作深究。</li>
-		<li>B<br />
-B毛哥猜得很欢乐， B1还好，B2我们真是非常惊险，猜到第30次才得到答案(最多猜测30次)，毛哥还用啥迭代法来逼近来着。<br />
-<img src="/images/ipsc_2012-2.png"><br />
-最终ipsc排名一百多名，算是本周最欢乐的比赛了，当然还有很多没有切出来, 回头可以再看看。<br />
-<img src="/images/ipsc_2012-1.png"></li>
+		<li>感觉支持后台数据服务和线上服务还是不能混在一块的</li>
 	</ul></li>
 </ul>
-<ul>
-	<li><span class="caps">TCO</span> 2012 R2c<br />
-ipsc 做到了晚上11点结束，12点就是 <code>TCO R2c</code>了，能不能拿衣服就看这场了。悲剧的是比赛前20分钟家里断网了，折腾了好些,搞好的时候已经12点20分了，顾不上就奔去了。300分是一个有点代码量的枚举，写到了144分。。500打开只有半小时了，看了下，这不就是土土的树状数组吗！马上搞啊搞，在最后10分钟的时候样例一直过不了，还有一个即simple的样例，没来得及看明白 比赛结束了。后面再看了下，发现题目看错了= = 顺序有点小变化，当然做法还是树状数组。感觉构造还是挺巧妙的，多增加了啥，该扣除啥。另外本次的900pt貌似也可做，没来得及看，某些人直接搞900晋级了，真给力。</li>
-</ul>
-<ul>
-	<li>Astar 2012 R1b<br />
-由于2号搞到比较晚，起床的时候已经是10:30了，外加还得洗碗= = 题目现在看不到了，仍然是4道题。最终做了B, C。B是二分加并查集，挺简单的。C 简单yy了一个贪心，感觉想简单了。A是算n个数中选若干数异或值的最大和次大，没想明白，  <a href="http://hi.baidu.com/pojoflcc/blog/item/c85dccdbb967c0c1b7fd4805.html">别人说是&#8217;搞基&#8217;</a> 。 D没有想法。 这场要晋级的话也比较悬，重在参与~</li>
-</ul>
-<p>总之，整个周末还是挺紧凑以及有趣的(还出去骑了两次车)，每次比赛后都留下一些未解之谜，现在不能像以往一一攻克并提高战斗力了，不过真想把不会的继续搞懂！</p></div>
+<p>这些都是可改进的点，围绕着查询这个主题。</p></div>
 
 
   <footer>
@@ -206,21 +157,15 @@ ipsc 做到了晚上11点结束，12点就是 <code>TCO R2c</code>了，能不�
   
 
 
-<time datetime="2012-06-03T09:41:00+08:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2012</time>
+<time datetime="2013-04-04T11:52:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2013</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/contest/'>contest</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://code6.github.com/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/" data-via="wzc1989" data-counturl="http://code6.github.com/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://code6.github.com/blog/2013/04/04/query-evolution/" data-via="wzc1989" data-counturl="http://code6.github.com/blog/2013/04/04/query-evolution/" >Tweet</a>
   
   
   
@@ -229,10 +174,8 @@ ipsc 做到了晚上11点结束，12点就是 <code>TCO R2c</code>了，能不�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/05/21/deal-with-special-characters-in-hive-query-result/" title="Previous Post: deal with special characters in hive query result">&laquo; deal with special characters in hive query result</a>
+        <a class="basic-alignment left" href="/blog/2013/01/09/create-a-python-package/" title="Previous Post: create a python package">&laquo; create a python package</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/09/13/back-for-blogging-more/" title="Next Post: back for blogging more">back for blogging more &raquo;</a>
       
     </p>
   </footer>
@@ -387,8 +330,8 @@ ipsc 做到了晚上11点结束，12点就是 <code>TCO R2c</code>了，能不�
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://code6.github.com/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/';
-        var disqus_url = 'http://code6.github.com/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/';
+        var disqus_identifier = 'http://code6.github.com/blog/2013/04/04/query-evolution/';
+        var disqus_url = 'http://code6.github.com/blog/2013/04/04/query-evolution/';
         var disqus_script = 'embed.js';
       
     (function () {
