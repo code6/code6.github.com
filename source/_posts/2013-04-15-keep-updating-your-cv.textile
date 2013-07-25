@@ -1,0 +1,83 @@
+---
+layout: post
+title: "keep updating your cv"
+date: 2013-04-15 00:59
+comments: true
+categories: 
+---
+
+p(date). 2013-04-21
+
+2013.7.26 update
+知道什么呢，这件事情我直接拖了三个月，哦，这三个月我都干什么了，真该封我为拖延症冠军啊。 anyway, 还是继续写吧， move on。希望这次可以写完。
+
+有一种观点我很赞同，就是要持续更新你的简历。
+
+h3. 为什么要持续更新简历呢?
+
+首先做一件持续的事情很cool，有积累，有收获。
+维护一份简历可以让你看到工作概括，看到与牛人的差距( "always benchmark against the best":https://news.ycombinator.com/item?id=4472835 )。
+维护一份简历可以让你在找下一份工作时不会手忙脚乱。
+...
+
+在毕业之前我总共制作了中/英文两个简历, 其中中文是用 word 制作的，英文的话是用学长留下来的 latex 模板制作的。在找完工作后我基本没有维护过简历了。作为一个希望能够持续总结的人，面对着停留在两年前毕业的简历，感觉是不能忍了。 我们不仅要认同一种观点，还要亲身去实践才算, 于是我开始实践更新简历这件事情(从写下这句话的三个月后，god)。
+
+h3. 如何更好/方便地维护简历呢?
+
+要做到定期维护简历的话，每次更新简历的代价就不能太高。良好的简历维护应该能够做到:
+关注内容而不用在意展示
+最好是文本编辑，方便版本控制和追溯
+
+latex 版的简历看起来赏心悦目, 不过制作起来稍显复杂, 也不容易维护(latex菜鸟意见= =)。word 就更不用说了，排版不是很容易，也很难做版本控制。
+考虑维护简历这是一个长期的过程，我希望更新/生成简历能尽可能快且保持高质量。
+于是我考虑是否能用 markdown 来写简历呢。  确实发现很多文章介绍用 markdown 来写简历。
+
+h4. 使用 markdown 来制作简历
+
+鉴于有使用 markdown 的习惯，于是很自然地考虑到使用 markdown 来写简历，最开始在 github 上看到 "mwhite的resume":https://github.com/mwhite/resume  项目看起来还不错。这里使用到一个好东西，叫 pandoc，可以在不同文件格式之间转换。比如只写了markdown 版本，可以转换成 html/latex, 看起来挺方便的。不过原仓库的排版不太喜欢，改起来又似乎有点麻烦。 同样还有一个 icco的 "Resume":https://github.com/icco/Resume 也是同理，写 markdown 然后 host 到 github 上之类的, 相比之前其排版会相对美观一点。
+编写 markdown 可以直接在 vim 中敲敲打打，也可以是用  "Mou":http://mouapp.com/ ，一款十分好用的 markdown 编辑器。
+
+h4. markdown 有什么问题呢?
+
+我遇到的问题是难以把漂亮的 markdown 转化成 漂亮的 pdf，直接从 markdown 转换成 pdf 会出现各种边距问题。在努力尝试一番未果时，后面我退回到 latex 了= = 不仅做 markdown 还做 latex, 然后 pdf 版本简历还是用 latex 出吧。mac 上我安装了 "mactex":http://tug.org/mactex/downloading.html 来编写 latex, 基本的节奏还是在找比较好的模板，然后填上自己的内容。
+
+h3. 如何编写你的简历?
+
+当工具本身的选择搞定，剩下的就是内容和排版了。
+在内容方面， "google reusme":http://dreamrunner.org/wiki/public_html/Books%20Review/%20Interview/The%20Google%20Resume.html#sec-3 第四章中给出蛮多中肯的建议。
+工作经历是简历中一个重要组成部分，在介绍过往工作时, 要注意以下几点:
+@成就导向@
+主要以你完成了什么而不是介绍你在做什么，这里即突出你的贡献而不是你的职责, 而且应着重突出重要贡献(bullet)。
+@量化结果@
+量化你的贡献，用数据说话。
+
+至于排版方面, 有几个建议:
+@干净, 专业，一致@
+体现在统一间距和对齐上，简单来说就是要看着漂亮，顺眼。
+@控制在一页简历@
+简历控制在一页纸上方便阅读，太长后面部分基本也没有pv。只放最相关的重要部分。
+@突出亮点主题@
+理论上越有亮点的部分放越前面效果越好，但考虑到主题前后条理性还需要做一些适应性调整。一个明显的例子是如果教育经历不是很出彩，可以考虑将其往后挪。
+
+当然以上几点我也基本没完成，只是比较赞同。
+
+h3. 我的成果
+
+初步做了 "markdown版本":https://github.com/code6/playground/blob/master/resume/cv_md/code6_en.md 和 "latex版本的简历":https://github.com/code6/playground/blob/master/resume/cv_latex/v2/code6_v2.pdf , 目前 @Experience@ 展开略细，还需进一步改进。 简单观察，很容易就发现目前我简历的问题:
+工作没有亮点, 参与而不是推动
+技术能力没有杀手锏
+没有个人项目
+
+没有做得很漂亮，发现问题就想办法去改进吧:)
+
+
+ps:
+又是一件拖延了很久的事情，大概是从今年二月份开始就想做了，每天对自己念一遍我要把这件事情搞定，于是可以搞定，感谢sean。
+
+Ref:
+"markdown-cv":http://bitlyfied.com/2013/03/14/markdown-cv/
+"beautiful-resumes-with-markdown-and-latex":http://cmwelsh.com/beautiful-resumes-with-markdown-and-latex
+"google reusme":http://dreamrunner.org/wiki/public_html/Books%20Review/%20Interview/The%20Google%20Resume.html#sec-3
+"shenfeng's cv":http://shenfeng.me/resume/index.html
+"mijia's cv":http://mijia.org/cv
+"如何做简历":http://blog.devep.net/virushuo/2005/06/06/1118072629843.html
