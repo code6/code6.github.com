@@ -9,9 +9,11 @@
   <meta name="author" content="Code6">
 
   
-  <meta name="description" content="2013-04-04
-从最原始的查询开始，位于后台某个报表，当用户发起一个查询，我们该干啥呢?
-抽象一种最简单的形式，查询是对我们的数据做一定的转换而得来的，即 按这样的理解，当用户发起一个查询时，我们可以直接在原始数据集上进行操作, 操作的过程可以在服务端或者客户端。 &hellip;">
+  <meta name="description" content="2013-04-21
+2013.7.26 update
+知道什么呢，这件事情我直接拖了三个月，哦，这三个月我都干什么了，真该封我为拖延症冠军啊。 anyway, 还是继续写吧， move on。希望这次可以写完。
+有一种观点我很赞同，就是要持续更新你的简历。
+为什么要持续更新简历呢? &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +81,93 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/15/keep-updating-your-cv/">Keep Updating Your Cv</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-15T00:59:00+08:00" pubdate data-updated="true">Apr 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="date">2013-04-21</p>
+<p>2013.7.26 update<br />
+知道什么呢，这件事情我直接拖了三个月，哦，这三个月我都干什么了，真该封我为拖延症冠军啊。 anyway, 还是继续写吧， move on。希望这次可以写完。</p>
+<p>有一种观点我很赞同，就是要持续更新你的简历。</p>
+<h3>为什么要持续更新简历呢?</h3>
+<p>首先做一件持续的事情很cool，有积累，有收获。<br />
+维护一份简历可以让你看到工作概括，看到与牛人的差距( <a href="https://news.ycombinator.com/item?id=4472835">always benchmark against the best</a> )。<br />
+维护一份简历可以让你在找下一份工作时不会手忙脚乱。<br />
+&#8230;</p>
+<p>在毕业之前我总共制作了中/英文两个简历, 其中中文是用 word 制作的，英文的话是用学长留下来的 latex 模板制作的。在找完工作后我基本没有维护过简历了。作为一个希望能够持续总结的人，面对着停留在两年前毕业的简历，感觉是不能忍了。 我们不仅要认同一种观点，还要亲身去实践才算, 于是我开始实践更新简历这件事情(从写下这句话的三个月后，god)。</p>
+<h3>如何更好/方便地维护简历呢?</h3>
+<p>要做到定期维护简历的话，每次更新简历的代价就不能太高。良好的简历维护应该能够做到:<br />
+关注内容而不用在意展示<br />
+最好是文本编辑，方便版本控制和追溯</p>
+<p>latex 版的简历看起来赏心悦目, 不过制作起来稍显复杂, 也不容易维护(latex菜鸟意见= =)。word 就更不用说了，排版不是很容易，也很难做版本控制。<br />
+考虑维护简历这是一个长期的过程，我希望更新/生成简历能尽可能快且保持高质量。<br />
+于是我考虑是否能用 markdown 来写简历呢。  确实发现很多文章介绍用 markdown 来写简历。</p>
+<h4>使用 markdown 来制作简历</h4>
+<p>鉴于有使用 markdown 的习惯，于是很自然地考虑到使用 markdown 来写简历，最开始在 github 上看到 <a href="https://github.com/mwhite/resume">mwhite的resume</a>  项目看起来还不错。这里使用到一个好东西，叫 pandoc，可以在不同文件格式之间转换。比如只写了markdown 版本，可以转换成 html/latex, 看起来挺方便的。不过原仓库的排版不太喜欢，改起来又似乎有点麻烦。 同样还有一个 icco的 <a href="https://github.com/icco/Resume">Resume</a> 也是同理，写 markdown 然后 host 到 github 上之类的, 相比之前其排版会相对美观一点。<br />
+编写 markdown 可以直接在 vim 中敲敲打打，也可以是用  <a href="http://mouapp.com/">Mou</a> ，一款十分好用的 markdown 编辑器。</p>
+<h4>markdown 有什么问题呢?</h4>
+<p>我遇到的问题是难以把漂亮的 markdown 转化成 漂亮的 pdf，直接从 markdown 转换成 pdf 会出现各种边距问题。在努力尝试一番未果时，后面我退回到 latex 了= = 不仅做 markdown 还做 latex, 然后 pdf 版本简历还是用 latex 出吧。mac 上我安装了 <a href="http://tug.org/mactex/downloading.html">mactex</a> 来编写 latex, 基本的节奏还是在找比较好的模板，然后填上自己的内容。</p>
+<h3>如何编写你的简历?</h3>
+<p>当工具本身的选择搞定，剩下的就是内容和排版了。<br />
+在内容方面， <a href="http://dreamrunner.org/wiki/public_html/Books%20Review/%20Interview/The%20Google%20Resume.html#sec-3">google reusme</a> 第四章中给出蛮多中肯的建议。<br />
+工作经历是简历中一个重要组成部分，在介绍过往工作时, 要注意以下几点:<br />
+<code>成就导向</code><br />
+主要以你完成了什么而不是介绍你在做什么，这里即突出你的贡献而不是你的职责, 而且应着重突出重要贡献(bullet)。<br />
+<code>量化结果</code><br />
+量化你的贡献，用数据说话。</p>
+<p>至于排版方面, 有几个建议:<br />
+<code>干净, 专业，一致</code><br />
+体现在统一间距和对齐上，简单来说就是要看着漂亮，顺眼。<br />
+<code>控制在一页简历</code><br />
+简历控制在一页纸上方便阅读，太长后面部分基本也没有pv。只放最相关的重要部分。<br />
+<code>突出亮点主题</code><br />
+理论上越有亮点的部分放越前面效果越好，但考虑到主题前后条理性还需要做一些适应性调整。一个明显的例子是如果教育经历不是很出彩，可以考虑将其往后挪。</p>
+<p>当然以上几点我也基本没完成，只是比较赞同。</p>
+<h3>我的成果</h3>
+<p>初步做了 <a href="https://github.com/code6/playground/blob/master/resume/cv_md/code6_en.md">markdown版本</a> 和 <a href="https://github.com/code6/playground/blob/master/resume/cv_latex/v2/code6_v2.pdf">latex版本的简历</a> , 目前 <code>Experience</code> 展开略细，还需进一步改进。 简单观察，很容易就发现目前我简历的问题:<br />
+工作没有亮点, 参与而不是推动<br />
+技术能力没有杀手锏<br />
+没有个人项目</p>
+<p>没有做得很漂亮，发现问题就想办法去改进吧:)</p>
+<p>ps:<br />
+又是一件拖延了很久的事情，大概是从今年二月份开始就想做了，每天对自己念一遍我要把这件事情搞定，于是可以搞定，感谢sean。</p>
+<p>Ref:<br />
+<a href="http://bitlyfied.com/2013/03/14/markdown-cv/">markdown-cv</a><br />
+<a href="http://cmwelsh.com/beautiful-resumes-with-markdown-and-latex">beautiful-resumes-with-markdown-and-latex</a><br />
+<a href="http://dreamrunner.org/wiki/public_html/Books%20Review/%20Interview/The%20Google%20Resume.html#sec-3">google reusme</a><br />
+<a href="http://shenfeng.me/resume/index.html">shenfeng&#8217;s cv</a><br />
+<a href="http://mijia.org/cv">mijia&#8217;s cv</a><br />
+<a href="http://blog.devep.net/virushuo/2005/06/06/1118072629843.html">如何做简历</a></p></div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -983,217 +1072,6 @@ you wish and then select into that table. You can do this with <span class="caps
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/09/octopress-setup/">Octopress Setup</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-09T08:10:00+08:00" pubdate data-updated="true">Mar 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p class="date">2012-03-09</p>
-<p><img src="/images/octopress_logo.png"></p>
-<p>最早是在lzyy的blog看到 <a href="http://blog.leezhong.com/tech/2010/08/25/make-github-as-blog-engine.html">使用github作为博客引擎</a>, 后面在github上看到了 <a href="https://github.com/lzyy/lzyy.github.com/blob/master/_posts/2010-08-25-make-github-as-blog-engine.textile">他的博客的源代码</a> , 顿时感觉很不错, 这样写blog大概有几个优点:</p>
-<ul>
-	<li><strong>markdown</strong><br />
-可以使用惯用的markdown来写文章(比如我觉得 <a href="http://redcloth.org/textile">textile</a> 跟 <a href="http://www.atlassian.com/software/confluence/overview">confluence</a> 的编辑语法很像)</li>
-	<li><strong>git &amp;&amp; githhub</strong><br />
-使用git进行版本控制, 放在github上保存, 使用 <a href="http://pages.github.com/">github pages</a> 发布, 空间再不是写blog的障碍了:)</li>
-</ul>
-<p>经过约一周的围观与尝试= =, 差不多搞到可用了，剩下了就是加page, 搞插件，熟悉语法了。捣鼓过程无比心酸, 鉴于一个windows用户, 又不愿在windows上搞, 碰巧vmplayer中仅有一台别人配的centos, 于是开始捣鼓了。octopress 需要ruby, python(其中用到 <a href="https://github.com/halostatue/rubypython">rubypython</a> 似乎有依赖), git, ssl等一系列乱七八糟的东西, 按官方的说明去安装倒也无碍, 不过由于之前随意安装了一些低版本的东西, 往往会导致后面发现跑不起来, 于是也多了很多弯路, 总的来说, <strong>顺风顺水的话, 安装还是很容易的</strong>。</p>
-<h3><strong>Octopress Setup</strong></h3>
-<p>安装过程可以参考官方文档(参见附录), 这里结合我的环境(centos 5.7)复述一下, 后面再说说我遇到的囧问题。</p>
-
-	<ul>
-		<li><strong>git &amp;&amp; github</strong><br />
-首先要有git, 为了在github上保存且发布, 要申请一个github账号并上传ssh key以支持push, 见 <a href="http://help.github.com/">github帮助</a> 。</li>
-	</ul>
-	<ul>
-		<li><strong>创建ruby环境</strong><br />
-octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">rvm</a> 可以方便安装, 先安装rvm</li>
-	</ul><p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install rvm  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash -s stable &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>为了更方便使用rvm, 我们将其加入bash_profile中</p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>add rvm to bash_profile  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s1">&#39;[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; . &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM function&#39;</span> &gt;&gt; ~/.bash_profile
-</span><span class='line'><span class="nb">source</span> ~/.bash_profile
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>安装ruby 1.9.2 获取最新的 <a href="http://rubygems.org/">rubygems</a> , 并安装 <a href="http://gembundler.com/">bundler</a></p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm install 1.9.2 <span class="o">&amp;&amp;</span> rvm use 1.9.2
-</span><span class='line'>rvm rubygems latest
-</span><span class='line'>ruby --version  <span class="c"># Should report Ruby 1.9.2</span>
-</span><span class='line'>gem install bundler
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-
-	<ul>
-		<li><strong>下载并安装octopress</strong></li>
-	</ul><p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install octopress  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/imathis/octopress.git octopress
-</span><span class='line'><span class="nb">cd </span>octopress    <span class="c"># If you use RVM, You&#39;ll be asked if you trust the .rvmrc file (say yes).</span>
-</span><span class='line'>bundle install  <span class="c">#install dependencies</span>
-</span><span class='line'>rake install    <span class="c"># Install the default Octopress theme.</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>上文中用到一个 <a href="http://rake.rubyforge.org/">rake</a> , 可以认为就是一种预先编好的 <strong>任务脚本</strong> , 观察文件夹中有一个 <code>Rakefile</code> 打开看看就大概猜了下。</p>
-<p>到这一步基本在本机上已经安装好octopress了, 我们可以把它发布到Github上(当然你还可以部署到 <a href="http://octopress.org/docs/deploying/">其他地方</a> )。首先你得建一个以用户名命名的类似 <code>username.github.com</code> 的Repository。比如我的就是 <code>code6.github.com</code>, 然后设定Github Pages:</p>
-<div>
-<pre>
-<code class='bash'>rake setup_github_pages</code>
-</pre>
-</div>
-<p>之后会要求 <code>read/write url for repository</code> 。 <br />
-将 <strong>git@github.com:yourname/yourname.github.com.git</strong> 替换成自己的即可。</p>
-
-	<ul>
-		<li><strong>建立和发布</strong></li>
-	</ul><p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>deploy  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate
-</span><span class='line'>rake deploy
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>很简单吧, 两条命令就搞定了~, 接下来就可以浏览 <code>http://username.github.com</code><br />
-这里我们是将生成的站点的静态文件发布到了 <code>username.github.com</code>这个仓库的master分支上, 但这并不包含我们的源文件。 这里我们可以将原始文件提交到source分支上</p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initial commit  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add .
-</span><span class='line'>git commit -m <span class="s1">&#39;initial source commit&#39;</span>
-</span><span class='line'>git push origin <span class="nb">source</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-
-	<ul>
-		<li><strong>目录结构</strong></li>
-	</ul><p>到这里我们基本搞差不多了, 可以开展日常工作了，这里可以先熟悉相应的代码结构。<br />
-这里主要的目录有 <code>source</code> , <code>public</code> , <code>_deploy</code> , 还有个全局配置文件 <code>_config.yml</code> 。<br />
-其中<br />
-<code>source</code> 为源文件目录, 我们写的文章就在 <code>source/_posts</code> 中, 当然还包括布局, 页面等好多东西<br />
-<code>public</code> 为渲染后的静态blog目录<br />
-<code>_deploy</code> 是用来需要部署的文件目录, 大概觉得是 <code>public</code> 的一份拷贝<br />
-<code>_config.yml</code> 是全局的配置文件, 语法参考 <a href="http://www.ibm.com/developerworks/cn/xml/x-cn-yamlintro/">这里</a></p>
-<p>这里插一个题外话, octopress是基于 <a href="https://github.com/mojombo/jekyll">Jekyll</a> 的, 最开始尝试时下载了jekyll, 由于前端方面的薄弱技能, handler不住, 于是才使用octopress的。最初还看了一个 <a href="https://github.com/plusjade/jekyll-bootstrap">jekyll-bootstrap</a> , 用起来也不麻烦，但猜测没有octopress强大这边的 <code>_config.yml</code> , <code>source</code> 都跟jekyll中的有关, 于是后面如果要捣鼓的话, 可以在那边多看看。 <code>source</code> 目录可以参考jekyll的相关 <a href="https://github.com/mojombo/jekyll/wiki/Usage">wiki</a> 。</p>
-
-	<ul>
-		<li><strong>日常任务</strong></li>
-	</ul><p><strong>建立新文章</strong><br />
-文章必须发表在 <code>source/_posts</code> 下，命名成 <code>YYYY-MM-DD-post-title.markdown</code> 的格式， 我们可以使用octopress的rake 任务来快速创建一篇新文章:</p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rake new post  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake new_post<span class="o">[</span><span class="s2">&quot;Zombie Ninjas Attack: A survivor&#39;s retrospective&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="c"># Creates source/_posts/2011-07-03-zombie-ninjas-attack-a-survivors-retrospective.markdown</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>默认的后缀是 <code>markdown</code> , 可以在 Rakefile中修改。通过此任务创建的文章会补上开头的 <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">元信息</a> 。<br />
-接下来我们就可以用自己喜爱的编辑器来编辑了。</p>
-<p><strong>建立页面</strong><br />
-略</p>
-<p><strong>生成与预览</strong><br />
-当我们完成一篇文章的创作时，我们可以在本机预览我们的文章。</p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>generate and preview  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate   <span class="c"># Generates posts and pages into the public directory</span>
-</span><span class='line'>rake preview    <span class="c"># Watches source/ and sass/ for changes and regenerates, and mounts a webserver at http://localhost:4000</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>其中 <code>rake generate</code> 是将文章和页面生成到 <code>public</code> 目录中，后面我们才能发布我们的改动。<br />
-<code>rake preview</code> 会在本地4000端口起一个网站服务器, 我们访问 <code>http://localhost:4000</code> 则可以看到自己的博客。还有一点是它会监听 <code>source</code> 和 <code>sass</code> 的改动，并重新生成文件，也就是说我们无需重启服务器就可以预览最新的文章。</p>
-<p><strong>发布</strong><br />
-同上文。</p>
-<p><strong>更新octopress</strong></p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>upgrade octopress  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git pull octopress master     <span class="c"># Get the latest Octopress</span>
-</span><span class='line'>bundle install                <span class="c"># Keep gems updated</span>
-</span><span class='line'>rake update_source            <span class="c"># update the template&#39;s source</span>
-</span><span class='line'>rake update_style             <span class="c"># update the template&#39;s style</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p>更多请参考 <a href="http://octopress.org/docs/blogging/">官方文档</a> 。</p>
-<p><strong>textile语法参考</strong><br />
-考虑使用textile来写blog, 可以从很多github上的repo中来学习。参考 <a href="https://github.com/mojombo/jekyll/wiki/sites">github上挂的Jekyll的站点</a> , 或者参考 <a href="http://redcloth.org/hobix.com/textile/">相关手册</a> 。 注意文件后缀名不要 <strong>拼错</strong> , 否则无法渲染。 使用过程中感觉textile对于 <strong>空格要求比较严格</strong> , 该 <strong>留空格</strong> 的地方还得留一下, 另外段落之间也最好 <strong>留一个空行</strong> 。 另外发现textile的一些标签不是非常好用, 还得自己做尝试才能得到预期效果。 当然你也可以考虑直接使用 <a href="http://wowubuntu.com/markdown/">markdown</a> 。</p>
-<h3><strong>安装补充</strong></h3>
-<p>这边主要想说一下我所遇到的问题，当然不是所有人都会遇到，仅限于比较悲剧的人来说。</p>
-<p><strong>GemFile</strong><br />
-把源改成http://ruby.taobao.org, 据说会比较快, 具体我这边就是讲 <code>gem</code> 和 <code>GemFile</code> 稍微改了下。</p>
-<p><strong>ruby blows up with gem dependency</strong><br />
-参考 <a href="http://stackoverflow.com/questions/4262616/ruby-1-9-2-blows-up-with-json-gem-dependency">这里</a> , 重装一下ruby并升级一下:</p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>reinstall ruby  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm uninstall 1.9.2
-</span><span class='line'>gem update --system;
-</span><span class='line'>gem pristine --all
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p><strong>rubypython 调用到libpython2.&#215;.so失败</strong></p>
-<p>由于我先前是用pythonbrew来安装python的，装了python2.7, 本机自带了一个python2.4。 我将pythonbrew关掉, 就ok了，未深究。</p>
-<p><strong>ruby环境安装不全</strong><br />
-通过 <code>rvm requirements</code> 查看一下需要预先安装什么，然后装好再重装ruby= =</p>
-<p><strong>rdiscount fail to generate</strong><br />
-据说 <code>rdiscount</code> 会快一些, 这里重装一下就好了。。</p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>reinstall rdiscount  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem uninstall rdiscount
-</span><span class='line'>gem install rdiscount
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p><strong>deploy时拷贝swp/swo文件失败</strong><br />
-简单在deploy时忽略swp,swo文件, 在Rakefile中修改:</p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>modify rakefile  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="no">FileList</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">args</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s2">/**/.*&quot;</span><span class="o">].</span><span class="n">exclude</span><span class="p">(</span><span class="s2">&quot;**/.&quot;</span><span class="p">,</span> <span class="s2">&quot;**/..&quot;</span><span class="p">,</span> <span class="s2">&quot;**/.DS_Store&quot;</span><span class="p">,</span> <span class="s2">&quot;**/._*&quot;</span><span class="p">,</span> <span class="s1">&#39;**/.*.swp&#39;</span><span class="p">,</span> <span class="s1">&#39;**/.*.swo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p><strong>异地重新clone一份blog的时候deploy失败</strong><br />
-参考 <a href="https://github.com/imathis/octopress/issues/412">这个issue</a> ，看起来重新clone的时候还需要再次执行一边 <code>rake setup_github_pages</code> 才行。</p>
-<hr />
-<h3 style="vertical-align:middle;"><strong>附录</strong></h3>
-<p><a href="http://octopress.org/docs/setup/">Octopress Setup</a><br />
-<a href="http://lyhdev.com/note:octopress">Octopress: a blogging framework for hackers</a><br />
-<a href="http://www.yangzhiping.com/tech/octopress.html">Ruby开源项目介绍(1):octopress&#8212;像黑客一样写博客</a><br />
-<a href="http://mrzhang.me/blog/blog-equals-github-plus-octopress.html">Blog = GitHub + Octopress</a><br />
-<a href="http://www.yangzhiping.com/tech/github.html">如何高效地使用GitHub</a><br />
-<a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">Blogging Like a Hacker</a></p></div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1222,6 +1100,10 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/04/15/keep-updating-your-cv/">keep updating your cv</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/04/query-evolution/">query evolution</a>
       </li>
     
@@ -1235,10 +1117,6 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
     
       <li class="post">
         <a href="/blog/2012/09/19/hive-compile-and-apply-patch/">hive compile and apply patch</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/19/learning-algo-part-i-at-coursera-dot-org/">learning Algo Part I at coursera.org</a>
       </li>
     
   </ul>
