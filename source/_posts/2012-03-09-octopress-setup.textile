@@ -183,6 +183,9 @@ gem install rdiscount
 *异地重新clone一份blog的时候deploy失败*
 参考 "这个issue":https://github.com/imathis/octopress/issues/412 ，看起来重新clone的时候还需要再次执行一边 @rake setup_github_pages@ 才行。
 
+*rake preview 报"sorry i cannot find /"*
+看起来是public目录没有生成完整，可以尝试一下 @rake generate@ 一下再 @rake preview@ 。
+
 ---
 
 h3. *附录*
