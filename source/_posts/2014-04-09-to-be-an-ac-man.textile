@@ -1,0 +1,13 @@
+---
+layout: post
+title: "To Be An Ac Man"
+date: 2014-04-09 11:30
+comments: true
+categories: 
+---
+
+清明回学校一趟跟集训队的小伙伴做了一个小分享，主要是讲了一下我对做一个好的acmer 的理解，准备的稍显粗糙，slide 上的内容也多为大空话。anyway，share给大家，求指导。
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/33304317" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/code6/being-a-good-acm-player" title="如何做一个好的acmer" target="_blank">如何做一个好的acmer</a> </strong> from <strong><a href="http://www.slideshare.net/code6" target="_blank">code6</a></strong> </div>
+
+另外吐槽一点就是 slideshare 居然被强了，太没天理了。
