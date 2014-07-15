@@ -1,0 +1,19 @@
+---
+layout: post
+title: "IPSC 2014"
+date: 2014-06-16 23:00
+comments: true
+categories: 
+---
+
+p(date). 2012-06-16
+
+今年的ipsc 昨天刚结束，跟3xian 和 larry 一起在3xian家，晚上七点到十二点，做得挺过瘾的。我们的队名是 @Sucker Punch@, 最终104名，b1 在最后节骨眼没有搞出来，还是有希望挤进前100的。下面简单记录一下比赛的经过吧。
+
+{% img /images/ipsc_2014.png %}
+
+*Problem C: Copier*
+这道题挺虎的，说的是最初把一个1到N排列每次一段连续子串拷贝到右边，重复若干次后求原始排列。一开始我想暴力小数据来着，有若干限制。不过一看大盘不对，b2都好多人过了，然后想了下，发现从左到右数字的出现顺序没有变，于是瞬秒了。
+
+*Problem H: Hashsets*
+这道题即是让你给50000个数字，然后让c++/java 的 hashset 插入超过两秒/十秒。 3xian 没过一会就丢来一个 "样例程序":http://codeforces.com/blog/entry/4876 ，照着搞一下就过了小数据= = 不过看起是针对java的，于是就没有交大数据了，大数据需要 c++/java 均超过10秒。看solution 看到一个 "universal hashing":http://en.wikipedia.org/wiki/Universal_hashing
