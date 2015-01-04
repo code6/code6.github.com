@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Big Cube - MayCoder</title>
+  <meta name="author" content="Code6">
+
+  
+  <meta name="description" content="Big Cube 是今天(2014.3.15) 鄙厂第二届黑客马拉松我们队的作品, 我跟 yc 还有 cc 一起搞的。这个名字是我今天随便取的，我们要做的是一个 OLAP 的 demo。
+前情提要
+早在12年初我们就在寄希望 OLAP 来帮助数据仓库数据建模，数据解读与分析。当时我们采用的是 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://code6.github.com/blog/2014/03/15/big-cube">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="MayCoder" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29800624-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">MayCoder</a></h1>
+  
+    <h2>Valarmorghulis</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:code6.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Big Cube</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-15T23:52:00+01:00" pubdate data-updated="true">Mar 15<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="/images/big_cube.jpg"></p>
+<p><code>Big Cube</code> 是今天(2014.3.15) 鄙厂第二届黑客马拉松我们队的作品, 我跟 yc 还有 cc 一起搞的。这个名字是我今天随便取的，我们要做的是一个 <span class="caps">OLAP</span> 的 demo。</p>
+<p><strong>前情提要</strong></p>
+<p>早在12年初我们就在寄希望 <span class="caps">OLAP</span> 来帮助数据仓库数据建模，数据解读与分析。当时我们采用的是 <a href="http://community.pentaho.com/projects/mondrian/">mondrian</a> 当时的想法很理想，感觉就是创建几个模型，几个维度，事实，就可以在各种粒度下把各种指标囊括进来，并有统一的地方可以管理指标定义。 后面这个项目失败了，diao总结了一些失败的原因:</p>
+<blockquote>
+<p>开发和使用太复杂， 成本太高<br />
+产品成熟度较低， 很多数据需求没法支持<br />
+笨重，不太适应互联网公司快速灵活的节奏</p>
+</blockquote>
+<p>在我看来，当时采用的工具和方案主要还是太慢了，不仅是工具调研与应用，后期的模型开发以及工具使用同样。由于公司发展很迅速，大部分模型都不太稳定，新的事实，维度也经常产生，维度和事实本身也太稳定，部分事实发生之后还会修改。当时的 backend 依赖的是 mysql ，本身也不可扩展。</p>
+<p>后来 ek 又启动了一个曲线救国的计划，ModelBuilder。这个工具是 ek 独立完成的一个跟 <span class="caps">ETL</span> 工具相结合的模型设计工具，通过配置模型可以在hive下生成各种主题各种聚合粒度下的统计指标。在我看来相当于一个自研的 <span class="caps">OLAP</span> 服务的核心部分。现在在内部使用也很好，负责的指标和依赖很多。</p>
+<p>当然这次 Hackathon 我们使用的是 <a href="http://cubes.databrewery.org/">cubes</a>  这个开源的 <span class="caps">OLAP</span> python 包搭建的。早在 12 年我们做 <span class="caps">OLAP</span> 的时候，我就发现这个 python <span class="caps">OLAP</span> 工具, 不过当时也只是关注，一直都没有尝试使用。这次比赛之前又看了一下，感觉拿来主义十分方便，简单的模型配置还附赠一个前端的模型展示 <a href="https://github.com/jjmontesl/cubesviewer">CubesViewer</a> , 之前提到如果 backend 依赖 mysql 的话，那看起来还是不够完美，所幸 cubes 的 backend 是可以定制化的，其中 sql 类型的 backend 支持所有封装了 sqlalchemy 接口的引擎, 恰巧我们最近上线了 <a href="http://prestodb.io/">Presto</a> , 看了一下 github，有人已经提供了 Presto 的 sqlalchemy 封装的包 <a href="https://github.com/dropbox/PyHive">pyHive</a> , 看起来万事俱备了，于是我确定了 Hackathon 就搞这个吧，一个支持海量数据快速响应的 <span class="caps">OLAP</span> 服务 demo。</p>
+<p><strong>准备工作</strong></p>
+<p>在 Hackathon 的前几天我主要是负责前期体验的，这里我想搞清楚的是:<br />
+1. 模型表示上是否可以与我们的数据格式对接(或者需要生产新的数据来适应特定格式), 需定一个展示模型，最好有意义 <br />
+2. presto backend 开发是否有问题(接口是否好用), presto 的SQL语法十分支持cube生成的查询<br />
+3. cube server 的性能是否符合预期<br />
+4. 前端是否需要再做进一步开发</p>
+<p>在13号左右我开始在线下测试第一个 presto backend 的 &#8220;hello world&#8221; 的case, 发现生成的语句会包含 <code>order by limit offset</code> 的语句，而 presto 不支持 offset 类型的语句, 算是我们后续要解决的一个问题吧。其他问题基本没来得及看。</p>
+<p><strong>开幕</strong></p>
+<p>15号下午五点如期开场, 兴哥和荣均简单地做了讲话大家便更忙各的了。</p>
+<p><strong>14号进展</strong></p>
+<p>开始后我们把晚饭定完之后就开始分工着手解决问题, 这里我主要负责模型的选择与数据生成以及配置相关工作, yc 负责 cubeviewer 的适配，cc 负责 presto 相关的查询支持。我们就在自己工位上搞，一起通过 <a href="//github.com/code6/cubes/tree/hackday">github</a> 共享代码。一开始我打算配置一个较复杂的模型，不过深入去看，感觉还是得一步一步来，先搞定简单的才是, 于是我选择了一个仅有四个维度的已经聚合过的数据作为展示demo。 presto 这边纯爷着手解决 offset 的问题，兴致挺高的，打算在 presto 那边添加这个功能。yc 同学由于要去签租房合同，搞了一会儿就得提前撤了。话说这次我们定的是棒约翰的披萨外卖，挺好吃的，我一下子吃的有点撑。晚上十点我跟cc一起坐班车回家了, 我的进度是配置了一点点模板，cc还在解决 offset 的问题。这里我说的是这次我没有像上一届一样在公司通宵搞这个了，这段时间我一回到家就洗个澡感觉十分舒服，洗完澡之后可以支撑我工作到两点，然后第二天早上七点起来还很有精神。所有我在 Hackathon 也选择回家，洗澡然后第二天再过来。</p>
+<p><strong>15号进展</strong><br />
+由于 demo 还没有成型，15号早上我六点就醒了开始干活了，感觉 presto 那边做修改可能比较困难，我就在 cubes 这边生成查询时将 order 和 limit 相关子句给去掉了, 算是做了二手准备吧，这样我们的一个简单 demo 才跑了起来。早上七点半我就出发去公司了, 十分兴奋。后面十点多的时候我们三个都到了，大家继续战斗，我让 cc 来一起配合模型编写以及一些前端展示的润色工作，yc 同学还在搞 cubeviewer, 后面他发现一个大bug : <a href="https://github.com/jjmontesl/cubesviewer/issues/23">cubeviewer 使用的 cubes api 跟最新的 cubes 不兼容</a> ，当时差点崩溃了。 yc 同学说，&quot;给我两个小时，我把这个bug fix 一下&quot; 。后面 yc 还真的在约定时间内搞出了 api 把 cubeviewer 跑起来了。我们在一旁帮忙测试，发现还是有几个问题:<br />
+1. 维度数据没有正确展示<br />
+   这部分初步猜测是由于 cubeviewer 使用的数据格式同样是老的，导致部分假设面对新的数据格式失效了，导致维度相关数据没有正确展示。<br />
+2. 做 filter 的模块没能正确执行<br />
+   这里我们后面发现是由于 filter 模块的 <span class="caps">SQL</span> 模板产生的 <span class="caps">SQL</span> 不符合 presto 的语法规范，导致发起的执行失败。</p>
+<p>或许还有更多的问题，不过以上两个问题的解决就很花我们的时间了，最终在下午两点半之前也没能很好解决，时间到了，只能硬着头皮上台演示了。</p>
+<p>我们抽到了第四个演示，我简单做了四页 ppt，又开了两个查询页面展示我们的 demo，不过可能是演讲技巧的问题，异或展示demo不够清楚，感觉整体展示效果不好。后续我在台下听了后面二十来组的作品，大家的想法都挺出彩的，完成度也很好, 比上一届来说进步了很多。最终我们毫无悬念地没有拿到奖项，anyway，我觉得能在短短的比赛时间内让最初的想法 work 我已经很满意了，后续还可以在这个点上继续开发，可以期待后续给用户提供这样遍历的分析引擎是非常牛逼的。</p>
+<p><strong>后续改进</strong></p>
+<ul>
+	<li>将 cubeviewer 调通, 调整 sql backend 查询语句生成让  presto 支持相关查询</li>
+	<li>测试 model viewer  &amp; model builder 组件, 方便观察和编辑model，可以做到自动 reload model 文件那就再好不过了。</li>
+	<li>添加 label, 多语言支持(主要是中文)</li>
+	<li>在适当的地方添加 cache</li>
+</ul>
+<p><strong>总结</strong><br />
+本次 Hackathon 由于有强大的队友的加入，再加上确定的计划与目标，故一切尽在掌握当中。当然时间还是没能有剩余，没能达到最佳状态。我看有些组的作品其实也不全是这两天的工作，不过感觉也无可厚非，毕竟牛逼的想法本来也不是一天之内就可以很好的 prototype 出来的。下次也许我们也可以这样来，多做一些准备工作，尽量想清楚所有可能出问题的地方以及相应的解决方案，这样在实际动手时才不会慌张。</p>
+<p><strong>后记</strong><br />
+又看了多年之前的 mondrian, 发现现在它貌似也很牛逼了，后端也支持很多 <span class="caps">SQL</span> backend: 支持 <a href="http://jira.pentaho.com/browse/MONDRIAN-1667">impala</a> , <a href="https://groups.google.com/forum/#!msg/presto-users/f23F-4TEeXk/aGUeDHkbW9QJ">presto</a> , <a href="http://forums.pentaho.com/showthread.php?142593-Mondrian-Redshift">red-shift</a> 。部分还属于初步阶段，不过应该也是激动人心的提高，比12年好多了。</p></div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Code6</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-15T23:52:00+01:00" pubdate data-updated="true">Mar 15<span>th</span>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://code6.github.com/blog/2014/03/15/big-cube/" data-via="wzc1989" data-counturl="http://code6.github.com/blog/2014/03/15/big-cube/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/09/07/one-day-in-the-data-warehouse/" title="Previous Post: 数据仓库的一天">&laquo; 数据仓库的一天</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/04/09/to-be-an-ac-man/" title="Next Post: To Be An Ac Man">To Be An Ac Man &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/algorithm/'>algorithm (1)</a></li>
+<li class='category'><a href='/blog/categories/blog/'>blog (1)</a></li>
+<li class='category'><a href='/blog/categories/contest/'>contest (1)</a></li>
+<li class='category'><a href='/blog/categories/etl/'>etl (1)</a></li>
+<li class='category'><a href='/blog/categories/hive/'>hive (3)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (3)</a></li>
+<li class='category'><a href='/blog/categories/sql/'>sql (1)</a></li>
+<li class='category'><a href='/blog/categories/thoughts/'>thoughts (1)</a></li>
+
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/04/tips-for-silicon-valley-job-hunting/">北美求职准备</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/07/15/serendipity/">意外的好运</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/16/sucker-punch-at-ipsc-2014/">IPSC 2014</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/09/to-be-an-ac-man/">To Be An Ac Man</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/15/big-cube/">Big Cube</a>
+      </li>
+    
+  </ul>
+</section>
+<section class="friend-link">
+  <h1>Links</h1>
+  <ul>
+    <li>
+      <a href="http://panweizeng.com/">增哥</a>
+    </li>
+    <li>
+      <a href="http://http://shangchun.net/">春哥</a>
+    </li>
+    <li>
+      <a href="http://baotiao.github.io/">志哥</a>
+    </li>
+    <li>
+      <a href="http://davidzai.blog.163.com/blog">3xian</a>
+    </li>
+    <li>
+      <a href="http://heliang.me/blog">Roba</a>
+    </li>
+    <li>
+      <a href="http://xiaolai.li/">李笑来</a>
+    </li>
+  </ul>
+  <br/>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/code6">@code6</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'code6',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("wzc1989", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/wzc1989" class="twitter-follow-button" data-show-count="false">Follow @wzc1989</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/104473212256457667839?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Code6 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'code6';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://code6.github.com/blog/2014/03/15/big-cube/';
+        var disqus_url = 'http://code6.github.com/blog/2014/03/15/big-cube/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
