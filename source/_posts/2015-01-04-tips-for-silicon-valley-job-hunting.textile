@@ -1,0 +1,66 @@
+---
+layout: post
+title: "北美求职准备"
+date: 2015-01-04 20:32
+comments: true
+categories: thoughts
+---
+
+近期离开了毕业后第一家公司，去 google zurich 工作了，还没来得及总结。有朋友想了解北美求职相关的事情，故写一点小心得仅供参考。 这里主要从在职人士的角度出发，也主要把我看过的资料，用过的服务提供给大家参考。最后附了一些资源，写的都很棒，看过一遍就会对整个北美求职有点感觉了。
+
+h3. 基本信息
+
+首先一般来说北美公司的面试时间窗口一般在下半年，从7，8月份开始一直可以延续到次年的二月份，大部分人会选择在这中间，比如九十月份来投简历面试。
+在这之前要准备什么呢？
+* 一份英文简历
+* 英语听说能力
+* 专业技能
+
+一般来说大部分人不管准备了多久都会觉得没有准备好，不过到时间了还是得申请面试的。面试最好找朋友内推，网申得到面试机会的概率略小。 内推完一般来说一两个星期就可以安排面试了，走各自的面试流程即可。在准备过程中，一个人准备往往会有局限，找到组织往往会加速成长。在13年中旬开始我留意到一个 "北美求职组织":http://q.weibo.com/1312378 ，在其中认识了，连城，cy，方勤等同学, 从他们身上学到了很多东西。参加这样的小组织让你不是孤军奋战，每周的线下交流让你能够在互相讨论学习中收获到新的知识，成长更快。
+
+
+h3. 简历
+
+简历本该养成定期更新的良好习惯，这样就不用纠结了，可以参考我的 "持续更新简历":http://code6.github.io/blog/2013/04/15/keep-updating-your-cv/ 。
+
+h3. 英语
+
+英语方面要求并不算高，一般做到能基本听懂，并能做出简单交流即可。面试一般都是专业词汇，稍微看点英文技术视频就会有点感觉了。更多的时候不会挂在英语上， 而是挂在专业知识上。之前我的英文准备也没有很规范，大概有以下两项:
+
+* 51talk
+这个最有趣，当时想着要提高口语, 得找一个"外国人"1对1演练一下。在网上找了，相中了 51tak 这个"外教" 1对1服务。 51talk的外教多半是东南亚赚外快的英语老师，当时办60次的月卡，一节课25块，一次25分钟, 一位 "外教" 使用 skype 或 QQ 进行 1 对 1 的英语训练。这个网站是瞄准了广大平民百姓的口语训练需求, 提供了物美价廉的服务。 在13年八月以来，我调整了工作日的起床时间，每天多安排了一节课，每周安排两三次，固定一位靠谱的老师。 长期下来感觉良好(虽然口语还是被老师批长句不行, 词汇不够)。如果有想要购买他家服务的同学可以找我沟通，我还有 120 节课没有用完。。。
+
+* friends
+一个快速提高英语的方法就是看英语电影或连续剧, 这里老友记确实很不错, 既休闲又能培养听力。身边有不止一个小伙伴说看了不下一遍的。
+
+h3. 专业技能
+
+专业技能方面我的准备也是略仓促，导致了在一些公司的求职失利。认真去准备一般即可有收获。大部分公司都考算法和数据结构，并且在几乎所有北美公司这部分都占了很大的比重。
+简单粗暴的说法比如，经常会有拿offer的同学说，"leetcode 刷两三遍就够了，常见题目也就都看过了。" 确实是这样。
+
+* "leetcode":https://oj.leetcode.com/
+leetcode上的题目实在太经典了，做法多样，确实可以刷上两三遍。那么刷两三遍要达到什么目的呢? 给你一道leetcode的原题你能够短时间一次性完成, 尽量少犯错误，一步到最优做法，以及明白各种扩展。 github 上有很多人share leetcode 的切题记录可以参考, 官方论坛的讨论也都很不错。之前看到 "一个比较老的对leetcode 的题目的难度以及面试出现频率做了统计的表格":http://pan.baidu.com/s/1kTj0Dy3 可以参考一下，有侧重的刷题。
+
+除了 leetcode, 有一份 mitbbs 整理的 "面经题目综合文档":https://github.com/lanxx019/mitbbs-iq 也不错，很有参考价值，类似 "历届真题" 的感觉。这里不仅有纯算法题，还有一些逻辑，概率，设计题。 考察实际工程实践抽象出的设计问题，这往往是比能够通过机械训练达到熟练的算法问题来的更难的更有区分度的。这方面我的积累深度还不够，也吃过亏。这部分感觉还得看个人工作中的总结与归纳，就不展开了。
+
+h3. Resource
+* "连城":http://blog.liancheng.info/about.html
+** "北美求职记":http://developer.51cto.com/art/201304/387673.htm
+* "Cat Chen":http://about.me/catchen
+** "理想的技术面试过程":http://chinese.catchen.me/2012/06/blog-post.html
+** "面试体验：Facebook 篇":http://www.cnblogs.com/cathsfz/archive/2012/11/05/facebook-interview-experience.html
+** "面试体验：Google 篇":http://chinese.catchen.me/2012/08/google-interview-experience.html
+** 赴美工作常识
+*** "visa":http://chinese.catchen.me/2013/05/to-work-in-the-us-part-1-visa.html
+*** "application":http://chinese.catchen.me/2013/07/to-work-in-the-us-part-1-application.html
+*** "english":http://chinese.catchen.me/2013/08/to-work-in-the-us-part-3-english.html
+*** "interview":http://chinese.catchen.me/2013/09/to-work-in-the-us-part-4-interview.html
+* "yuanxuan Wang":http://blog.yxwang.me/assets/download/resume.pdf
+** "北美求职记（二）：Google & Facebook":http://blog.yxwang.me/2012/12/job-hunting-in-usa-2/
+** "北美求职记（三）：Hulu & Twitter":http://blog.yxwang.me/2012/12/job-hunting-in-usa-3/
+* "Facebook 面试 Q&A":http://digest.definite.name/roba-facebook-interview-q-a.html
+* "FB面经集锦":http://www.yiyome.com/article/view/1003230-facebook-.html
+* "google resume":http://book.douban.com/subject/5985030/
+* "北美求职小组":http://q.weibo.com/1312378
+* "MITBBS":http://www.mitbbs.com/bbsdoc/JobHunting.html
+* "Cracking the coding interview":http://hawstein.com/posts/ctci-solutions-contents.html
