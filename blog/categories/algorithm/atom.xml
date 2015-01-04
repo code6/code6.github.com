@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algorithm | MayCoder]]></title>
   <link href="http://code6.github.com/blog/categories/algorithm/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2015-01-04T21:44:36+01:00</updated>
+  <updated>2015-01-04T21:47:50+01:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -29,9 +29,9 @@
 之前一直困扰我的是网络太差，看视频太麻烦，于是google 一个能下载视频的脚本，果然 "很容易在github上找到了":https://github.com/jplehmann/coursera 。
 代码写的还蛮简单漂亮的，后续下载视频只需要一句话:</p>
 
-<p>{% codeblock coursera video download %}
-/Users/code6/git/coursera/coursera-dl -n --path  "/Users/code6/Downloads/coursera/videos/algo2/"  -w /usr/local/bin/wget algo2-2012-001
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>coursera video download </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/Users/code6/git/coursera/coursera-dl -n --path  "/Users/code6/Downloads/coursera/videos/algo2/"  -w /usr/local/bin/wget algo2-2012-001</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>如果一个东西很难获得，势必增加做某件事情的阻力，但如果太容易获得，也是如此，在下载视频这件事来看也是如此。</p>
 ]]></content>

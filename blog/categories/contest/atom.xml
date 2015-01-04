@@ -4,7 +4,7 @@
   <title><![CDATA[Category: contest | MayCoder]]></title>
   <link href="http://code6.github.com/blog/categories/contest/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2015-01-04T21:44:36+01:00</updated>
+  <updated>2015-01-04T21:47:50+01:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -60,9 +60,9 @@
 C1 后面我又试了下记忆化搜索，于是就过了= =, 一开始dp比较随意了，改成记忆化暴力所有可能于是过了。猜测大数据也是类似搞法，不过状态可能稍微多了，未作深究。
 ** B
 B毛哥猜得很欢乐， B1还好，B2我们真是非常惊险，猜到第30次才得到答案(最多猜测30次)，毛哥还用啥迭代法来逼近来着。
-{% img /images/ipsc_2012-2.png %}
+<img src="/images/ipsc_2012-2.png">
 最终ipsc排名一百多名，算是本周最欢乐的比赛了，当然还有很多没有切出来, 回头可以再看看。
-{% img /images/ipsc_2012-1.png %}</p></li>
+<img src="/images/ipsc_2012-1.png"></p></li>
 <li><p>TCO 2012 R2c
 ipsc 做到了晚上11点结束，12点就是 @TCO R2c@了，能不能拿衣服就看这场了。悲剧的是比赛前20分钟家里断网了，折腾了好些,搞好的时候已经12点20分了，顾不上就奔去了。300分是一个有点代码量的枚举，写到了144分。。500打开只有半小时了，看了下，这不就是土土的树状数组吗！马上搞啊搞，在最后10分钟的时候样例一直过不了，还有一个即simple的样例，没来得及看明白 比赛结束了。后面再看了下，发现题目看错了= = 顺序有点小变化，当然做法还是树状数组。感觉构造还是挺巧妙的，多增加了啥，该扣除啥。另外本次的900pt貌似也可做，没来得及看，某些人直接搞900晋级了，真给力。</p></li>
 <li><p>Astar 2012 R1b

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: blog | MayCoder]]></title>
   <link href="http://code6.github.com/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2015-01-04T21:44:36+01:00</updated>
+  <updated>2015-01-04T21:47:50+01:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -20,7 +20,7 @@
     <id>http://code6.github.com/blog/2012/03/09/octopress-setup</id>
     <content type="html"><![CDATA[<p>p(date). 2012-03-09</p>
 
-<p>{% img /images/octopress_logo.png %}</p>
+<p><img src="/images/octopress_logo.png"></p>
 
 <p>最早是在lzyy的blog看到 "使用github作为博客引擎":http://blog.leezhong.com/tech/2010/08/25/make-github-as-blog-engine.html, 后面在github上看到了 "他的博客的源代码":https://github.com/lzyy/lzyy.github.com/blob/master/_posts/2010-08-25-make-github-as-blog-engine.textile , 顿时感觉很不错, 这样写blog大概有几个优点:
 * <em>markdown</em>
@@ -40,61 +40,80 @@
 <p><em><em> </em>创建ruby环境</em>
 octopress 需要 ruby 1.9.2, 用 "rvm":https://github.com/wayneeseguin/rvm 可以方便安装, 先安装rvm</p>
 
-<p>{% codeblock install rvm lang:bash %}
-bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install rvm  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash -s stable &amp;lt; &amp;lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>为了更方便使用rvm, 我们将其加入bash_profile中</p>
 
-<p>{% codeblock add rvm to bash_profile lang:bash %}
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' >> ~/.bash_profile
-source ~/.bash_profile
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>add rvm to bash_profile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s1">&#39;[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;amp;&amp;amp; . &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM function&#39;</span> &gt;&gt; ~/.bash_profile
+</span><span class='line'><span class="nb">source</span> ~/.bash_profile
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>安装ruby 1.9.2 获取最新的 "rubygems":http://rubygems.org/ , 并安装 "bundler":http://gembundler.com/</p>
 
-<p>{% codeblock install ruby lang:bash %}
-rvm install 1.9.2 &amp;&amp; rvm use 1.9.2
-rvm rubygems latest
-ruby --version  # Should report Ruby 1.9.2
-gem install bundler
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm install 1.9.2 &amp;amp;&amp;amp; rvm use 1.9.2
+</span><span class='line'>rvm rubygems latest
+</span><span class='line'>ruby --version  <span class="c"># Should report Ruby 1.9.2</span>
+</span><span class='line'>gem install bundler
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><em><em> </em>下载并安装octopress</em></p>
 
-<p>{% codeblock install octopress lang:bash %}
-git clone git://github.com/imathis/octopress.git octopress
-cd octopress    # If you use RVM, You'll be asked if you trust the .rvmrc file (say yes).
-bundle install  #install dependencies
-rake install    # Install the default Octopress theme.
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install octopress  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://github.com/imathis/octopress.git octopress
+</span><span class='line'><span class="nb">cd </span>octopress    <span class="c"># If you use RVM, You&#39;ll be asked if you trust the .rvmrc file (say yes).</span>
+</span><span class='line'>bundle install  <span class="c">#install dependencies</span>
+</span><span class='line'>rake install    <span class="c"># Install the default Octopress theme.</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>上文中用到一个 "rake":http://rake.rubyforge.org/ , 可以认为就是一种预先编好的 <em>任务脚本</em> , 观察文件夹中有一个 @Rakefile@ 打开看看就大概猜了下。</p>
 
 <p>到这一步基本在本机上已经安装好octopress了, 我们可以把它发布到Github上(当然你还可以部署到 "其他地方":http://octopress.org/docs/deploying/ )。首先你得建一个以用户名命名的类似 @username.github.com@ 的Repository。比如我的就是 @code6.github.com@, 然后设定Github Pages:</p>
 
-<p>{% highlight bash %}
-rake setup_github_pages
-{% endhighlight %}</p>
+<p><div>
+  <pre>
+    <code class='bash'>rake setup_github_pages</code>
+  </pre>
+</div>
+</p>
 
 <p>之后会要求 @read/write url for repository@ 。
 将 <em>git@github.com:yourname/yourname.github.com.git</em> 替换成自己的即可。</p>
 
 <p><em><em> </em>建立和发布</em></p>
 
-<p>{% codeblock deploy lang:bash %}
-rake generate
-rake deploy
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>deploy  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate
+</span><span class='line'>rake deploy
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>很简单吧, 两条命令就搞定了~, 接下来就可以浏览 @http://username.github.com@
 这里我们是将生成的站点的静态文件发布到了 @username.github.com@这个仓库的master分支上, 但这并不包含我们的源文件。 这里我们可以将原始文件提交到source分支上</p>
 
-<p>{% codeblock initial commit lang:bash %}
-git add .
-git commit -m 'initial source commit'
-git push origin source
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initial commit  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add .
+</span><span class='line'>git commit -m <span class="s1">&#39;initial source commit&#39;</span>
+</span><span class='line'>git push origin <span class="nb">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><em><em> </em>目录结构</em></p>
 
@@ -113,12 +132,18 @@ git push origin source
 <p><em>建立新文章</em>
 文章必须发表在 @source/_posts@ 下，命名成 @YYYY-MM-DD-post-title.markdown@ 的格式， 我们可以使用octopress的rake 任务来快速创建一篇新文章:</p>
 
-<p>{% codeblock rake new post lang:bash %}
-rake new_post["Zombie Ninjas Attack: A survivor's retrospective"]</p>
-
-<h1>Creates source/_posts/2011-07-03-zombie-ninjas-attack-a-survivors-retrospective.markdown</h1>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rake new post  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake new_post<span class="o">[</span><span class="s2">&quot;Zombie Ninjas Attack: A survivor&#39;s retrospective&quot;</span><span class="o">]</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Creates <span class="nb">source</span>/_posts/2011-07-03-zombie-ninjas-attack-a-survivors-retrospective.markdown&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>默认的后缀是 @markdown@ , 可以在 Rakefile中修改。通过此任务创建的文章会补上开头的 "元信息":https://github.com/mojombo/jekyll/wiki/yaml-front-matter 。
 接下来我们就可以用自己喜爱的编辑器来编辑了。</p>
@@ -129,10 +154,12 @@ rake new_post["Zombie Ninjas Attack: A survivor's retrospective"]</p>
 <p><em>生成与预览</em>
 当我们完成一篇文章的创作时，我们可以在本机预览我们的文章。</p>
 
-<p>{% codeblock generate and preview lang:bash %}
-rake generate   # Generates posts and pages into the public directory
-rake preview    # Watches source/ and sass/ for changes and regenerates, and mounts a webserver at http://localhost:4000
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>generate and preview  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate   <span class="c"># Generates posts and pages into the public directory</span>
+</span><span class='line'>rake preview    <span class="c"># Watches source/ and sass/ for changes and regenerates, and mounts a webserver at http://localhost:4000</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>其中 @rake generate@ 是将文章和页面生成到 @public@ 目录中，后面我们才能发布我们的改动。
 @rake preview@ 会在本地4000端口起一个网站服务器, 我们访问 @http://localhost:4000@ 则可以看到自己的博客。还有一点是它会监听 @source@ 和 @sass@ 的改动，并重新生成文件，也就是说我们无需重启服务器就可以预览最新的文章。</p>
@@ -142,12 +169,16 @@ rake preview    # Watches source/ and sass/ for changes and regenerates, and mou
 
 <p><em>更新octopress</em></p>
 
-<p>{% codeblock upgrade octopress lang:bash %}
-git pull octopress master     # Get the latest Octopress
-bundle install                # Keep gems updated
-rake update_source            # update the template's source
-rake update_style             # update the template's style
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>upgrade octopress  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git pull octopress master     <span class="c"># Get the latest Octopress</span>
+</span><span class='line'>bundle install                <span class="c"># Keep gems updated</span>
+</span><span class='line'>rake update_source            <span class="c"># update the template&#39;s source</span>
+</span><span class='line'>rake update_style             <span class="c"># update the template&#39;s style</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>更多请参考 "官方文档":http://octopress.org/docs/blogging/ 。</p>
 
@@ -164,11 +195,14 @@ rake update_style             # update the template's style
 <p><em>ruby blows up with gem dependency</em>
 参考 "这里":http://stackoverflow.com/questions/4262616/ruby-1-9-2-blows-up-with-json-gem-dependency , 重装一下ruby并升级一下:</p>
 
-<p>{% codeblock reinstall ruby lang:bash %}
-rvm uninstall 1.9.2
-gem update --system;
-gem pristine --all
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>reinstall ruby  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rvm uninstall 1.9.2
+</span><span class='line'>gem update --system;
+</span><span class='line'>gem pristine --all
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><em>rubypython 调用到libpython2.x.so失败</em></p>
 
@@ -180,17 +214,20 @@ gem pristine --all
 <p><em>rdiscount fail to generate</em>
 据说 @rdiscount@ 会快一些, 这里重装一下就好了。。</p>
 
-<p>{% codeblock reinstall rdiscount lang:bash %}
-gem uninstall rdiscount
-gem install rdiscount
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>reinstall rdiscount  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem uninstall rdiscount
+</span><span class='line'>gem install rdiscount
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><em>deploy时拷贝swp/swo文件失败</em>
 简单在deploy时忽略swp,swo文件, 在Rakefile中修改:</p>
 
-<p>{% codeblock modify rakefile lang:ruby %}
-  FileList["#{args.source}/<strong>/.*"].exclude("</strong>/.", "<strong>/..", "</strong>/.DS_Store", "<strong>/._*", '</strong>/.<em>.swp', '**/.</em>.swo').each do |file|
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>modify rakefile  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="no">FileList</span><span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">args</span><span class="o">.</span><span class="n">source</span><span class="si">}</span><span class="s2">/&lt;strong&gt;/.*&quot;</span><span class="o">].</span><span class="n">exclude</span><span class="p">(</span><span class="s2">&quot;&lt;/strong&gt;/.&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;strong&gt;/..&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/strong&gt;/.DS_Store&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;strong&gt;/._*&quot;</span><span class="p">,</span> <span class="s1">&#39;&lt;/strong&gt;/.&lt;em&gt;.swp&#39;</span><span class="p">,</span> <span class="s1">&#39;**/.&lt;/em&gt;.swo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><em>异地重新clone一份blog的时候deploy失败</em>
 参考 "这个issue":https://github.com/imathis/octopress/issues/412 ，看起来重新clone的时候还需要再次执行一边 @rake setup_github_pages@ 才行。</p>

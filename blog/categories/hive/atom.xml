@@ -4,7 +4,7 @@
   <title><![CDATA[Category: hive | MayCoder]]></title>
   <link href="http://code6.github.com/blog/categories/hive/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2015-01-04T21:44:36+01:00</updated>
+  <updated>2015-01-04T21:47:50+01:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -28,9 +28,10 @@
 
 <p>之前主要数据都是在 mysql 上，开放的方式也非常简单, 只需要提供一个从库即可, 让查询都落在从库上，然后主库进行更新。当我们在mysql撑不住，逐步迁移到hive的同时，自助查询这边相应的也需要改进以支持hive查询。虽然已经有包括 hwi( "anjuke的改进版hwi":https://github.com/anjuke/hwi ) 和 phphiveadmin 以及 hue(我们用apache hadoop, 用不了cloudera的产品)了，感觉跟我们自己的查询工具结合在一起会比较方便使用。结合的方式也比较简单, 简单使用hive cli的执行方式来查询并保存结果数据即可, 大致如下:</p>
 
-<p>{% codeblock run hive query lang:bash %}
-hive -f /tmp/testsql 1>testsql.output 2>testsql.err
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>run hive query  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>hive -f /tmp/testsql 1&gt;testsql.output 2&gt;testsql.err
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>这样把查询结果放在临时文件中，然后再展示给用户。另外由于hive查询一般比较久，故只能做成异步查询。</p>
 
@@ -50,18 +51,28 @@ hive -f /tmp/testsql 1>testsql.output 2>testsql.err
 </ul>
 
 
-<p>{% codeblock hivetablepriv  lang:sql %}
-REATE TABLE <code>hivetablepriv</code> (
-  <code>grantid</code> int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '授权自增ID',
-  <code>rolename</code> varchar(128) NOT NULL DEFAULT '' COMMENT '授权角色名',
-  <code>dbname</code> varchar(128) NOT NULL DEFAULT '' COMMENT '授权库名',
-  <code>tablename</code> varchar(128) NOT NULL DEFAULT '' COMMENT '授权表名, *表示任意表',
-  <code>modtime</code> datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '记录修改时间',
-  <code>status</code> tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0为正常授权，128为已删除授权',
-  PRIMARY KEY (<code>grantid</code>),
-  UNIQUE KEY <code>rolename</code> (<code>rolename</code>,<code>dbname</code>,<code>tablename</code>)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COMMENT='hive开放查询权限表'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>hivetablepriv   </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">REATE</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">hivetablepriv</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="p">(</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">grantid</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权自增ID&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">rolename</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权角色名&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">dbname</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权库名&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">tablename</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权表名, *表示任意表&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">modtime</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0000-00-00 00:00:00&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;记录修改时间&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">status</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;0为正常授权，128为已删除授权&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">grantid</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">),</span>
+</span><span class='line'>  <span class="k">UNIQUE</span> <span class="k">KEY</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">rolename</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">rolename</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">dbname</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">,</span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">tablename</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">62</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;hive开放查询权限表&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>然后在实际查询的时候，使用虚拟角色来访问，解析一下查询语句使用到的表(简单正则)，然后进行一下权限判断即可。</p>
 
@@ -75,42 +86,69 @@ REATE TABLE <code>hivetablepriv</code> (
 
 <p>综上, 我们仅需把执行语句加强一下:</p>
 
-<p>{% codeblock run hive query safely lang:bash %}
-hive --hiveconf hive.support.concurrency=false -hiveconf mapred.queue.name=slow -f /tmp/testsql 1>testsql.output 2>testsql.err
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>run hive query safely  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>hive --hiveconf hive.support.concurrency<span class="o">=</span><span class="nb">false</span> -hiveconf mapred.queue.name<span class="o">=</span>slow -f /tmp/testsql 1&gt;testsql.output 2&gt;testsql.err
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>另外权限控制我们在查询脚本执行查询之前做。我们还缺的一件事情是记录下用户的查询(logging)。这一步也可以简单在hive执行脚本中收集。为了能够更好的监控这些任务，我们还需要能够将查询和其所起的任务关联起来。这里使用了一个比较土的方法，就是边执行边解析程序的标准错误, 收集日志中提到的起的hadoop jobid。有了这些信息之后，就可以将一个查询所对应的任务干掉了。</p>
 
 <p>这样我们只靠一个简单查询脚本就可以基本的给hive查询一个具有较好约束的执行环境了。这个openhive脚本可以直接给自助查询工具查询hive使用。不过对于其他RD有需求查询hive数据的，我们还得暴露一个较友好的接口，比如使用 @thrift@ 做一个服务。想到这边我又想到 @hiveserver@ 了, 感觉我的想法有点多余。不过还是那个问题，我们希望有更多控制，然后又不太想在hive源码上动手脚(觉得麻烦以及以后升级比较有问题, 当然主要是我对java不熟)，所以搭 @thrift@ 然后背后用调用 openhive 脚本来实现, 接口可以这样:</p>
 
-<p>{% codeblock openhive.thrift  lang:c %}
-struct Query {
-  1: required string query,
-  2: required string username,
-  3: optional string password
-}</p>
-
-<p>exception OpenHiveException {
-  1: string message
-}
-service OpenHive
-{
-  # Execute a query. Takes a HiveQL string
-  void query(1:Query q) throws(1:OpenHiveException ex)
-  # Fetch one row. This row is the serialized form
-  # of the result of the query
-  string fetchOne() throws(1:OpenHiveException ex)
-  # Fetch a given number of rows or remaining number of
-  # rows whichever is smaller.
-  list<string> fetchN(1:i32 numRows) throws(1:OpenHiveException ex)
-  # Fetch all rows of the query result
-  list<string> fetchAll() throws(1:OpenHiveException ex)
-  # Fetch Query header
-  string fetchQueryHeader() throws(1:OpenHiveException ex)
-  # Fetch all query log
-  string fetchQueryLog() throws(1:OpenHiveException ex)
-}
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>openhive.thrift   </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">Query</span> <span class="p">{</span>
+</span><span class='line'>  <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">query</span><span class="p">,</span>
+</span><span class='line'>  <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">username</span><span class="p">,</span>
+</span><span class='line'>  <span class="mi">3</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">password</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">exception</span> <span class="n">OpenHiveException</span> <span class="p">{</span>
+</span><span class='line'>  <span class="mi">1</span><span class="o">:</span> <span class="n">string</span> <span class="n">message</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">service</span> <span class="n">OpenHive</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="cp"># Execute a query. Takes a HiveQL string</span>
+</span><span class='line'>  <span class="kt">void</span> <span class="n">query</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">Query</span> <span class="n">q</span><span class="p">)</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch one row. This row is the serialized form</span>
+</span><span class='line'>  <span class="cp"># of the result of the query</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">fetchOne</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch a given number of rows or remaining number of</span>
+</span><span class='line'>  <span class="cp"># rows whichever is smaller.</span>
+</span><span class='line'>  <span class="n">list</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">fetchN</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">i32</span> <span class="n">numRows</span><span class="p">)</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch all rows of the query result</span>
+</span><span class='line'>  <span class="n">list</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">fetchAll</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch Query header</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">fetchQueryHeader</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch all query log</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">fetchQueryLog</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>整个接口基本是 @hiveserver@ 的子集= = 服务端简单使用Python来搞，使用thrift的 @ProcessPoolServer@ 类 ，其原理是server启动时fork出N个工作进程，进程之间不影响且可以重复使用。 这样遇到的问题是服务器的处理有瓶颈，每次最多同时处理N个任务，来多了会阻塞，目前我暂时将N设置为10。后续完全可以做成异步的形式，当然得修改接口，比如添加一个 @sessionid@  的概念。后来跟同事商量，其实对于hive查询本身server端是没有什么压力的(主要在hadoop集群上), 故基本不需要考虑 @python GIL@ 问题而使用多进程。另外他建议使用 @gevent@ 来提高server的并发能力，当然这样瓶颈就落到后端查询上了，感觉还是需要一个队列的机制，倒是可以试试。</p>
 
@@ -145,18 +183,30 @@ service OpenHive
 安装好后export @JAVA_HOME@ , @ANT_HOME@ 变量 (我直接加入.bashrc当中了)。
 接下来去官网下载hive源码包。这里我使用的是 @hive.0.9.0@ 。 解压之后进入src目录，需要修改一些配置:</p>
 
-<p>{% codeblock build.properties %}
-hadoop.version=1.0.1</p>
-
-<p>主要是facebook被墙了，镜像地址可参考 http://www.apache.org/dyn/closer.cgi/hadoop/core/
-hadoop.mirror1=http://mirror.bjtu.edu.cn/apache<br/>
-hadoop.mirror2=http://mirror.bjtu.edu.cn/apache</p>
-
-<p>以下的修改主要是看到镜像中的hadoop版本已经没有默认的版本号了，估计是不支持了?故改成包含的版本号。
-hadoop-0.20.version=0.20.2
-hadoop-0.20S.version=1.0.1 (S的版本不知有没有啥区别)</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>build.properties </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="na">hadoop.version</span><span class="o">=</span><span class="s">1.0.1&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">&lt;p&gt;主要是facebook被墙了，镜像地址可参考 http</span><span class="o">:</span><span class="s">//www.apache.org/dyn/closer.cgi/hadoop/core/</span>
+</span><span class='line'><span class="na">hadoop.mirror1</span><span class="o">=</span><span class="s">http://mirror.bjtu.edu.cn/apache&lt;br/&gt;</span>
+</span><span class='line'><span class="na">hadoop.mirror2</span><span class="o">=</span><span class="s">http://mirror.bjtu.edu.cn/apache&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;p&gt;以下的修改主要是看到镜像中的hadoop版本已经没有默认的版本号了，估计是不支持了?故改成包含的版本号。</span>
+</span><span class='line'><span class="na">hadoop-0.20.version</span><span class="o">=</span><span class="s">0.20.2</span>
+</span><span class='line'><span class="na">hadoop-0.20S.version</span><span class="o">=</span><span class="s">1.0.1 (S的版本不知有没有啥区别)&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>接下来执行 @ant package@ 即开始编译了, 结果默认会放在 @build/dist@ 目录中，使用 @-Dtarget.dir=xxx@ 可以更新目标位置。</p>
 
@@ -176,13 +226,17 @@ hadoop-0.20S.version=1.0.1 (S的版本不知有没有啥区别)</p>
 
 <p>使用 @ant test@ 运行单元测试，不过此命令要跑好多测试， "光TestCliDriver一项就要跑好几个小时":https://builds.apache.org/job/Hive-trunk-h0.21/1671/testReport/org.apache.hadoop.hive.cli/TestCliDriver/ , 我们可以</p>
 
-<p>{% codeblock ant test %}
-运行所有的正面的测试
-ant test -Dtestcase=TestCliDriver</p>
-
-<p>运行特定的测试，以groupby为例子
-ant test -Dtestcase=TestCliDriver -Dqfile=groupby1.q
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ant test </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>运行所有的正面的测试
+</span><span class='line'>ant test -Dtestcase=TestCliDriver&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>运行特定的测试，以groupby为例子
+</span><span class='line'>ant test -Dtestcase=TestCliDriver -Dqfile=groupby1.q</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>使用 @-Doverwrite=true@ 可以覆盖结果文件，后面有新的更新想测试表现是否一致的时候就可以使用了, 通常在我们增加新的udf的时候可以这么来生成测试数据。</p>
 
@@ -235,12 +289,15 @@ you wish and then select into that table. You can do this with CTAS.</p>
 
 <p>比如</p>
 
-<p>{% codeblock CTAS %}
-create table xzy
-row format delimited
-fields terminated by '\001'
-as select age, dt  from ibtest limit 1;
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>CTAS </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>create table xzy
+</span><span class='line'>row format delimited
+</span><span class='line'>fields terminated by '\001'
+</span><span class='line'>as select age, dt  from ibtest limit 1;</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>这里可以指定任意的分隔符，但这边文件在 @/user/hive/warehouse/xzy@ 中，我们还得将其合并输出到临时文件中。</p>
 
@@ -249,10 +306,11 @@ as select age, dt  from ibtest limit 1;
 </ul>
 
 
-<p>{% codeblock local directory %}
-INSERT OVERWRITE LOCAL DIRECTORY '/mydir'
-SELECT XXX
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>local directory </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>INSERT OVERWRITE LOCAL DIRECTORY '/mydir'
+</span><span class='line'>SELECT XXX</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>直接写到外部文件夹, 此时分隔符为 @0x01@ 。</p>
 
@@ -263,17 +321,17 @@ SELECT XXX
 </ul>
 
 
-<p>{% codeblock  concat_ws %}
-select concat_ws('\001', cast(userid as string), cast(cityid as string), regdate) from hiveuser limit 10;
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>concat_ws </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>select concat_ws('\001', cast(userid as string), cast(cityid as string), regdate) from hiveuser limit 10;</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>h3. 勉强进行转义</p>
 
 <p>另外一种做法是勉强在hql中进行转义, 比如将 @\@ 替换成 @\@ , 将制表符替换成 @\@ 和 @t@ :</p>
 
-<p>{% codeblock  regexp_replace %}
-regexp_replace(regexp_replace(column, '\\', '\\\\'), '\t', '\\t')
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>regexp_replace </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>regexp_replace(regexp_replace(column, '\\', '\\\\'), '\t', '\\t')</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>这里得在可能出现特殊字符的地方做上述修改, 为防止写得繁琐，可以考虑封成 @udf@ 。</p>
 

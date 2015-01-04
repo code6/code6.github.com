@@ -136,7 +136,7 @@
 	<li><a href="https://oj.leetcode.com/">leetcode</a><br />
 leetcode上的题目实在太经典了，做法多样，确实可以刷上两三遍。那么刷两三遍要达到什么目的呢? 给你一道leetcode的原题你能够短时间一次性完成, 尽量少犯错误，一步到最优做法，以及明白各种扩展。 github 上有很多人share leetcode 的切题记录可以参考, 官方论坛的讨论也都很不错。之前看到 <a href="http://pan.baidu.com/s/1kTj0Dy3">一个比较老的对leetcode 的题目的难度以及面试出现频率做了统计的表格</a> 可以参考一下，有侧重的刷题。</li>
 </ul>
-<p>除了 leetcode, 有一份 mitbbs 整理的 <a href="https://github.com/lanxx019/mitbbs-iq">面经题目综合文档</a> 也不错，很有参考价值，类似 &#8220;历届真题&#8221; 的感觉。这里不仅有纯算法题，还有一些逻辑，概率，设计题。 察实际工程实践抽象出的设计问题，这往往是比能够通过机械训练达到熟练的算法问题来的更难的更有区分度的。这方面我的积累深度还不够，也吃过亏。这部分感觉还得看个人工作中的总结与归纳，就不展开了。</p>
+<p>除了 leetcode, 有一份 mitbbs 整理的 <a href="https://github.com/lanxx019/mitbbs-iq">面经题目综合文档</a> 也不错，很有参考价值，类似 &#8220;历届真题&#8221; 的感觉。这里不仅有纯算法题，还有一些逻辑，概率，设计题。 考察实际工程实践抽象出的设计问题，这往往是比能够通过机械训练达到熟练的算法问题来的更难的更有区分度的。这方面我的积累深度还不够，也吃过亏。这部分感觉还得看个人工作中的总结与归纳，就不展开了。</p>
 <h3>Resource</h3>
 <ul>
 	<li><a href="http://blog.liancheng.info/about.html">连城</a>
@@ -506,45 +506,6 @@ leetcode上的题目实在太经典了，做法多样，确实可以刷上两三
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/06/10/beijing-sucks-at-ipsc-2013/">Beijing Sucks at Ipsc 2013</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-10T02:14:00+02:00" pubdate data-updated="true">Jun 10<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今年的 ipsc 最早是跟毛哥说好要做的，后面 3xian 邀请搞一搞线下玩, 本次我们取了队名 &#8220;Beijing Sucks&#8221;, 简称bs。<br />
-在五月底的时候得知毛哥云游四海去了，不能参加线下比赛，于是只能再找他人拼团，最终决定的是在清华读研的 dumbear, 后面dumbear 也在本场比赛中发挥了异常关键的作用。<br />
-ipsc 正式比赛在 6.8 号，虽然是周六，但要上班。由于我刚好也想准备一下其他事情，就把最后半天年假给请了。六点之前，我们到达了3xian的窝，不一会儿比赛就开始了。<br />
-一开始3xian看前面，我看中间，dumbear看后面。A 和 H 很快有人过了。</p>
-<p>[<span class="caps">TODO</span>]</p></div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2013/04/15/keep-updating-your-cv/">Keep Updating Your Cv</a></h1>
     
     
@@ -802,6 +763,156 @@ http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/02/open-hive/">Open Hive</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-02T21:48:00+01:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="date">2013-01-05</p>
+<p>有时我说的话就是放屁，这已经都到 <del>12月</del> 1月了。不过我还是厚着脸皮来了，我还是希望写写的，每当我来refer自己干过的一些事情的时候, 还蛮有用的。</p>
+<p>今天我想说的是近期我们在做的一个事情，说来也简单，往往我觉得难的不是要写多高深的代码，而是采取什么方式来达到一个目的, 满足需求。我的条理还有待加强，暂且这样。</p>
+<p>对于做数据的团队，一个很重要的事情就是开放数据，怎样提供一个更好的环境来让更多的人来访问数据，获取他们关心的内容。如果数据始终是仅在团队内部可以使用，那么势必会增加很多重复的无谓的体力劳动。在开放数据这一块，之前大家做了一些努力，有了一个内部的自助查询的系统，面向RD和一般的分析人员。开放的方式是提供一个窗口让用户写具体的SQL来查询，返回查询结果, 并可以定制很多图表。 系统内开放了若干链接，每个链接可以查若干表，并可以看到表相关的字段信息。一般来说这样就够了，当然写SQL门槛稍稍有点高。</p>
+<p>之前主要数据都是在 mysql 上，开放的方式也非常简单, 只需要提供一个从库即可, 让查询都落在从库上，然后主库进行更新。当我们在mysql撑不住，逐步迁移到hive的同时，自助查询这边相应的也需要改进以支持hive查询。虽然已经有包括 hwi( <a href="https://github.com/anjuke/hwi">anjuke的改进版hwi</a> ) 和 phphiveadmin 以及 hue(我们用apache hadoop, 用不了cloudera的产品)了，感觉跟我们自己的查询工具结合在一起会比较方便使用。结合的方式也比较简单, 简单使用hive cli的执行方式来查询并保存结果数据即可, 大致如下:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>run hive query  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>hive -f /tmp/testsql 1&gt;testsql.output 2&gt;testsql.err
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>这样把查询结果放在临时文件中，然后再展示给用户。另外由于hive查询一般比较久，故只能做成异步查询。</p>
+<p>这里为什么不用hiveserver呢? 感觉hiveserver在我们这边使用总有一些问题，使用hive 0.9 配合zookeeper时，hiveserver看起来会泄露zookeeper连接，导致一段时间后就不可用了。 当然也可能是我们的姿势不对, 不知在 hive 0.10 上是否会好些。</p>
+<p>开放查询做到这一步其实基本差不多了, 用户可以自己执行查询并查看/下载结果集。 但我们在这一步的时候却还不能开放，觉得对用户的控制还不够，用户权限太大了。 说到这一点，我们目前的hadoop/hive环境上只有一个默认用户，其余用于查询的用户(比如apache)基本上对所有表都有查询权限。另外一点是我们线上的hive任务也在定期执行，自助查询这边不应该占用过多资源。在一些必要场合下我们必须有能力干掉用户的查询。简单来说，初步开放，我们需要做到:<br />
+<strong>必要的权限控制</strong><br />
+库/表级别，语句类型(限制只能使用select)，这些控制可以跟账号绑定。<br />
+<strong>资源限制</strong><br />
+任务同时可以起的map数量和reduce数量控制。<br />
+<strong>锁限制</strong><br />
+自助查询不能争用线上任务的锁。</p>
+<ul>
+	<li><strong>必要的权限控制</strong><br />
+在做权限控制的时候本来想直接用 <code>hive.security.authorization.enabled</code> 参数来搞，发现当所有用户都拿一个账号(apache)来访问是没啥用的= =, 没办法，只能手动搞了，于是比较糙地搞了个类似的自己用, 表如下:</li>
+</ul>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>hivetablepriv   </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">REATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">hivetablepriv</span><span class="o">`</span> <span class="p">(</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">grantid</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权自增ID&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">rolename</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权角色名&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">dbname</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权库名&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">tablename</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;授权表名, *表示任意表&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">modtime</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0000-00-00 00:00:00&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;记录修改时间&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">status</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;0为正常授权，128为已删除授权&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">grantid</span><span class="o">`</span><span class="p">),</span>
+</span><span class='line'>  <span class="k">UNIQUE</span> <span class="k">KEY</span> <span class="o">`</span><span class="n">rolename</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">rolename</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">dbname</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">tablename</span><span class="o">`</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">62</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COMMENT</span><span class="o">=</span><span class="s1">&#39;hive开放查询权限表&#39;</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>然后在实际查询的时候，使用虚拟角色来访问，解析一下查询语句使用到的表(简单正则)，然后进行一下权限判断即可。</p>
+<ul>
+	<li><strong>资源限制</strong><br />
+这步可以很简单做，比如直接在 <code>Hadoop Fair Scheduler</code> 配置一个受限的队列即可, 基本可以保证资源限制。</li>
+</ul>
+<ul>
+	<li><strong>锁限制</strong><br />
+我们打开了 <code>hive.support.concurrency</code> 并使用zookeeper来进行锁竞争，主要是防止线上日常ETL程序执行过程中对资源有竞争(比如一个表在更新时有流程访问)，这里在自己查询避免争用线上任务的锁只需要关闭此开关即可。</li>
+</ul>
+<p>综上, 我们仅需把执行语句加强一下:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>run hive query safely  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>hive --hiveconf hive.support.concurrency<span class="o">=</span><span class="nb">false</span> -hiveconf mapred.queue.name<span class="o">=</span>slow -f /tmp/testsql 1&gt;testsql.output 2&gt;testsql.err
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>另外权限控制我们在查询脚本执行查询之前做。我们还缺的一件事情是记录下用户的查询(logging)。这一步也可以简单在hive执行脚本中收集。为了能够更好的监控这些任务，我们还需要能够将查询和其所起的任务关联起来。这里使用了一个比较土的方法，就是边执行边解析程序的标准错误, 收集日志中提到的起的hadoop jobid。有了这些信息之后，就可以将一个查询所对应的任务干掉了。</p>
+<p>这样我们只靠一个简单查询脚本就可以基本的给hive查询一个具有较好约束的执行环境了。这个openhive脚本可以直接给自助查询工具查询hive使用。不过对于其他RD有需求查询hive数据的，我们还得暴露一个较友好的接口，比如使用 <code>thrift</code> 做一个服务。想到这边我又想到 <code>hiveserver</code> 了, 感觉我的想法有点多余。不过还是那个问题，我们希望有更多控制，然后又不太想在hive源码上动手脚(觉得麻烦以及以后升级比较有问题, 当然主要是我对java不熟)，所以搭 <code>thrift</code> 然后背后用调用 openhive 脚本来实现, 接口可以这样:</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>openhive.thrift   </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">struct</span> <span class="n">Query</span> <span class="p">{</span>
+</span><span class='line'>  <span class="mi">1</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">query</span><span class="p">,</span>
+</span><span class='line'>  <span class="mi">2</span><span class="o">:</span> <span class="n">required</span> <span class="n">string</span> <span class="n">username</span><span class="p">,</span>
+</span><span class='line'>  <span class="mi">3</span><span class="o">:</span> <span class="n">optional</span> <span class="n">string</span> <span class="n">password</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">exception</span> <span class="n">OpenHiveException</span> <span class="p">{</span>
+</span><span class='line'>  <span class="mi">1</span><span class="o">:</span> <span class="n">string</span> <span class="n">message</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">service</span> <span class="n">OpenHive</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="cp"># Execute a query. Takes a HiveQL string</span>
+</span><span class='line'>  <span class="kt">void</span> <span class="n">query</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">Query</span> <span class="n">q</span><span class="p">)</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch one row. This row is the serialized form</span>
+</span><span class='line'>  <span class="cp"># of the result of the query</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">fetchOne</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch a given number of rows or remaining number of</span>
+</span><span class='line'>  <span class="cp"># rows whichever is smaller.</span>
+</span><span class='line'>  <span class="n">list</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">fetchN</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">i32</span> <span class="n">numRows</span><span class="p">)</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch all rows of the query result</span>
+</span><span class='line'>  <span class="n">list</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">fetchAll</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch Query header</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">fetchQueryHeader</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'>  <span class="cp"># Fetch all query log</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">fetchQueryLog</span><span class="p">()</span> <span class="n">throws</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">OpenHiveException</span> <span class="n">ex</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></div></notextile></p>
+<p>整个接口基本是 <code>hiveserver</code> 的子集= = 服务端简单使用Python来搞，使用thrift的 <code>ProcessPoolServer</code> 类 ，其原理是server启动时fork出N个工作进程，进程之间不影响且可以重复使用。 这样遇到的问题是服务器的处理有瓶颈，每次最多同时处理N个任务，来多了会阻塞，目前我暂时将N设置为10。后续完全可以做成异步的形式，当然得修改接口，比如添加一个 <code>sessionid</code>  的概念。后来跟同事商量，其实对于hive查询本身server端是没有什么压力的(主要在hadoop集群上), 故基本不需要考虑 <code>python GIL</code> 问题而使用多进程。另外他建议使用 <code>gevent</code> 来提高server的并发能力，当然这样瓶颈就落到后端查询上了，感觉还是需要一个队列的机制，倒是可以试试。</p>
+<p>大概就是这样了，废话了很多其实内容很少，也很简单。条理和叙述方式有待加强，终于又写了一篇blog，欢迎交流反馈~~</p></div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -818,11 +929,10 @@ http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p
     <li class='category'><a href='/blog/categories/algorithm/'>algorithm (1)</a></li>
 <li class='category'><a href='/blog/categories/blog/'>blog (1)</a></li>
 <li class='category'><a href='/blog/categories/contest/'>contest (1)</a></li>
-<li class='category'><a href='/blog/categories/etl/'>etl (1)</a></li>
 <li class='category'><a href='/blog/categories/hive/'>hive (3)</a></li>
-<li class='category'><a href='/blog/categories/programming/'>programming (3)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (2)</a></li>
 <li class='category'><a href='/blog/categories/sql/'>sql (1)</a></li>
-<li class='category'><a href='/blog/categories/thoughts/'>thoughts (1)</a></li>
+<li class='category'><a href='/blog/categories/thoughts/'>thoughts (2)</a></li>
 
   </ul>
 </section>
