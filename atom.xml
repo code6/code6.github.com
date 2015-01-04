@@ -4,7 +4,7 @@
   <title><![CDATA[MayCoder]]></title>
   <link href="http://code6.github.com/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2013-07-28T22:51:55+08:00</updated>
+  <updated>2015-01-04T21:44:23+01:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -14,9 +14,281 @@
 
   
   <entry>
+    <title type="html"><![CDATA[北美求职准备]]></title>
+    <link href="http://code6.github.com/blog/2015/01/04/tips-for-silicon-valley-job-hunting/"/>
+    <updated>2015-01-04T20:32:00+01:00</updated>
+    <id>http://code6.github.com/blog/2015/01/04/tips-for-silicon-valley-job-hunting</id>
+    <content type="html"><![CDATA[<p>近期离开了毕业后第一家公司，去 google zurich 工作了，还没来得及总结。有朋友想了解北美求职相关的事情，故写一点小心得仅供参考。 这里主要从在职人士的角度出发，也主要把我看过的资料，用过的服务提供给大家参考。最后附了一些资源，写的都很棒，看过一遍就会对整个北美求职有点感觉了。</p>
+<h3>基本信息</h3>
+<p>首先一般来说北美公司的面试时间窗口一般在下半年，从7，8月份开始一直可以延续到次年的二月份，大部分人会选择在这中间，比如九十月份来投简历面试。<br />
+在这之前要准备什么呢？</p>
+<ul>
+	<li>一份英文简历</li>
+	<li>英语听说能力</li>
+	<li>专业技能</li>
+</ul>
+<p>一般来说大部分人不管准备了多久都会觉得没有准备好，不过到时间了还是得申请面试的。面试最好找朋友内推，网申得到面试机会的概率略小。 内推完一般来说一两个星期就可以安排面试了，走各自的面试流程即可。</p>
+<h3>简历</h3>
+<p>简历本该养成定期更新的良好习惯，这样就不用纠结了，可以参考我的 <a href="http://code6.github.io/blog/2013/04/15/keep-updating-your-cv/">持续更新简历</a> 。</p>
+<h3>英语</h3>
+<p>英语方面要求并不算高，一般做到能基本听懂，并能做出简单交流即可。面试一般都是专业词汇，稍微看点英文技术视频就会有点感觉了。更多的时候不会挂在英语上， 而是挂在专业知识上。之前我的英文准备也没有很规范，大概有以下两项:</p>
+<ul>
+	<li>51talk<br />
+这个最有趣，当时想着要提高口语, 得找一个&quot;外国人&quot;1对1演练一下。在网上找了，相中了 51tak 这个&quot;外教&quot; 1对1服务。 51talk的外教多半是东南亚赚外快的英语老师，当时办60次的月卡，一节课25块，一次25分钟, 一位 &#8220;外教&#8221; 使用 skype 或 QQ 进行 1 对 1 的英语训练。这个网站是瞄准了广大平民百姓的口语训练需求, 提供了物美价廉的服务。 在13年八月以来，我调整了工作日的起床时间，每天多安排了一节课，每周安排两三次，固定一位靠谱的老师。 长期下来感觉良好(虽然口语还是被老师批长句不行, 词汇不够)。如果有想要购买他家服务的同学可以找我沟通，我还有 120 节课没有用完。。。</li>
+</ul>
+<ul>
+	<li>friends<br />
+一个快速提高英语的方法就是看英语电影或连续剧, 这里老友记确实很不错, 既休闲又能培养听力。身边有不止一个小伙伴说看了不下一遍的。</li>
+</ul>
+<h3>专业技能</h3>
+<p>专业技能方面我的准备也是略仓促，导致了在一些公司的求职失利。认真去准备一般即可有收获。大部分公司都考算法和数据结构，并且在几乎所有北美公司这部分都占了很大的比重。<br />
+简单粗暴的说法比如，经常会有拿offer的同学说，&quot;leetcode 刷两三遍就够了，常见题目也就都看过了。&quot; 确实是这样。</p>
+<ul>
+	<li><a href="https://oj.leetcode.com/">leetcode</a><br />
+leetcode上的题目实在太经典了，做法多样，确实可以刷上两三遍。那么刷两三遍要达到什么目的呢? 给你一道leetcode的原题你能够短时间一次性完成, 尽量少犯错误，一步到最优做法，以及明白各种扩展。 github 上有很多人share leetcode 的切题记录可以参考, 官方论坛的讨论也都很不错。之前看到 <a href="http://pan.baidu.com/s/1kTj0Dy3">一个比较老的对leetcode 的题目的难度以及面试出现频率做了统计的表格</a> 可以参考一下，有侧重的刷题。</li>
+</ul>
+<p>除了 leetcode, 有一份 mitbbs 整理的 <a href="https://github.com/lanxx019/mitbbs-iq">面经题目综合文档</a> 也不错，很有参考价值，类似 &#8220;历届真题&#8221; 的感觉。这里不仅有纯算法题，还有一些逻辑，概率，设计题。 察实际工程实践抽象出的设计问题，这往往是比能够通过机械训练达到熟练的算法问题来的更难的更有区分度的。这方面我的积累深度还不够，也吃过亏。这部分感觉还得看个人工作中的总结与归纳，就不展开了。</p>
+<h3>Resource</h3>
+<ul>
+	<li><a href="http://blog.liancheng.info/about.html">连城</a>
+	<ul>
+		<li><a href="http://developer.51cto.com/art/201304/387673.htm">北美求职记</a></li>
+	</ul></li>
+	<li><a href="http://about.me/catchen">Cat Chen</a>
+	<ul>
+		<li><a href="http://chinese.catchen.me/2012/06/blog-post.html">理想的技术面试过程</a></li>
+		<li><a href="http://www.cnblogs.com/cathsfz/archive/2012/11/05/facebook-interview-experience.html">面试体验：Facebook 篇</a></li>
+		<li><a href="http://chinese.catchen.me/2012/08/google-interview-experience.html">面试体验：Google 篇</a></li>
+		<li>赴美工作常识
+		<ul>
+			<li><a href="http://chinese.catchen.me/2013/05/to-work-in-the-us-part-1-visa.html">visa</a></li>
+			<li><a href="http://chinese.catchen.me/2013/07/to-work-in-the-us-part-1-application.html">application</a></li>
+			<li><a href="http://chinese.catchen.me/2013/08/to-work-in-the-us-part-3-english.html">english</a></li>
+			<li><a href="http://chinese.catchen.me/2013/09/to-work-in-the-us-part-4-interview.html">interview</a></li>
+		</ul></li>
+	</ul></li>
+	<li><a href="http://blog.yxwang.me/assets/download/resume.pdf">yuanxuan Wang</a>
+	<ul>
+		<li><a href="http://blog.yxwang.me/2012/12/job-hunting-in-usa-2/">北美求职记（二）：Google &amp; Facebook</a></li>
+		<li><a href="http://blog.yxwang.me/2012/12/job-hunting-in-usa-3/">北美求职记（三）：Hulu &amp; Twitter</a></li>
+	</ul></li>
+	<li><a href="http://digest.definite.name/roba-facebook-interview-q-a.html">Facebook 面试 Q&amp;A</a></li>
+	<li><a href="http://www.yiyome.com/article/view/1003230-facebook-.html">FB面经集锦</a></li>
+	<li><a href="http://book.douban.com/subject/5985030/">google resume</a></li>
+	<li><a href="http://q.weibo.com/1312378">北美求职小组</a></li>
+	<li><a href="http://www.mitbbs.com/bbsdoc/JobHunting.html"><span class="caps">MITBBS</span></a></li>
+	<li><a href="http://hawstein.com/posts/ctci-solutions-contents.html">Cracking the coding interview</a></li>
+</ul>]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[意外的好运]]></title>
+    <link href="http://code6.github.com/blog/2014/07/15/serendipity/"/>
+    <updated>2014-07-15T09:43:00+02:00</updated>
+    <id>http://code6.github.com/blog/2014/07/15/serendipity</id>
+    <content type="html"><![CDATA[<p>昨天 <a href="http://xiaolai.li/about/">笑来老师</a> 来鄙厂做分享来着, 讲的挺好的, 趁着记忆还热乎赶紧发出来。
+很早以前就通过<a href="http://book.douban.com/subject/3609132/">把时间做朋友</a>认识笑来老师了(惭愧的是这本书还没有看完), 去年又看到他自学 rail 搞了一个还不错的创业产品 <a href="http://knewone.com/">knewone</a>, 感慨跨界神人也，今天在跟别人闲聊的时候才知道他是比特币大咖，四大天王之首, 顿觉此人太神了。盲目的崇拜是不好的，不过汲取一些成功的经验是有益的。</p>
+
+<p>以下简写笑来老师为 xl。</p>
+
+<h3><strong>Serendipity</strong></h3>
+
+<p>开场提到了一个有趣的单词，<a href="http://en.wikipedia.org/wiki/Serendipity">Serendipity</a>, 中文即是意外的好运，据说这个单词曾被翻译公司认定为十大最难翻译的词之一。<br/>
+可以认为本次的分享通篇都围绕着意外的好运这个主题，通过各种真实案例来推导一个主题:</p>
+
+<blockquote><p>意外的好运可以创造。</p></blockquote>
+
+<h3><strong>把时间当朋友</strong></h3>
+
+<p>有人提到为啥在新东方教学之后会写把时间当朋友这本书，xl解释到这是他在新东方教书的经验之谈，并且总结后发现这不仅仅是在学英语这件事上，这是一种 <strong>凶悍</strong> 学习方法论，也是他多年来坚持的学习方法。
+提到这些年他的这些好运，&#8221;不是偶然的，而是一定会发生的。&#8221; 他这么说的。略嚣张，不过有嚣张的资本就显得很酷了。</p>
+
+<h3><strong>信息过滤</strong></h3>
+
+<p>在提到信息过滤这一点，xl是挺不屑的。他介绍了他使用 twitter 的经验: <strong>fo 了18k人</strong>。
+看到这个可能会觉得很不可思议，当然，如果你是一个个fo 的话那确实太吓人了，没错，他就是自动化fo的。
+这样会导致 <strong>信息过载</strong> 问题? 这里他提到一个观点:</p>
+
+<blockquote><p>信息过载是无法解决的，该解决的问题是垃圾信息过滤</p></blockquote>
+
+<p>那么这 18k 的fo量，该怎么做信息筛选呢?<br/>
+肯定得有靠谱的工具才行，这里xl 推荐了 <a href="hootsuite.com">hootsuite.com</a>, 看了一下, 是一个twitter的客户端，不过目前看起来支持导入很多 sns 的feed。xl 提到他有一个宽屏的显示器，然后开着 hootsuite 并且做多个strem做各种关键字的filter，或者筛选一批foer来看。<br/>
+那为啥要费大力气暴露在这么多信息面前，然后再做过滤，而不直接就选择自己感兴趣的人来fo呢?<br/>
+这里主要阐述了一个思想:</p>
+
+<blockquote><p>不挑，不做预先筛选</p></blockquote>
+
+<p>这里xl 举了两个例子，一个是借鉴了计算机大师的名言:</p>
+
+<blockquote><p>过早的优化都是有害的。</p></blockquote>
+
+<p>另外一个是扯了一下 &#8220;剩女&#8221; 是怎么剩下的， &#8220;算数没算好。&#8221;, 筛选过多导致符合条件的人数小于一生中能遇到的熟人的数量。</p>
+
+<h3><strong>好学不挑</strong></h3>
+
+<p>这是我概况的意思。在扯到信息过滤，不预先筛选后。xl 提到自己兴趣广泛, 做事都是基于学习的乐趣，所以很有动力。<br/>
+谈到跨界这个问题，有很强的学习能力并花足够多的时间去钻研，这就谈不上跨界了，所谓 <strong>行者无疆</strong>。 这里态度很关键，不能抱着随便的心态，就这一点他谈到当初很多人一起关注了比特币，但是大部分人都是玩玩心态，买卖几个币罢了，而他做足了功课下大力气投资，收获了这个意外的好运。大部分抱着玩玩的心态其实主要是真正的钻研学习都是不轻松的。 写到这里我其实挺好奇他是怎么找准方向，并能这么有精力去学习的。<br/>
+那么该怎么学习呢? <br/>
+这里有几条tip:</p>
+
+<ul>
+<li>假装会</li>
+<li>加倍努力</li>
+<li>足够的耐心</li>
+</ul>
+
+
+<p>第2,3点都比较容易理解，第1点其实我没太明白。假装会把自己骗过去有什么意义呢? xl 提到可以在这个前提上来思考会的人的学习方式, 反过来理清楚到底有哪些需要补充学习的地方。</p>
+
+<h3><strong>但行好事，莫问前程</strong></h3>
+
+<p>这部分即是说执行这样一套方法论不能太有目的性, 意外的好运总会发生的。这跟我前段时间一直挂在嘴边的一句话 <strong>谋事在人，成事在天</strong> 挺像的。之前我的理解是把各种我能做的事情做了，剩下的就靠上天，靠一点运气了。在这一块 xl 还是举了挺多无心插柳的例子来支持他的观点的。</p>
+
+<h3>感想</h3>
+
+<p>大概如此，部分多了我的解读，可能有遗漏，曲解了些许意思。后来翻了 <a href="https://ruby-china.org/xiaolai">xl 在 rubychina 论坛的发帖记录</a>, 感觉之前没线下接触一下这个神人多少有点遗憾。<br/>
+目前我还没有掌握一门可以快速开发 app / 网站的 语言，除了公司的项目的话，没有开发过个人项目，虽然感觉这一切其实都不难的，但还没迈出这一步。看到 xl 老师这么牛逼的跨界，作为程序猿真感到羞愧。<br/>
+知耻而后勇。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[IPSC 2014]]></title>
+    <link href="http://code6.github.com/blog/2014/06/16/sucker-punch-at-ipsc-2014/"/>
+    <updated>2014-06-16T23:00:00+02:00</updated>
+    <id>http://code6.github.com/blog/2014/06/16/sucker-punch-at-ipsc-2014</id>
+    <content type="html"><![CDATA[<p class="date">2012-06-16</p>
+<p>今年的ipsc 昨天刚结束，跟3xian 和 larry 一起在3xian家，晚上七点到十二点，做得挺过瘾的。我们的队名是 <code>Sucker Punch</code>, 最终104名，b1 在最后节骨眼没有搞出来，还是有希望挤进前100的。下面简单记录一下比赛的经过吧。</p>
+<p><img src="http://code6.github.com/images/ipsc_2014.png"></p>
+<p><strong>Problem C: Copier</strong><br />
+这道题挺虎的，说的是最初把一个1到N排列每次一段连续子串拷贝到右边，重复若干次后求原始排列。一开始我想暴力小数据来着，有若干限制。不过一看大盘不对，b2都好多人过了，然后想了下，发现从左到右数字的出现顺序没有变，于是瞬秒了。</p>
+<p><strong>Problem H: Hashsets</strong><br />
+这道题即是让你给50000个数字，然后让c++/java 的 hashset 插入超过两秒/十秒。 3xian 没过一会就丢来一个 <a href="http://codeforces.com/blog/entry/4876">样例程序</a> ，照着搞一下就过了小数据= = 不过看起是针对java的，于是就没有交大数据了，大数据需要 c++/java 均超过10秒。看solution 看到一个 <a href="http://en.wikipedia.org/wiki/Universal_hashing">universal hashing</a></p>]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[To Be An Ac Man]]></title>
+    <link href="http://code6.github.com/blog/2014/04/09/to-be-an-ac-man/"/>
+    <updated>2014-04-09T11:30:00+02:00</updated>
+    <id>http://code6.github.com/blog/2014/04/09/to-be-an-ac-man</id>
+    <content type="html"><![CDATA[<p>清明回学校一趟跟集训队的小伙伴做了一个小分享，主要是讲了一下我对做一个好的acmer 的理解，准备的稍显粗糙，slide 上的内容也多为大空话。anyway，share给大家，求指导。</p>
+<p><iframe src="http://www.slideshare.net/slideshow/embed_code/33304317" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/code6/being-a-good-acm-player" title="如何做一个好的acmer" target="_blank">如何做一个好的acmer</a> </strong> from <strong><a href="http://www.slideshare.net/code6" target="_blank">code6</a></strong> </div></p>
+<p>另外吐槽一点就是 slideshare 居然被强了，太没天理了。</p>]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Big Cube]]></title>
+    <link href="http://code6.github.com/blog/2014/03/15/big-cube/"/>
+    <updated>2014-03-15T23:52:00+01:00</updated>
+    <id>http://code6.github.com/blog/2014/03/15/big-cube</id>
+    <content type="html"><![CDATA[<p><img src="http://code6.github.com/images/big_cube.jpg"></p>
+<p><code>Big Cube</code> 是今天(2014.3.15) 鄙厂第二届黑客马拉松我们队的作品, 我跟 yc 还有 cc 一起搞的。这个名字是我今天随便取的，我们要做的是一个 <span class="caps">OLAP</span> 的 demo。</p>
+<p><strong>前情提要</strong></p>
+<p>早在12年初我们就在寄希望 <span class="caps">OLAP</span> 来帮助数据仓库数据建模，数据解读与分析。当时我们采用的是 <a href="http://community.pentaho.com/projects/mondrian/">mondrian</a> 当时的想法很理想，感觉就是创建几个模型，几个维度，事实，就可以在各种粒度下把各种指标囊括进来，并有统一的地方可以管理指标定义。 后面这个项目失败了，diao总结了一些失败的原因:</p>
+<blockquote>
+<p>开发和使用太复杂， 成本太高<br />
+产品成熟度较低， 很多数据需求没法支持<br />
+笨重，不太适应互联网公司快速灵活的节奏</p>
+</blockquote>
+<p>在我看来，当时采用的工具和方案主要还是太慢了，不仅是工具调研与应用，后期的模型开发以及工具使用同样。由于公司发展很迅速，大部分模型都不太稳定，新的事实，维度也经常产生，维度和事实本身也太稳定，部分事实发生之后还会修改。当时的 backend 依赖的是 mysql ，本身也不可扩展。</p>
+<p>后来 ek 又启动了一个曲线救国的计划，ModelBuilder。这个工具是 ek 独立完成的一个跟 <span class="caps">ETL</span> 工具相结合的模型设计工具，通过配置模型可以在hive下生成各种主题各种聚合粒度下的统计指标。在我看来相当于一个自研的 <span class="caps">OLAP</span> 服务的核心部分。现在在内部使用也很好，负责的指标和依赖很多。</p>
+<p>当然这次 Hackathon 我们使用的是 <a href="http://cubes.databrewery.org/">cubes</a>  这个开源的 <span class="caps">OLAP</span> python 包搭建的。早在 12 年我们做 <span class="caps">OLAP</span> 的时候，我就发现这个 python <span class="caps">OLAP</span> 工具, 不过当时也只是关注，一直都没有尝试使用。这次比赛之前又看了一下，感觉拿来主义十分方便，简单的模型配置还附赠一个前端的模型展示 <a href="https://github.com/jjmontesl/cubesviewer">CubesViewer</a> , 之前提到如果 backend 依赖 mysql 的话，那看起来还是不够完美，所幸 cubes 的 backend 是可以定制化的，其中 sql 类型的 backend 支持所有封装了 sqlalchemy 接口的引擎, 恰巧我们最近上线了 <a href="http://prestodb.io/">Presto</a> , 看了一下 github，有人已经提供了 Presto 的 sqlalchemy 封装的包 <a href="https://github.com/dropbox/PyHive">pyHive</a> , 看起来万事俱备了，于是我确定了 Hackathon 就搞这个吧，一个支持海量数据快速响应的 <span class="caps">OLAP</span> 服务 demo。</p>
+<p><strong>准备工作</strong></p>
+<p>在 Hackathon 的前几天我主要是负责前期体验的，这里我想搞清楚的是:<br />
+1. 模型表示上是否可以与我们的数据格式对接(或者需要生产新的数据来适应特定格式), 需定一个展示模型，最好有意义 <br />
+2. presto backend 开发是否有问题(接口是否好用), presto 的SQL语法十分支持cube生成的查询<br />
+3. cube server 的性能是否符合预期<br />
+4. 前端是否需要再做进一步开发</p>
+<p>在13号左右我开始在线下测试第一个 presto backend 的 &#8220;hello world&#8221; 的case, 发现生成的语句会包含 <code>order by limit offset</code> 的语句，而 presto 不支持 offset 类型的语句, 算是我们后续要解决的一个问题吧。其他问题基本没来得及看。</p>
+<p><strong>开幕</strong></p>
+<p>15号下午五点如期开场, 兴哥和荣均简单地做了讲话大家便更忙各的了。</p>
+<p><strong>14号进展</strong></p>
+<p>开始后我们把晚饭定完之后就开始分工着手解决问题, 这里我主要负责模型的选择与数据生成以及配置相关工作, yc 负责 cubeviewer 的适配，cc 负责 presto 相关的查询支持。我们就在自己工位上搞，一起通过 <a href="http://code6.github.com//github.com/code6/cubes/tree/hackday">github</a> 共享代码。一开始我打算配置一个较复杂的模型，不过深入去看，感觉还是得一步一步来，先搞定简单的才是, 于是我选择了一个仅有四个维度的已经聚合过的数据作为展示demo。 presto 这边纯爷着手解决 offset 的问题，兴致挺高的，打算在 presto 那边添加这个功能。yc 同学由于要去签租房合同，搞了一会儿就得提前撤了。话说这次我们定的是棒约翰的披萨外卖，挺好吃的，我一下子吃的有点撑。晚上十点我跟cc一起坐班车回家了, 我的进度是配置了一点点模板，cc还在解决 offset 的问题。这里我说的是这次我没有像上一届一样在公司通宵搞这个了，这段时间我一回到家就洗个澡感觉十分舒服，洗完澡之后可以支撑我工作到两点，然后第二天早上七点起来还很有精神。所有我在 Hackathon 也选择回家，洗澡然后第二天再过来。</p>
+<p><strong>15号进展</strong><br />
+由于 demo 还没有成型，15号早上我六点就醒了开始干活了，感觉 presto 那边做修改可能比较困难，我就在 cubes 这边生成查询时将 order 和 limit 相关子句给去掉了, 算是做了二手准备吧，这样我们的一个简单 demo 才跑了起来。早上七点半我就出发去公司了, 十分兴奋。后面十点多的时候我们三个都到了，大家继续战斗，我让 cc 来一起配合模型编写以及一些前端展示的润色工作，yc 同学还在搞 cubeviewer, 后面他发现一个大bug : <a href="https://github.com/jjmontesl/cubesviewer/issues/23">cubeviewer 使用的 cubes api 跟最新的 cubes 不兼容</a> ，当时差点崩溃了。 yc 同学说，&quot;给我两个小时，我把这个bug fix 一下&quot; 。后面 yc 还真的在约定时间内搞出了 api 把 cubeviewer 跑起来了。我们在一旁帮忙测试，发现还是有几个问题:<br />
+1. 维度数据没有正确展示<br />
+   这部分初步猜测是由于 cubeviewer 使用的数据格式同样是老的，导致部分假设面对新的数据格式失效了，导致维度相关数据没有正确展示。<br />
+2. 做 filter 的模块没能正确执行<br />
+   这里我们后面发现是由于 filter 模块的 <span class="caps">SQL</span> 模板产生的 <span class="caps">SQL</span> 不符合 presto 的语法规范，导致发起的执行失败。</p>
+<p>或许还有更多的问题，不过以上两个问题的解决就很花我们的时间了，最终在下午两点半之前也没能很好解决，时间到了，只能硬着头皮上台演示了。</p>
+<p>我们抽到了第四个演示，我简单做了四页 ppt，又开了两个查询页面展示我们的 demo，不过可能是演讲技巧的问题，异或展示demo不够清楚，感觉整体展示效果不好。后续我在台下听了后面二十来组的作品，大家的想法都挺出彩的，完成度也很好, 比上一届来说进步了很多。最终我们毫无悬念地没有拿到奖项，anyway，我觉得能在短短的比赛时间内让最初的想法 work 我已经很满意了，后续还可以在这个点上继续开发，可以期待后续给用户提供这样遍历的分析引擎是非常牛逼的。</p>
+<p><strong>后续改进</strong></p>
+<ul>
+	<li>将 cubeviewer 调通, 调整 sql backend 查询语句生成让  presto 支持相关查询</li>
+	<li>测试 model viewer  &amp; model builder 组件, 方便观察和编辑model，可以做到自动 reload model 文件那就再好不过了。</li>
+	<li>添加 label, 多语言支持(主要是中文)</li>
+	<li>在适当的地方添加 cache</li>
+</ul>
+<p><strong>总结</strong><br />
+本次 Hackathon 由于有强大的队友的加入，再加上确定的计划与目标，故一切尽在掌握当中。当然时间还是没能有剩余，没能达到最佳状态。我看有些组的作品其实也不全是这两天的工作，不过感觉也无可厚非，毕竟牛逼的想法本来也不是一天之内就可以很好的 prototype 出来的。下次也许我们也可以这样来，多做一些准备工作，尽量想清楚所有可能出问题的地方以及相应的解决方案，这样在实际动手时才不会慌张。</p>
+<p><strong>后记</strong><br />
+又看了多年之前的 mondrian, 发现现在它貌似也很牛逼了，后端也支持很多 <span class="caps">SQL</span> backend: 支持 <a href="http://jira.pentaho.com/browse/MONDRIAN-1667">impala</a> , <a href="https://groups.google.com/forum/#!msg/presto-users/f23F-4TEeXk/aGUeDHkbW9QJ">presto</a> , <a href="http://forums.pentaho.com/showthread.php?142593-Mondrian-Redshift">red-shift</a> 。部分还属于初步阶段，不过应该也是激动人心的提高，比12年好多了。</p>]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数据仓库的一天]]></title>
+    <link href="http://code6.github.com/blog/2013/09/07/one-day-in-the-data-warehouse/"/>
+    <updated>2013-09-07T21:15:00+02:00</updated>
+    <id>http://code6.github.com/blog/2013/09/07/one-day-in-the-data-warehouse</id>
+    <content type="html"><![CDATA[<p><img src="http://code6.github.com/images/a_day_in_the_data_warehouse.png"></p>
+<p>标题党，&quot;数据仓库的一天&quot; 是鄙厂刚刚结束的第一届 hackathon 我们小组的项目，我，cc 和 cjz 。</p>
+<p><strong>hackathon</strong><br />
+鄙厂的 hackathon 在几个礼拜前就已经宣传了，不过我开始组队, 确定好做什么却是在最后几天。主要还是自己平常缺乏培养捣鼓的能力。当有得力的cc和cjz加入后，感觉我们应该可以交出一个不错的东西。在思考做什么的时候，我们已经看到有许多不同方面的创意，比如zg同学想做的 &#8220;Smart <span class="caps">SQL</span> Editor&#8221;, 章爷的类 &#8220;wolframalpha search&#8221; 的 &#8220;data knowledge engine&#8221;, diao的实时销售额展示和更多的数据可视化作品。思考初期我并不打算做什么可视化的作品，一直在想能有没有什么更有趣的想法(可视化肯定一堆人做)。不过从自己的idea pool中没有找到什么可喜的东西，后面cc提了做数据库数据流向方向的事情，其实也是可视化的东西，不过我感觉这比一大堆地图上的可视化还是更有趣了一些，当然也更难做。于是比赛前一两天我们就在一堆的数据库可视化资料中寻找适合自己的表现方式。</p>
+<p><strong>前期准备</strong><br />
+我们首先看到的是一个 <a href="http://www.youtube.com/watch?v=Uj5DolxL1Ak">hadoop的数据流向可视化作品</a> ，感觉还蛮酷的，不过具体细节什么的都丢失了。这里就是我的担忧: 数据的布局该如何处理。在传统的地图方面的可视化作品，作品上的每一个点都有明确的地理信息。而在我们考虑做的数据库数据的流向作品中，数据库中的数据该如何组织是个问题。这个问题我们从一开始就没有仔细考虑清楚，也不可避免导致我们最终的作品的混乱风格。在比赛前一天晚上我们看到 twitter 员工的一个不错的的hackday作品 <a href="https://blog.twitter.com/2012/visualizing-hadoop-hdfs-du">hdfs-du</a> , 在 hdfs 这个文件系统上提供一个可视化的作品, 简单但却非常实用。 另外我们看到一个可视化方面是 <a href="http://www.patrick-wied.at/static/heatmapjs/">heatmap</a> ，感觉在可视化中中添加热图的概念是锦上添花的。在这两个基础上我想到了一个改进点:</p>
+<blockquote>
+<p>可以在 hdfs 系统上做实时的访问展示，使用 treemap 来展示文件系统，确保展示有层次。然后实用 heatmap 来做实时的文件系统的访问热点展示，将每个时刻哪些数据被访问展示出来。这里的可以写一个异步抓取程序去抓取并分析 hdfs 上的 MR任务(可能不太全，不过具有代表性)。</p>
+</blockquote>
+<p>不过 cc 同学觉得 treemap 太丑了，另外比较想做数据流动方面的展示，我们在展示文件系统还是展示数据表这个基本问题上也没达成一致，于是我的建议没有被采纳。在 hdfs-fu上我们看到 <a href="http://en.wikipedia.org/wiki/Voronoi_diagram">voronoi-treemap</a> 挺酷的一个东西。我们当时认为拿那个来展示表也许是一个很酷的展示。最终我们达成一致的是 <strong>在时空两个维度上展示数据仓库的表为准，在实时的基础上尽可能添加热图和流动的概念</strong> 。</p>
+<p><strong>开幕</strong><br />
+就这样在一切还没有很成熟的情况下，我们在9月6号下午5点迎来了 hackathon 的开幕。</p>
+<p><strong>前期</strong><br />
+开始简单的分工是我搞后台数据支持，cjz 搞heatmap/射线相关的研究 , cc 搞前端展示支持。我一开始先准备基础数据，比如表信息以及依赖关系，这些东西从元数据中是很方便获取到的。与此同时cc同学调研 voronoi diagram 的展示，希望能将所有表展示在这之上。当我们做到第二个小时的时候，cc 发现 voronoi 似乎不太能胜任, 似乎这个图不太能表现表的大小关系(虽然此时我还没有取到这个数据)。当时我们认为不能取到大小关系是不能接受的，于是我们转向其他的展示。cc 后面考虑使用 <a href="http://ramblings.mcpher.com/Home/excelquirks/gassites/d3nodefocus">d3 的force layout 的一个 node 展示</a> 。这段时间就是我跟cc在初始化数据上的一些联调, 由于数据量实在太大，调了很久也没有很满意的展示。cjz 那边 heatmap 看起来很方便使用，不过射线的话暂时没想好怎么搞, 而cc 找到的一个可视化作品 <a href="http://artzub.com/d3/wbca/">wbca</a> 实在太炫了，也让我们非常想尝试添加上射线。 两个小时后我主要是在提供所谓数据流向方面的数据，这部分我一开始是简单做的，跟 cc 简单商量我来提供一个时间段内发生的数据移动事件。由于我们要展示所谓热度这个概念，于是这里得定义一下。前期简单做的话我直接使用ETL相关日志，通过ETL来还原表级别的数据流动。将当前时刻正在进行的ETL流程找出来，并跟进执行位置确定执行百分比，后续可以以这个百分比来做热度数据。其实这里热度的定义并不准确，没有太多含义，仅仅是为了展示做了一个相关的百分比罢了。我简单将数据提取出来后，观摩了一下 <a href="http://flask.pocoo.org/">python 的 flask</a> 做了一个简单的api服务。这里我并没有马上就考虑实现实时的部分，而是打算看到第一个 demo 再说。</p>
+<p><strong>第一个demo</strong><br />
+我们实际上做出第一个demo的时间比预期的晚很多，我在后端方面的粗糙工作很快就完成了，而前端关于热图和射线方面的问题还比较多。这段时间我基本没有产出，这是本次比赛的一大败笔，我没想好这段时间该做什么，现在看起来也许是反思一下我们的目标定制是否有问题，一些概念是否有问题(比如热度)，是否需要及时修正。在呈现第一个demo的时候还有一个小插曲，由于 js 不能跨域访问，我跟cc的前端作品必须揉在一起。于是我在找 <a href="http://segmentfault.com/q/1010000000171098">flask 如何访问静态文件上费了一番功夫</a> , 这里让大家看笑话了，主要是我平时总觉得这种东西肯定很方便google到，临时去找的时候搞的手忙脚乱。在大约第7个小时左右我们才有了第一个demo:  <strong>随着时间流逝展示数据仓库一天中表的热度(其实是访问情况)</strong> 。 展现效果并不好，没有实时，没有射线，热图展现过卡, 更多的还是数据layout不太好。这个时候大家还是在想如何把前端展示搞得更好，都扑上去搞前端了，没有冒出其他想法和其他改进。现在想想当时我可能应该往实时数据支持方面考虑一下，这样可能会跟加分一些。</p>
+<p><strong>射线没有搞定</strong><br />
+在尝试一番无果之后，我们关于射线的展示宣告失败。这时候感觉士气不是很好，我们展现的只是一个一大堆圆圈然后随着时间变化的热点。关键是这里没法说故事，这里的热点没法自解释。这段时间我主要是帮他们做点前端打杂，比如添加一下title，添加一下热点label, 添加一个当前时间什么的。cc和cjz还在研究射线相关的技术问题，最终没有搞定。看起来我们只能交一个半成品了。在第二天早上cc希望尝试删减表来达到获得更好的数据布局，不过数据过少时整体展示也不美观，没有达到希望达到的层次效果。后面我们基本没有动力做其他改动了，时间也很快过去。</p>
+<p><strong>比赛结束</strong><br />
+在7号下午两点比赛最终结束了，我们基本以第一个demo的状态结束了本次比赛，有点无奈。本次我们在前后端的配合出现明显的问题，主要原因还是作品的展示定位过于高端，为了达到炫丽的效果需要深厚的前端经验。后面在作品展示时，观看其他组的数据可视化作品, 虽然不够炫目，但在细节方面都有细心刻画，反观我们自己就是一团乱麻。hackathon 除了可视化方面还有其他很有趣的作品，其中不乏解决了公司实际面对的问题的作品，也有很多产品,rd组合的创意产品产生。Anyway, 这是我们第一次 hackathon 比赛经历，有一个有点挫但是能用的 demo ，enjoy yourself即可。</p>
+<p><strong>心得</strong><br />
+若说有什么心得，我想了想有以下几点:</p>
+<ul>
+	<li>提前想清楚，确定定好做哪一方面的事以及一些重要问题的提前准备，达成一致。</li>
+	<li>在做的时候需要不断沟通，当遇到困难时如不能及时解决得想办法折中，调整方向。</li>
+	<li>数据可视化产品需要设计，不能马虎。</li>
+</ul>
+<p><strong>后续可以做的改进</strong><br />
+列一下几个可以改进的地方:</p>
+<ul>
+	<li>实时访问<br />
+一开始我们是希望做成实时的数据展示，不过最终没有去做罢了，这部分并不难。不过想到这里我感觉似乎这里&quot;流动&quot;不是很好表示了，而热图倒是完全适用，这跟我最初的设想一致，不过从文件系统下降到数据库的表罢了，这层下降可能在业务层面上会更直观。</li>
+</ul>
+<ul>
+	<li>寻找更好的数据组织方式<br />
+数据组织方式还是一大痛点，太多的表只会带来混乱。</li>
+</ul>
+<p><strong>Ref</strong><br />
+<a href="http://heatmapdemo.alastair.is/">A day in the City</a><br />
+<a href="http://artzub.com/d3/wbca/">wbca</a><br />
+<a href="http://tweetping.net/">Tweetping</a></p>]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Beijing Sucks at ipsc 2013]]></title>
+    <link href="http://code6.github.com/blog/2013/06/10/beijing-sucks-at-ipsc-2013/"/>
+    <updated>2013-06-10T02:14:00+02:00</updated>
+    <id>http://code6.github.com/blog/2013/06/10/beijing-sucks-at-ipsc-2013</id>
+    <content type="html"><![CDATA[<p>今年的 ipsc 最早是跟毛哥说好要做的，后面 3xian 邀请搞一搞线下玩, 本次我们取了队名 &#8220;Beijing Sucks&#8221;, 简称bs。<br />
+在五月底的时候得知毛哥云游四海去了，不能参加线下比赛，于是只能再找他人拼团，最终决定的是在清华读研的 dumbear, 后面dumbear 也在本场比赛中发挥了异常关键的作用。<br />
+ipsc 正式比赛在 6.8 号，虽然是周六，但要上班。由于我刚好也想准备一下其他事情，就把最后半天年假给请了。六点之前，我们到达了3xian的窝，不一会儿比赛就开始了。<br />
+一开始3xian看前面，我看中间，dumbear看后面。A 和 H 很快有人过了。</p>
+<p>[<span class="caps">TODO</span>]</p>]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[keep updating your cv]]></title>
     <link href="http://code6.github.com/blog/2013/04/15/keep-updating-your-cv/"/>
-    <updated>2013-04-15T00:59:00+08:00</updated>
+    <updated>2013-04-15T00:59:00+02:00</updated>
     <id>http://code6.github.com/blog/2013/04/15/keep-updating-your-cv</id>
     <content type="html"><![CDATA[<p class="date">2013-04-21</p>
 <p>2013.7.26 update<br />
@@ -76,7 +348,7 @@
   <entry>
     <title type="html"><![CDATA[query evolution]]></title>
     <link href="http://code6.github.com/blog/2013/04/04/query-evolution/"/>
-    <updated>2013-04-04T11:52:00+08:00</updated>
+    <updated>2013-04-04T11:52:00+02:00</updated>
     <id>http://code6.github.com/blog/2013/04/04/query-evolution</id>
     <content type="html"><![CDATA[<p class="date">2013-04-04</p>
 <p>从最原始的查询开始，位于后台某个报表，当用户发起一个查询，我们该干啥呢?</p>
@@ -114,7 +386,7 @@
   <entry>
     <title type="html"><![CDATA[create a python package]]></title>
     <link href="http://code6.github.com/blog/2013/01/09/create-a-python-package/"/>
-    <updated>2013-01-09T00:35:00+08:00</updated>
+    <updated>2013-01-09T00:35:00+01:00</updated>
     <id>http://code6.github.com/blog/2013/01/09/create-a-python-package</id>
     <content type="html"><![CDATA[<p>在简单做了一个类 <code>hiveserver</code> 的thrift 接口后，担心日后接口更新，我又添加了一个简单的python client包(没有照顾其他用户= =)。作为要分发给用户使用的包，我需要将其打包发布, 然后才好分发。</p>
 <p>参考 <a href="http://guide.python-distribute.org/index.html">The Hitchhiker’s Guide to Packaging</a> 文档简单了操作了一下，倒也不麻烦。</p>
@@ -197,7 +469,7 @@ http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p
   <entry>
     <title type="html"><![CDATA[open hive]]></title>
     <link href="http://code6.github.com/blog/2012/12/02/open-hive/"/>
-    <updated>2012-12-02T21:48:00+08:00</updated>
+    <updated>2012-12-02T21:48:00+01:00</updated>
     <id>http://code6.github.com/blog/2012/12/02/open-hive</id>
     <content type="html"><![CDATA[<p class="date">2013-01-05</p>
 <p>有时我说的话就是放屁，这已经都到 <del>12月</del> 1月了。不过我还是厚着脸皮来了，我还是希望写写的，每当我来refer自己干过的一些事情的时候, 还蛮有用的。</p>
@@ -320,7 +592,7 @@ http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p
   <entry>
     <title type="html"><![CDATA[hive compile and apply patch]]></title>
     <link href="http://code6.github.com/blog/2012/09/19/hive-compile-and-apply-patch/"/>
-    <updated>2012-09-19T13:38:00+08:00</updated>
+    <updated>2012-09-19T13:38:00+02:00</updated>
     <id>http://code6.github.com/blog/2012/09/19/hive-compile-and-apply-patch</id>
     <content type="html"><![CDATA[<p class="date">2012-09-20</p>
 <p>回归来的第一篇，另外还有好几篇躺在 <code>published:false</code> 中，还没搞好 :-(</p>
@@ -395,7 +667,7 @@ http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p
   <entry>
     <title type="html"><![CDATA[learning Algo Part I at coursera.org]]></title>
     <link href="http://code6.github.com/blog/2012/09/19/learning-algo-part-i-at-coursera-dot-org/"/>
-    <updated>2012-09-19T01:55:00+08:00</updated>
+    <updated>2012-09-19T01:55:00+02:00</updated>
     <id>http://code6.github.com/blog/2012/09/19/learning-algo-part-i-at-coursera-dot-org</id>
     <content type="html"><![CDATA[<p>用来记录我在 coursera.org 上学习  Algo Part I的记录，写完之后发布。</p>
 <p>看起来要来不及了。。。要不然就看PPT恶补吧，dealline(9月30号)快到了。</p>
@@ -412,9 +684,17 @@ http://www.ibm.com/developerworks/cn/opensource/os-pythonpackaging/index.html</p
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[unit test for etl script]]></title>
+    <link href="http://code6.github.com/blog/2012/09/14/unit-test-for-etl-script/"/>
+    <updated>2012-09-14T07:12:00+02:00</updated>
+    <id>http://code6.github.com/blog/2012/09/14/unit-test-for-etl-script</id>
+    <content type="html"><![CDATA[]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[back for blogging more]]></title>
     <link href="http://code6.github.com/blog/2012/09/13/back-for-blogging-more/"/>
-    <updated>2012-09-13T04:31:00+08:00</updated>
+    <updated>2012-09-13T04:31:00+02:00</updated>
     <id>http://code6.github.com/blog/2012/09/13/back-for-blogging-more</id>
     <content type="html"><![CDATA[<p class="date">2012-09-13</p>
 <p>感到很失败，未能完成之前所说的一周发表一篇blog的计划。<br />
@@ -427,9 +707,17 @@ blog是另外一种认识自己的方式，可以更深刻，更有味道。</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[pyhive - hive thrift 查询简单封装]]></title>
+    <link href="http://code6.github.com/blog/2012/06/04/pyhive-simple-python-thrift-lib-for-executing-hive-queries/"/>
+    <updated>2012-06-04T20:15:00+02:00</updated>
+    <id>http://code6.github.com/blog/2012/06/04/pyhive-simple-python-thrift-lib-for-executing-hive-queries</id>
+    <content type="html"><![CDATA[<p class="date">2012-09-13</p>]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[6月第一周比赛小计]]></title>
     <link href="http://code6.github.com/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/"/>
-    <updated>2012-06-03T09:41:00+08:00</updated>
+    <updated>2012-06-03T09:41:00+02:00</updated>
     <id>http://code6.github.com/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june</id>
     <content type="html"><![CDATA[<p class="date">2012-06-04</p>
 <p>6月第一个周末比赛好多啊，做了其中的4个，很爽:</p>
@@ -517,7 +805,7 @@ ipsc 做到了晚上11点结束，12点就是 <code>TCO R2c</code>了，能不�
   <entry>
     <title type="html"><![CDATA[deal with special characters in hive query result]]></title>
     <link href="http://code6.github.com/blog/2012/05/21/deal-with-special-characters-in-hive-query-result/"/>
-    <updated>2012-05-21T01:21:00+08:00</updated>
+    <updated>2012-05-21T01:21:00+02:00</updated>
     <id>http://code6.github.com/blog/2012/05/21/deal-with-special-characters-in-hive-query-result</id>
     <content type="html"><![CDATA[<p class="date">2012-06-02</p>
 <p>知识，想法是需要整理的， 不然容易遗忘, 又过了好久没有更新, 怨念= -<br />
@@ -580,7 +868,7 @@ you wish and then select into that table. You can do this with <span class="caps
   <entry>
     <title type="html"><![CDATA[How to build a dynamic SQL in an elegant way]]></title>
     <link href="http://code6.github.com/blog/2012/03/24/how-to-build-a-dynamic-sql-in-an-elegant-way/"/>
-    <updated>2012-03-24T11:27:00+08:00</updated>
+    <updated>2012-03-24T11:27:00+01:00</updated>
     <id>http://code6.github.com/blog/2012/03/24/how-to-build-a-dynamic-sql-in-an-elegant-way</id>
     <content type="html"><![CDATA[<p class="date">2012-04-04</p>
 <p>换上octopress, 写blog还是不勤快, 目前装在虚拟机当中，怎么勤快:(。</p>
@@ -736,7 +1024,7 @@ you wish and then select into that table. You can do this with <span class="caps
   <entry>
     <title type="html"><![CDATA[Octopress Setup]]></title>
     <link href="http://code6.github.com/blog/2012/03/09/octopress-setup/"/>
-    <updated>2012-03-09T08:10:00+08:00</updated>
+    <updated>2012-03-09T08:10:00+01:00</updated>
     <id>http://code6.github.com/blog/2012/03/09/octopress-setup</id>
     <content type="html"><![CDATA[<p class="date">2012-03-09</p>
 <p><img src="http://code6.github.com/images/octopress_logo.png"></p>
@@ -907,6 +1195,8 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
 </span></code></pre></td></tr></table></div></figure></div></notextile></p>
 <p><strong>异地重新clone一份blog的时候deploy失败</strong><br />
 参考 <a href="https://github.com/imathis/octopress/issues/412">这个issue</a> ，看起来重新clone的时候还需要再次执行一边 <code>rake setup_github_pages</code> 才行。</p>
+<p><strong>rake preview 报&quot;sorry i cannot find /&quot;</strong><br />
+看起来是public目录没有生成完整，可以尝试一下 <code>rake generate</code> 一下再 <code>rake preview</code> 。</p>
 <hr />
 <h3 style="vertical-align:middle;"><strong>附录</strong></h3>
 <p><a href="http://octopress.org/docs/setup/">Octopress Setup</a><br />
@@ -915,201 +1205,6 @@ octopress 需要 ruby 1.9.2, 用 <a href="https://github.com/wayneeseguin/rvm">r
 <a href="http://mrzhang.me/blog/blog-equals-github-plus-octopress.html">Blog = GitHub + Octopress</a><br />
 <a href="http://www.yangzhiping.com/tech/github.html">如何高效地使用GitHub</a><br />
 <a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">Blogging Like a Hacker</a></p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[a little test]]></title>
-    <link href="http://code6.github.com/blog/2012/03/06/a-little-test/"/>
-    <updated>2012-03-06T07:24:00+08:00</updated>
-    <id>http://code6.github.com/blog/2012/03/06/a-little-test</id>
-    <content type="html"><![CDATA[<h1>hello <br />
-h2. hello<br />
-h3. hello</h1>
-<ul>
-	<li>affsffe</li>
-	<li>fsfewfewffe
-	<ul>
-		<li>wwwwwwwww</li>
-	</ul></li>
-</ul>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[textile exmpale]]></title>
-    <link href="http://code6.github.com/blog/2012/03/05/texttile-example/"/>
-    <updated>2012-03-05T23:04:00+08:00</updated>
-    <id>http://code6.github.com/blog/2012/03/05/texttile-example</id>
-    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (test.js)</span> <a href='http://code6.github.com/downloads/code/test.js'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm">sample javascript from xui</span>
-</span><span class='line'><span class="cm">*/</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
-</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
-</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></div><br />
-</notextile></p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Here&#8217;s an example .rvmrc file.  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rvm</span> <span class="n">ruby</span><span class="o">-</span><span class="mi">1</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">6</span> <span class="c1"># ZOMG, seriously? We still use this version?</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>install rvm  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bash -s stable &lt; &lt;<span class="o">(</span>curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></div></notextile></p>
-<div>
-  <pre>
-    <code class='bash'>bash -s stable &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)</code>
-  </pre>
-</div>
-
-<pre>
-<code>
-echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile
-source ~/.bash_profile
-# If using Zsh do this instead
-echo '[[ -s $HOME/.rvm/scripts/rvm ]] &amp;&amp; source $HOME/.rvm/scripts/rvm' &gt;&gt; ~/.zshrc
-source ~/.zshrc
-</code>
-</pre>
-<div>
-<pre>
-<code class='bash'>ssh desktop -D 8080 desktop</code>
-</pre>
-</div>
-<p><code>
-ssh desktop -D 8080 desktop
-</code></p>
-<pre>
-<code>
-ssh desktop -D 8080 desktop
-</code>
-</pre>
-<p>hello <code>rsync</code></p>
-<pre>
-from="10.1.1.1",command="/home/remoteuser/command" ssh-dss AAAA...
-</pre>
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nv">_Tweets_ = </span><span class="mi">1</span>
-</span><span class='line'>
-</span><span class='line'><span class="nv">module.exports = </span><span class="nx">Tweets</span>
-</span></code></pre></td></tr></table></div></figure></div><br />
-</notextile></p>
-<p style="text-align:center;"><img src="http://gitready.com/images/branches.png" alt="" /></p>
-<ul>
-	<li>Separate paragraphs with two newlines.</li>
-	<li>Use one newline only if you need a <br> tag, otherwise, no newlines inside the paragraph.</li>
-	<li>When creating a new page, don’t forget the <span class="caps">YAML</span> premable at the top (Jekyll needs the page title and layout).</li>
-	<li>The layout uses H1 to render the page title; only use H2 through H4 for the page content.</li>
-	<li>Use H2 headers for the major page sections. Give each H2 header a unique ID so the table of contents can link to it.</li>
-	<li>Separating sentences with two spaces, just a convenience when editing in a text editor using monospaced fonts.</li>
-	<li>If in doubt, ask.</li>
-</ul>
-<p><img src="http://code6.github.com/images/octopress_logo.png"></p>]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[hello]]></title>
-    <link href="http://code6.github.com/blog/2012/03/05/md-test/"/>
-    <updated>2012-03-05T22:56:00+08:00</updated>
-    <id>http://code6.github.com/blog/2012/03/05/md-test</id>
-    <content type="html"><![CDATA[<blockquote><p>This is the first level of quoting.</p>
-
-<blockquote><p>This is nested blockquote.</p></blockquote>
-
-<p>Back to the first level.</p></blockquote>
-
-<figure class='code'><figcaption><span> (test.js)</span> <a href='http://code6.github.com/downloads/code/test.js'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm">sample javascript from xui</span>
-</span><span class='line'><span class="cm">*/</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
-</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
-</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<div>
-  <pre>
-    <code class='bash'>rake generate
-rake deploy</code>
-  </pre>
-</div>
-
-
-
-]]></content>
   </entry>
   
 </feed>

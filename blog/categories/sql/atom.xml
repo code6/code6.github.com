@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | MayCoder]]></title>
   <link href="http://code6.github.com/blog/categories/sql/atom.xml" rel="self"/>
   <link href="http://code6.github.com/"/>
-  <updated>2013-07-28T22:51:55+08:00</updated>
+  <updated>2015-01-04T21:44:36+01:00</updated>
   <id>http://code6.github.com/</id>
   <author>
     <name><![CDATA[Code6]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[How to build a dynamic SQL in an elegant way]]></title>
     <link href="http://code6.github.com/blog/2012/03/24/how-to-build-a-dynamic-sql-in-an-elegant-way/"/>
-    <updated>2012-03-24T11:27:00+08:00</updated>
+    <updated>2012-03-24T11:27:00+01:00</updated>
     <id>http://code6.github.com/blog/2012/03/24/how-to-build-a-dynamic-sql-in-an-elegant-way</id>
     <content type="html"><![CDATA[<p>p(date). 2012-04-04</p>
 
@@ -34,67 +34,41 @@
 
 <p>一个简单的demo:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>demo 1 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$sqlbuilder = new QueryBuilder();
-</span><span class='line'> $sqlbuilder->table('fact.&lt;code>order&lt;/code>', 'f')&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>      -&gt;select(array(
-</span><span class='line'>            'city',
-</span><span class='line'>           'quantity' =&gt; 'sum(quantity)',
-</span><span class='line'>           'averageprice' =&gt; 'ifnull(sum(revenue) / sum(quantity), 0)'))
-</span><span class='line'>      -&gt;join('dim.date', 'd', '', 'f.date = d.date')
-</span><span class='line'>      -&gt;where('d.date between ? and ?', 'ss', array($begin_date, $end_date))
-</span><span class='line'>      -&gt;groupby('d.month_num_overall')
-</span><span class='line'>      -&gt;orderby('d.month_num_overall desc')
-</span><span class='line'>      -&gt;limit(3)
-</span><span class='line'>      -&gt;offset(3);
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>echo $sqlbuilder->build();</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock demo 1 %}
+ $sqlbuilder = new QueryBuilder();
+ $sqlbuilder->table('fact.<code>order</code>', 'f')</p>
+
+<pre><code>      -&gt;select(array(
+            'city',
+           'quantity' =&gt; 'sum(quantity)',
+           'averageprice' =&gt; 'ifnull(sum(revenue) / sum(quantity), 0)'))
+      -&gt;join('dim.date', 'd', '', 'f.date = d.date')
+      -&gt;where('d.date between ? and ?', 'ss', array($begin_date, $end_date))
+      -&gt;groupby('d.month_num_overall')
+      -&gt;orderby('d.month_num_overall desc')
+      -&gt;limit(3)
+      -&gt;offset(3);
+</code></pre>
+
+<p>echo $sqlbuilder->build();
+{% endcodeblock %}</p>
 
 <p>输出结果格式化如下:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>demo 1 output </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT city,&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>   sum(quantity) AS quantity,
-</span><span class='line'>   ifnull(sum(revenue) / sum(quantity), 0) AS averageprice
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>FROM fact.&lt;code>order&lt;/code> f
-</span><span class='line'>JOIN dim.date d ON f.date = d.date
-</span><span class='line'>WHERE d.date BETWEEN ? AND ?
-</span><span class='line'>GROUP BY d.month_num_overall
-</span><span class='line'>ORDER BY d.month_num_overall DESC,d.month_num_overall ASC
-</span><span class='line'>LIMIT 3, 3</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock demo 1 output %}
+SELECT city,</p>
+
+<pre><code>   sum(quantity) AS quantity,
+   ifnull(sum(revenue) / sum(quantity), 0) AS averageprice
+</code></pre>
+
+<p>FROM fact.<code>order</code> f
+JOIN dim.date d ON f.date = d.date
+WHERE d.date BETWEEN ? AND ?
+GROUP BY d.month_num_overall
+ORDER BY d.month_num_overall DESC,d.month_num_overall ASC
+LIMIT 3, 3
+{% endcodeblock %}</p>
 
 <p>其中 @getBindParams@ 函数返回一个数组, 包含绑定的变量的类型以及具体的变量, 比如 @array('ii', 1, 2)@ , 而 @getReturnParams@ 函数则返回查询结果列名数组。</p>
 
@@ -102,135 +76,75 @@
 
 <p>一个查询 "gini系数":http://en.wikipedia.org/wiki/Gini_coefficient 的demo如下:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>gini demo </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$sub1 = new QueryBuilder();
-</span><span class='line'>$sub1->table('fact.&lt;code>order&lt;/code>', 'f')
-</span><span class='line'>  ->where('d.date between ? and ?', 'ss', array($begin_date, $end_date))
-</span><span class='line'>  ->where ('coupontype != 4')
-</span><span class='line'>  ->orderby('focus', 'f.revenue');&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>$sub0 = new QueryBuilder();
-</span><span class='line'>$sub0->table(" (select @cs := 0) ", 'cs_idx')
-</span><span class='line'>  ->join(" (select @focus:='') ", "s_idx")
-</span><span class='line'>  ->join($sub1, 'raw')
-</span><span class='line'>  ->select(array('accumulate_revenue' => '@cs := CASE WHEN @focus != raw.focus THEN raw.revenue ELSE @cs + raw.revenue END',&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>            'focus' =&gt; '@focus := raw.focus'));
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>$gini  = new QueryBuilder();
-</span><span class='line'>$gini->table($sub0, 'base')
-</span><span class='line'>  ->select(array(&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>    'focus',
-</span><span class='line'>   'g' =&gt; 'truncate(1 - 1.0 / count(*) * (2 * sum(base.accumulate_revenue) / max(base.accumulate_revenue) -1), 2)'))
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  ->groupby('base.focus');&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>echo $gini->build();</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock gini demo %}
+$sub1 = new QueryBuilder();
+$sub1->table('fact.<code>order</code>', 'f')
+  ->where('d.date between ? and ?', 'ss', array($begin_date, $end_date))
+  ->where ('coupontype != 4')
+  ->orderby('focus', 'f.revenue');</p>
+
+<p>$sub0 = new QueryBuilder();
+$sub0->table(" (select @cs := 0) ", 'cs_idx')
+  ->join(" (select @focus:='') ", "s_idx")
+  ->join($sub1, 'raw')
+  ->select(array('accumulate_revenue' => '@cs := CASE WHEN @focus != raw.focus THEN raw.revenue ELSE @cs + raw.revenue END',</p>
+
+<pre><code>            'focus' =&gt; '@focus := raw.focus'));
+</code></pre>
+
+<p>$gini  = new QueryBuilder();
+$gini->table($sub0, 'base')
+  ->select(array(</p>
+
+<pre><code>    'focus',
+   'g' =&gt; 'truncate(1 - 1.0 / count(*) * (2 * sum(base.accumulate_revenue) / max(base.accumulate_revenue) -1), 2)'))
+</code></pre>
+
+<p>  ->groupby('base.focus');</p>
+
+<p>echo $gini->build();
+{% endcodeblock %}</p>
 
 <p>输出如下:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>gini demo output </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>SELECT focus,&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>   truncate(1 - 1.0 / count(*) * (2 * sum(base.accumulate_revenue) / max(base.accumulate_revenue) -1), 2) AS g
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>FROM
-</span><span class='line'>  (SELECT @cs := CASE&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>                 WHEN @focus != raw.focus THEN raw.revenue
-</span><span class='line'>                 ELSE @cs + raw.revenue
-</span><span class='line'>             END AS accumulate_revenue, @focus := raw. focus AS focus
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   FROM&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code> (SELECT @cs := 0) cs_idx
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   JOIN&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code> (SELECT @focus:='') s_idx
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>   JOIN&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code> ( SELECT f.FOCUS AS focus,
-</span><span class='line'>      f.revenue
-</span><span class='line'>  FROM fact.`order` f
-</span><span class='line'>  WHERE d.date be tween ?
-</span><span class='line'>    AND ?
-</span><span class='line'>    AND coupontype != 4
-</span><span class='line'>  ORDER BY focus,
-</span><span class='line'>           f.revenue) raw) base
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>GROUP BY base.focus</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock gini demo output %}
+SELECT focus,</p>
+
+<pre><code>   truncate(1 - 1.0 / count(*) * (2 * sum(base.accumulate_revenue) / max(base.accumulate_revenue) -1), 2) AS g
+</code></pre>
+
+<p>FROM
+  (SELECT @cs := CASE</p>
+
+<pre><code>                 WHEN @focus != raw.focus THEN raw.revenue
+                 ELSE @cs + raw.revenue
+             END AS accumulate_revenue, @focus := raw. focus AS focus
+</code></pre>
+
+<p>   FROM</p>
+
+<pre><code> (SELECT @cs := 0) cs_idx
+</code></pre>
+
+<p>   JOIN</p>
+
+<pre><code> (SELECT @focus:='') s_idx
+</code></pre>
+
+<p>   JOIN</p>
+
+<pre><code> ( SELECT f.FOCUS AS focus,
+      f.revenue
+  FROM fact.`order` f
+  WHERE d.date be tween ?
+    AND ?
+    AND coupontype != 4
+  ORDER BY focus,
+           f.revenue) raw) base
+</code></pre>
+
+<p>GROUP BY base.focus
+{% endcodeblock %}</p>
 
 <p>代码测试方面, 后面发现参考代码是使用 "phpunit":http://www.phpunit.de/manual/current/en/installation.html 来进行单元测试的，简单地使用一下，还是挺好用的:)</p>
 

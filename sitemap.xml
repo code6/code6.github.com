@@ -2,78 +2,102 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://code6.github.com/blog/2012/03/05/md-test/</loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2012/03/05/texttile-example/</loc>
-        <lastmod>2013-01-09T00:38:33+08:00</lastmod>
+        <lastmod>2013-01-08T17:38:33+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2012/03/06/a-little-test/</loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2012/03/09/octopress-setup/</loc>
-        <lastmod>2012-12-16T23:18:14+08:00</lastmod>
+        <lastmod>2013-09-16T15:46:13+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://code6.github.com/blog/2012/03/24/how-to-build-a-dynamic-sql-in-an-elegant-way/
         </loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://code6.github.com/blog/2012/05/21/deal-with-special-characters-in-hive-query-result/
         </loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://code6.github.com/blog/2012/06/03/programming-contest-fun-in-the-first-weekend-of-june/
         </loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2012/09/13/back-for-blogging-more/</loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>
             http://code6.github.com/blog/2012/09/19/learning-algo-part-i-at-coursera-dot-org/
         </loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2012/09/19/hive-compile-and-apply-patch/</loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2012/12/02/open-hive/</loc>
-        <lastmod>2013-01-09T01:23:09+08:00</lastmod>
+        <lastmod>2013-01-08T18:23:09+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2013/01/09/create-a-python-package/</loc>
-        <lastmod>2013-01-09T01:53:41+08:00</lastmod>
+        <lastmod>2013-01-08T18:53:41+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2013/04/04/query-evolution/</loc>
-        <lastmod>2013-04-04T12:07:38+08:00</lastmod>
+        <lastmod>2013-04-04T06:07:38+02:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/2013/04/15/keep-updating-your-cv/</loc>
-        <lastmod>2013-07-26T02:44:07+08:00</lastmod>
+        <lastmod>2013-07-25T20:44:07+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://code6.github.com/blog/2013/09/07/one-day-in-the-data-warehouse/</loc>
+        <lastmod>2013-09-16T15:46:13+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://code6.github.com/blog/2014/03/15/big-cube/</loc>
+        <lastmod>2015-01-04T20:22:31+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://code6.github.com/blog/2014/04/09/to-be-an-ac-man/</loc>
+        <lastmod>2015-01-04T20:22:31+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://code6.github.com/blog/2014/06/16/sucker-punch-at-ipsc-2014/</loc>
+        <lastmod>2015-01-04T20:22:31+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://code6.github.com/blog/2014/07/15/serendipity/</loc>
+        <lastmod>2015-01-04T20:22:31+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://code6.github.com/blog/2015/01/04/tips-for-silicon-valley-job-hunting/</loc>
+        <lastmod>2015-01-04T21:44:22+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/about/</loc>
-        <lastmod>2012-12-16T23:03:23+08:00</lastmod>
+        <lastmod>2012-12-16T16:03:23+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/blog/archives/</loc>
-        <lastmod>2013-07-26T02:44:07+08:00</lastmod>
+        <lastmod>2015-01-04T21:44:22+01:00</lastmod>
     </url>
     <url>
         <loc>http://code6.github.com/</loc>
-        <lastmod>2013-07-26T02:44:07+08:00</lastmod>
+        <lastmod>2015-01-04T21:44:22+01:00</lastmod>
     </url>
 </urlset>
